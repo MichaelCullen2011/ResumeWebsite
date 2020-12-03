@@ -1,13 +1,10 @@
-from django.shortcuts import render
-from django.template.loader import get_template
-from django.core.mail import EmailMessage
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from mysite.forms import ContactForm
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from django.core.mail import send_mail
+from email import header
+
 
 # Create your views here.
 
@@ -24,9 +21,10 @@ def contact_view(request):
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
+            message_text = form.cleaned_data['message']
+            subject = str(header.Header(name + " sent an email from " + email, "utf-8"))
             try:
-                send_mail(name + " sent an email from " + email, message, settings.DEFAULT_FROM_EMAIL, [settings.EMAIL_HOST_USER])
+                send_mail(subject, message_text, settings.DEFAULT_FROM_EMAIL, [settings.EMAIL_HOST_USER])
             except:
                 return HttpResponse('Invalid Header Found')
             return redirect('success')
