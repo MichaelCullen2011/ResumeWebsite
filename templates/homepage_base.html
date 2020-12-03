@@ -1,0 +1,176 @@
+{% load static %}
+<title>Michael Cullen's Homepage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="{% static 'templates/app.js' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<body class="custom-background-cream">
+    <style>
+    {% include 'style.css' %}
+    </style>
+    <!-- Header and Navbar -->
+    {% include 'header.html' %}
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1000px;">
+
+
+        <!-- ABOUT SECTION -->
+        <div class="w3-row-padding w3-padding-16" id='about'>
+            <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge text-burgundy w3-display-top w3-center">ABOUT</h1>
+            <div class="w3-row-third custom-background-cream" style="max-width:1400px;">
+                <div class="w3-row-third custom-background-cream" style="max-width:1400px;">
+                    <div class="w3-container w3-card w3-light-grey w3-margin-bottom w3-left-align">
+                        <div class="w3-center">
+                            <h2 class="w3-text-black w3-bold"><i class="fa fa-user fa-fw w3-margin-right w3-xxlarge text-burgundy"></i><b> Me </b></h2>
+                            <div class="w3-container w3-center">
+                                <h5 class="w3-opacity w3-center w3-padding-medium"><b>
+                                    I am an aspiring physics researcher, having graduated from Loughborough Universities MPhys program I continue to
+                                    develop and pursue a career in fundamental physics research. I also take an interest in learning new things, such
+                                    as programming in Python. Some of my programming projects can be seen below, with links to Github. What I enjoy
+                                    most is when programming and physics can come together to really speed up and improve the scientific process.
+                                </b></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+        <!-- PROJECTS SECTION -->
+        <div class="w3-row-padding w3-padding-16" id='projects'>
+            <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge text-burgundy w3-display-top w3-center">PROJECTS</h1>
+            <!-- Inner Page Container-->
+            <div class="w3-row-third custom-background-cream" style="max-width:1400px;">
+
+
+                <!-- Neural Networks Section-->
+                <div class="w3-display-container w3-row-padding w3-padding-16 w3-margin-bottom w3-center" id="Neural Networks">
+                    <!-- Image Section-->
+                    <div class="w3-third w3-margin-bottom">
+                        <div class="w3-container w3-card w3-light-grey w3-padding-32 w3-center">
+                            <h2><b></b></h2>
+                            <img src="{% static 'deep-learning.jpg' %}" width=96% alt="Neural Network" border="1">
+                        </div>
+                    </div>
+                    <!-- Description Section-->
+                    <div class="w3-twothird">
+                        <div class="w3-container w3-padding-24 w3-card w3-light-grey w3-padding-medium">
+                            <h2 class="w3-text-black w3-bold"><i class="fa fa-cloud fa-fw w3-margin-right w3-xxlarge text-burgundy"></i><b>  Neural Networks and Machine Learning </b></h2>
+                            <div class="w3-container w3-text-black">
+                                <h5 class="w3-opacity"><b>
+                                    The two projects here explore neural style transfer networks and a text based recurrent neural network.
+                                    The NST network uses a style image (usually an artists painting) which is fed through the network and
+                                    blended onto a second image, the content image of your choosing. The text based RNN learns from a specific text; such as Shakespeare's
+                                    Romeo and Juliet or the Harry Potter books, and then generates characters (letters, spaces, punctuation)
+                                    to imitate these styles of writing.
+                                </b></h5>
+                            </div>
+                            <div class="w3-container text-black">
+                                <h5><b>Neural Network Links</b></h5>
+                                <div class="w3-container text-burgundy">
+                                <a href="https://github.com/MichaelCullen2011/NeuralStyleTransfer" target="_blank" class="button">
+                                    <h5><b class="fa fa-github w3-hover-opacity"> Neural Style Transfer Network </b></h5>
+                                </a>
+                                <a href="https://github.com/MichaelCullen2011/RNNGeneratorGUI" target="_blank" class="button">
+                                    <h5><b class="fa fa-github w3-hover-opacity">  Recurrent Neural Network </b></h5>
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Games Section-->
+                <div class="w3-container w3-row-padding w3-padding-16 w3-margin-bottom w3-center" id="Games">
+                    <!-- Description Section-->
+                    <div class="w3-twothird w3-margin-bottom">
+                        <div class="w3-container w3-card w3-padding-24 w3-light-grey w3-padding-medium">
+                            <h2 class="w3-text-black w3-bold"><i class="fa fa-building fa-fw w3-margin-right w3-xxlarge text-burgundy"></i><b>  Games </b></h2>
+                            <div class="w3-container w3-text-black">
+                                <h5 class="w3-opacity"><b>
+                                    The two games; Chess and Goban, are programmed using the popular pygame library.
+                                    Each game has been programmed such that two players can play each other
+                                    from the same computer. Chess also allows for various technical chess rules
+                                    such as castling and pawn enpassant captures. The Goban game is based on
+                                    China's Go board game, where players compete for territory using coloured stones.
+                                </b></h5>
+                            </div>
+                            <div class="w3-container text-black">
+                                <h5><b>Game Links</b></h5>
+                                <div class="w3-container text-burgundy">
+                                <a href="https://github.com/MichaelCullen2011/Chess" target="_blank" class="button">
+                                    <h5><b class="fa fa-github w3-hover-opacity">  Chess </b></h5>
+                                </a>
+                                <a href="https://github.com/MichaelCullen2011/Goban" target="_blank" class="button">
+                                    <h5><b class="fa fa-github w3-hover-opacity w3-text-grey">  Goban </b></h5>
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Image Section-->
+                    <div class="w3-third">
+                        <div class="w3-container w3-card w3-light-grey w3-padding-32 w3-center">
+                            <img src="{% static 'chess_board.png' %}" width=83% alt="Chess Game" border="1">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Physics Section-->
+                <div class="w3-container w3-row-padding w3-padding-16 w3-margin-bottom w3-center" id="Physics Simulations">
+                    <!-- Image Section-->
+                    <div class="w3-third w3-margin-bottom">
+                        <div class="w3-container w3-card w3-light-grey w3-center" style="padding-top: 42px; padding-bottom: 42px;">
+                            <img src="{% static 'bubble-chamber.jpg' %}" width=100% alt="Interstellar Motion" border="1">
+                        </div>
+                    </div>
+                    <!-- Description Section-->
+                    <div class="w3-twothird">
+                        <div class="w3-container w3-padding-24 w3-card w3-light-grey w3-padding-medium">
+                            <h2 class="w3-text-black w3-bold"><i class="fa fa-sun-o fa-fw w3-margin-right w3-xxlarge text-burgundy"></i><b>  Physics Simulations </b></h2>
+                            <div class="w3-container w3-text-black">
+                                <h5 class="w3-opacity"><b>
+                                    The two simulations presented are a simple solar system motion simulation
+                                    in vpython, a neutrino probability calculator used in my University Masters
+                                    project, and various quantum simulations. Interstellar Motion has all of the
+                                    solar system planets programmed in with the focus being on accurate time periods.
+                                    The Quantum and Neutrino simulations calculate either the probabilities of a
+                                    neutrino and lepton exchanging bosons or the electron density of hydrogen orbitals.
+                                </b></h5>
+                            </div>
+                            <div class="w3-container text-black">
+                                <h5><b>Simulation Links</b></h5>
+                                <div class="w3-container text-burgundy">
+                                <a href="https://github.com/MichaelCullen2011/InterstellarMotion" target="_blank" class="button">
+                                    <h5><b class="fa fa-github w3-hover-opacity">  Interstellar Motion </b></h5>
+                                </a>
+                                <a href="https://github.com/MichaelCullen2011/QuantumAndNeutrinos" target="_blank" class="button">
+                                    <h5><b class="fa fa-github w3-hover-opacity">  Quantum and Neutrino Simulations </b></h5>
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <!-- INNER CONTAINER DIV CLOSE -->
+            </div>
+
+
+        <!-- PROJECTS DIV CLOSE -->
+        </div>
+
+
+    <!-- PAGE CONTAINER DIV CLOSE -->
+    </div>
+        {% include 'socials.html' %}
+
+</body>
