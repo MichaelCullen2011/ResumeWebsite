@@ -24,7 +24,7 @@ def contact_view(request):
             message_text = form.cleaned_data['message']
             subject = str(header.Header(name + " sent an email from " + email, "utf-8"))
             try:
-                send_mail(subject, message_text, settings.DEFAULT_FROM_EMAIL, [email], fail_silently=False)
+                send_mail(subject, message_text, email, [settings.DEFAULT_FROM_EMAIL], fail_silently=False)
             except:
                 return HttpResponse('Invalid Header Found')
             return redirect('success')
