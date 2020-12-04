@@ -132,18 +132,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', True)
+MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY', True)
+MAILGUN_DOMAIN = os.environ.get('MAILGUN_DOMAIN', True)
+MAILGUN_PUBLIC_KEY = os.environ.get('MAILGUN_PUBLIC_KEY', True)
+MAILGUN_SMTP_LOGIN = os.environ.get('MAILGUN_SMTP_LOGIN', True)
+MAILGUN_SMTP_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', True)
+MAILGUN_SMTP_PORT = os.environ.get('MAILGUN_SMTP_PORT', True)
+MAILGUN_SMTP_SERVER = os.environ.get('MAILGUN_SMTP_SERVER', True)
+DOMAIN = 'michaelcullenwebsite.herokuapp.com'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'michaelcullen2011@hotmail.co.uk'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_HOST = MAILGUN_SMTP_SERVER
+EMAIL_HOST_USER = MAILGUN_SMTP_LOGIN
+EMAIL_HOST_PASSWORD = MAILGUN_SMTP_PASSWORD
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-SENDGRID_ECHO_TO_STDOUT = False
+EMAIL_PORT = MAILGUN_SMTP_PORT
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
