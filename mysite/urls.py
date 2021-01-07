@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pages.views import homepage_view, contact_view, cv_view, success_view
-from product.views import product_detail_view
 
 urlpatterns = [
     path('', homepage_view),
