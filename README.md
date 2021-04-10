@@ -4,6 +4,8 @@
 
 This is a website built using Django. It is a simple resume website, that descripes some example projects (with links to github) and a resume and contact page.
 
+![alt text](https://github.com/MichaelCullen2011/ResumeWebsite/blob/main/screenshot.jpg?raw=true)
+
 ## Getting Started
 
 ### Installing
