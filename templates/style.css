@@ -24,13 +24,33 @@ a:link {
     .nav-links{visibility: hidden; position: fixed; right: 0px; height: 92vh; top: 8vh; background-color: #7d4c67; display: flex; flex-direction: column; align-items: center; width: 50%; transform: translateX(100%); transition: transform 0.3s ease-in;}
     .nav-links li{opacity: 0}
     .burger{display: block;}
-    img{width: 80%, height: 80%}
+    .img{width: 80%; height: 80%}
     .ex1, .w3-text-container {width: 100%;}
     .contact-display {position: center; width: 50%}
     .w3-display-container {width: 100%}
     .w3-border{border:0px solid #ccc!important}
+    .w3-card {width: 100%!important;}
+    .w3-text-container {width: 100%!important}
+    .container {width: 100%!important;}
     .w3-container {width: 100%;}
+    .container {width: 100%}
     .height-match {height: 100%}
+    .col{width: 100%!important;}
+    .card{width: 100%!important; padding: 10px 10px 10px 10px!important;}
+    .card0{width: 100%!important; padding: 10px 10px 10px 10px!important;}
+    .card-1{width: 100%!important;}
+    .card-2{width: 100%!important;}
+    .card-3{width: 100%!important;}
+    .card-4{width: 100%!important;}
+    .card-5{width: 100%!important;}
+    .card-6{width: 100%!important;}
+    .card-0{background-position: bottom!important; padding-bottom: 100px!important;}
+    .card-1{background-position: bottom!important; padding-bottom: 100px!important;}
+    .card-2{background-position: bottom!important; padding-bottom: 100px!important;}
+    .card-3{background-position: bottom!important; padding-bottom: 100px!important;}
+    .card-4{background-position: bottom!important; padding-bottom: 100px!important;}
+    .card-5{background-position: bottom!important; padding-bottom: 100px!important;}
+    .card-6{background-position: bottom!important; padding-bottom: 100px!important;}
 }
 
 @keyframes navLinkFade{
@@ -47,18 +67,129 @@ a:link {
 .custom-background-cream,.custom-backgroundbackground-cream-hover{color:#FDF5E6!important;background-color:#FDF5E6!important}
 .custom-background-black,.custom--black-hover{color:#111113!important;background-color:#111113!important}
 .ex1 {width: 1500px; margin: auto; border: 3px solid #808080;}
-.w3-display-container {width: 100%; margin: auto; text-align: center;}
-.contact-display {width: 1200px; margin: auto; text-align: center;}
-.w3-container {width: 100%}
+.w3-display-container {width: 100%; margin: auto; text-align: center; margin: 0 auto;}
+.contact-display {width: 1200px; margin: auto; text-align: center; margin: 0 auto;}
+.w3-container {width: 100%; display: 'center'; text-align: center;}
+.w3-text-container {width: 60%; text-align: center; margin: 0 auto;}
 .w3-img-container {border: 5px solid #555;}
 .w3-border{border:3px solid #ccc!important}
 .w3-border-thin{border:2px solid #ccc!important}
-.w3-text-container {}
+.w3-card{width: 70%; margin: 0 auto; text-align: center;}
+.w3-card-cv{width: 70%; text-align: center;}
 .w3-input {width: 100%; display: center;}
 .w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f9f9f9!important}
 .w3-button{border:0;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
 .about-container{text-align: center; width: 1000px}
 .height-match{height:430px}
+.text-black,.hover-text-black:hover{color:#1E1E1E!important}
 .text-burgundy,.hover-text-burgundy:hover{color:#7d4c67!important}
 .burgundy, .hover-burgundy:hover{color:#fff!important;background-color:#7d4c67!important}
 .no-underline {text-decoration: none!important;}
+.fa-github-square {font-size: 30px; padding-bottom: 10px;}
+.padding-right {padding: 10px}
+
+.col{
+    padding-bottom: 50px;
+}
+
+.col-md-4{
+    padding-bottom: 20px;
+}
+
+.col-md-5{
+    padding-bottom: 50px;
+}
+
+.card0{
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    padding: 14px 100px 18px 36px;
+    cursor: pointer;
+}
+
+.card{
+    width: 40%;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    padding: 14px 100px 0px 36px;
+    cursor: pointer;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.card h3{
+    font-weight: 600;
+}
+
+.card img{
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    max-height: 120px;
+}
+
+.card-0{
+background-image: url('../../static/me.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+
+.card-1{
+background-image: url('../../static/NN-logo.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+.card-2{
+    background-image: url('../../static/stocks.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+.card-3{
+    background-image: url('../../static/stock-predict.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+.card-4{
+    background-image: url('../../static/solar-system-logo.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+.card-5{
+    background-image: url('../../static/chess-logo.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+.card-6{
+    background-image: url('../../static/chess-logo.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+@media(max-width: 1000px){
+    .card{
+        margin: 20px;
+    }
+}

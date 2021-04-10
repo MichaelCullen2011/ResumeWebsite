@@ -20,6 +20,7 @@ from boto.s3.connection import S3Connection
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR = 'C:/Users/micha/Documents/PycharmProjects/Django/'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production

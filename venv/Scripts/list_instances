@@ -1,4 +1,4 @@
-#!d:\users\micha\pycharmprojects\django\venv\scripts\python.exe
+#!C:\Users\micha\Documents\PycharmProjects\Django\venv\Scripts\python.exe
 
 import sys
 from operator import attrgetter

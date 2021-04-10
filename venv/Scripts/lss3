@@ -1,4 +1,4 @@
-#!d:\users\micha\pycharmprojects\django\venv\scripts\python.exe
+#!C:\Users\micha\Documents\PycharmProjects\Django\venv\Scripts\python.exe
 import boto
 from boto.exception import S3ResponseError
 from boto.s3.connection import OrdinaryCallingFormat
