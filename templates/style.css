@@ -69,7 +69,7 @@ a:link {
 .ex1 {width: 1500px; margin: auto; border: 3px solid #808080;}
 .w3-display-container {width: 100%; margin: auto; text-align: center; margin: 0 auto;}
 .contact-display {width: 1200px; margin: auto; text-align: center; margin: 0 auto;}
-.w3-container {width: 100%; display: 'center'; text-align: center;}
+.w3-container {width: 100%; display: 'center';}
 .w3-text-container {width: 60%; text-align: center; margin: 0 auto;}
 .w3-img-container {border: 5px solid #555;}
 .w3-border{border:3px solid #ccc!important}
