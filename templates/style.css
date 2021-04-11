@@ -102,7 +102,7 @@ a:link {
 
 .card0{
     width: 50%;
-    margin: 0 auto;
+    margin: auto;
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
@@ -112,8 +112,8 @@ a:link {
 }
 
 .card{
-    width: 40%;
-    margin: 0 auto;
+    width: 90%;
+    margin: auto;
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
@@ -139,7 +139,14 @@ a:link {
 }
 
 .card-0{
-background-image: url('../../static/me.png');
+    background-image: url('../../static/me.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100px;
+}
+
+.card-t{
+    background-image: url('../../static/tableau.png');
     background-repeat: no-repeat;
     background-position: right;
     background-size: 100px;
@@ -147,7 +154,7 @@ background-image: url('../../static/me.png');
 
 
 .card-1{
-background-image: url('../../static/NN-logo.png');
+    background-image: url('../../static/NN-logo.png');
     background-repeat: no-repeat;
     background-position: right;
     background-size: 100px;
@@ -188,8 +195,8 @@ background-image: url('../../static/NN-logo.png');
     background-size: 100px;
 }
 
-@media(max-width: 1000px){
+@media(max-width: 1600px){
     .card{
-        margin: 20px;
+        margin: 20px auto;
     }
 }

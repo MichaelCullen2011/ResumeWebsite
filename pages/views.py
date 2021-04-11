@@ -38,10 +38,12 @@ def success_view(request):
 
 
 def cv_view(request, *args, **kwargs):
-    my_context = {
-        "this_is_true": True,
-        "my_text": "About me",
-        "my_number": 123,
-        "my_list": ["a", "b", "c", "d", "e"]
-    }
-    return render(request, "cv.html", my_context)
+    return render(request, "cv.html")
+
+
+def tableau1_view(request, *args, **kwargs):
+    return render(request, "tableau1.html")
+
+
+def tableau2_view(request, *args, **kwargs):
+    return render(request, "tableau2.html")
