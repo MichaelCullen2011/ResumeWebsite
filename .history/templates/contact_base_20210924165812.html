@@ -1,0 +1,25 @@
+<html lang="en">
+{% load static %}
+<title>Michael Cullen's Homepage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="{% static 'templates/app.js' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<body class="custom-background-cream">
+    <style>
+    {% include 'style.css' %}
+    </style>
+
+    <!-- Header and Navbar -->
+    {% include 'header.html' %}
+
+    <!-- Contact Forms -->
+    {% include 'contact_bar.html' %}
+
+    <!-- Socials Container -->
+    {% include 'socials.html' %}
+</body>
+</html>
