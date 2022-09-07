@@ -1,0 +1,54 @@
+<title>Michael Cullen's Homepage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="templates/app.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<body class="custom-background-cream">
+    <style>
+    {% include 'style.css' %}
+    </style>
+
+    <!-- Header and Navbar -->
+    {% include 'header.html' %}
+
+    <div class="w3-content w3-margin-top w3-center" id='tableau1'>
+        <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge text-burgundy w3-display-top w3-center">Flights Tableau Project</h1>
+        <h6 class="text-burgundy w3-display-top w3-center">
+            The Tableau Visualisation is compiled from self scraped and cleaned UK flight data spanning from July 2019 to February 2021. 
+            The visualisation shows specific airport activity, and is compared to the same period that time last year.
+            You can clearly compare airport performance during covid and look at popular international countries that are being travelled to recently, as travel rules relax.
+        </h6>
+    </div>
+
+    <div align='center'>
+        <iframe src="https://public.tableau.com/views/Flights_16181695154100/Networks?:language=en-GB&:display_count=y&publish=yes&:origin=viz_share_link?:showVizHome=no&:embed=true" 
+            width="1200" height="860"></iframe>
+    </div>
+
+
+    <div align='center'>
+        <iframe src="https://public.tableau.com/views/Flights_16181695154100/IntDesktop1?:language=en-GB&:display_count=y&:origin=viz_share_link?:showVizHome=no&:embed=true" 
+            width="1200" height="860"></iframe>
+    </div>
+
+    <div align='center'>
+        <iframe src="https://public.tableau.com/views/Flights_16181695154100/DomDesktop1?:language=en-GB&:display_count=y&publish=yes&:origin=viz_share_link?:showVizHome=no&:embed=true" 
+            width="1200" height="860"></iframe>
+    </div>
+
+    <div align='center'>
+        <iframe src="https://public.tableau.com/views/Flights_16181695154100/IntDesktop2?:language=en-GB&:display_count=y&publish=yes&:origin=viz_share_link?:showVizHome=no&:embed=true" 
+            width="1200" height="860"></iframe>
+    </div>
+
+    <div align='center'>
+        <iframe src="https://public.tableau.com/views/Flights_16181695154100/DomDesktop2?:language=en-GB&:display_count=y&publish=yes&:origin=viz_share_link?:showVizHome=no&:embed=true" 
+            width="1200" height="860"></iframe>
+    </div>
+
+    <!-- Socials Container -->
+    {% include 'socials.html' %}
+</body>

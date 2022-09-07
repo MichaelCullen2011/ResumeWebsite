@@ -1,0 +1,49 @@
+<!-- Header -->
+<header>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width" initial-scale="1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MICHAEL CULLEN</title>
+</header>
+
+<nav>
+  <div class="logo">
+    <a href="/">
+      <h4> Michael Cullen - Physicist </h4>
+    </a>
+  </div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">About</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/cv">CV</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <div class="burger">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
+</nav>
+<script>const navSlide = () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
+
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('nav-active');
+        document.body.classList.toggle('body-fixed');
+
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.3s ease forwards ${index/5+0.3}s`;
+            }
+        });
+        burger.classList.toggle('toggle');
+    });
+
+
+}
+
+navSlide();</script>
