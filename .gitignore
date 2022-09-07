@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 .venv/
 *__pycache__*
+=======
+"sendgrid.env" 
+>>>>>>> 50e49b5ab95597c9379fb0cff4505d1a7f099705

@@ -1,0 +1,135 @@
+{% load static %}
+<title>Michael Cullen's Homepage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="{% static 'templates/app.js' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<body class="custom-background-cream">
+    <style>
+    {% include 'style.css' %}
+    </style>
+    <!-- Header and Navbar -->
+    {% include 'header.html' %}
+    
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top w3-center" style="max-width:1600px;">
+    
+        <!-- ABOUT SECTION -->
+        <div class="w3-row-padding w3-padding-16" id='about'>
+            <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge text-burgundy w3-display-top w3-center">ABOUT</h1>
+                <div class="col-md-5">
+                    <a href='/cv/'>
+                    <div class="card0 card-0 text-black">
+                        <h3></h3>
+                        <p>I am an aspiring physics researcher, data analyst, and hobby programmer. 
+                        Being a Loughborough University MPhys graduate and working in the technology 
+                        consultant industry; I continue to develop and pursue further disciplines and knowledge.
+                        </p><br>
+                        <p>Some example data analysis and programming projects can be seen below, with links to Github. 
+                        What I enjoy most is when analytics, programming and other disciplines can come together flawlessy. 
+                        My career goals are to join and collaborate with teams and projects that are revolutionising their 
+                        respective fields; to then contribute and learn at the cutting edge of technology, research and industry.
+                        </p>
+                    </div>
+                    </a>
+                </div>
+            </h1>
+        </div>
+
+    </div>
+
+    <div class="w3-content w3-margin-top w3-center" id='projects'>
+        <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge text-burgundy w3-display-top w3-center">PROJECTS</h1>
+        <div class="container">
+            <div class="col">
+
+                <div class="col-md-4">
+                <a href='/tableau1/'>
+                <div class="card card-t text-black">
+                    <h3>Flights Tableau Visualisation</h3>
+                    <p>
+                    The Tableau Visualisation is compiled from self scraped and cleaned UK flight data spanning from July 2019 to February 2021. 
+                    The visualisation shows specific airport activity, and is compared to the same period that time last year.
+                    You can clearly compare airport performance during covid and look at popular international countries that are being travelled to recently, as travel rules relax.
+                    </p>
+                    <a href="https://public.tableau.com/profile/michael.cullen" target="_blank" class="button w3-center" style="width: 20%"><h5><b class="fa fa-bookmark-o w3-hover-opacity text-burgundy"></b>   Tableau Profile</h5></a>
+                </div>
+                </a>
+                </div>
+
+                <div class="col-md-4">
+                <a href='/tableau2/'>
+                <div class="card card-t text-black">
+                    <h3>Telecom Users Tableau Visualisation</h3>
+                    <p>
+                    This visualisation compares customers of specific packages / payment methods / streaming choices by varying demographics. 
+                    </p>
+                    <a href="https://public.tableau.com/profile/michael.cullen" target="_blank" class="button w3-center" style="width: 20%"><h5><b class="fa fa-bookmark-o w3-hover-opacity text-burgundy"></b>   Tableau Profile</h5></a>
+                </div>
+                </a>
+                </div>
+
+                
+                <div class="col-md-4">
+                <a href='https://github.com/MichaelCullen2011/NSTBackend'>
+                <div class="card card-1 text-black">
+                    <h3>Neural Style Transfer</h3>
+                    <p>This project involved full-stack development, concerning an android app, a data server, and a machine learning model, that uses neural networks to style any image as a famous painting. 
+                    This has helped with android app development using Flutter and Dart, server backend development with Flask, and developing the ML model itself with Tensorflow, Keras and Pandas.</p>
+                    <a href="https://github.com/MichaelCullen2011/NSTApp" target="_blank" class="button w3-center" style="width: 20%"><h5><b class="fa fa-github-square w3-hover-opacity text-burgundy"></b>   App</h5></a>
+                    <a href="https://github.com/MichaelCullen2011/NSTBackend" target="_blank" class="button w3-center" style="width: 20%"><h5><b class="fa fa-github-square w3-hover-opacity text-burgundy"></b>   Server</h5></a>
+                </div>
+                </a>
+                </div>
+
+                <div class="col-md-4">
+                <a href='https://github.com/MichaelCullen2011/StockAnalyserAndPredictor'>
+                <div class="card card-2 text-black">
+                    <h3>Portfolio Analysis and Prediction</h3>
+                    <p>Given a history of stock purchases, a portfolio is automatically generated. 
+                    By scraping online data, correlation and risk assessment can be determined for 
+                    the specific portfolio, while also calculating current and future ROI. Further 
+                    visualisations can also be made for the portfolio.</p>
+                    
+                    <p>Developed a data pipeline using the alpha-vantage API to access minute-by-minute 
+                    stock data and package it into a Pandas dataframe. These large datasets are then used 
+                    in conjunction with a windowed-data fed LSTM model to predict specific timeframes 
+                    into the future.</p>
+                    <a href="https://github.com/MichaelCullen2011/StockAnalyserAndPredictor" target="_blank" class="w3-center button"><h5><b class="fa fa-github-square w3-hover-opacity text-burgundy"></b>   Finance</h5></a>
+                </div>
+                </a>
+                </div>
+
+                <div class="col-md-4">
+                <a href='https://github.com/MichaelCullen2011/InterstellarMotion'>
+                <div class="card card-4 text-black">
+                    <h3>Solar System Simulation with General Relativity</h3>
+                    <p>Using the rules of general relativity, I simulated our sun and planets, with their interactions on one another. 
+                    The project used Python to calculate how GR affects the motion of objects and returns the next positions of those objects.</p>
+                    <a href="https://github.com/MichaelCullen2011/InterstellarMotion" target="_blank" class="w3-center button"><h5><b class="fa fa-github-square w3-hover-opacity text-burgundy"></b>   Simulation</h5></a>
+                </div>
+                </a>
+                </div>
+
+                <div class="col-md-4">
+                <a href='https://github.com/MichaelCullen2011/Chess'>
+                <div class="card card-5 text-black">
+                    <h3>Chess</h3>
+                    <p>Chess is programmed using the popular pygame library.
+                    The game has been programmed such that two players can play each other from the same computer. 
+                    There are also two single player game modes, where you can play against a stockfish AI or against a homemade machine learning AI (it isn't as smart as stockfish).</p>
+                    <a href="https://github.com/MichaelCullen2011/Chess" target="_blank" class="w3-center button"><h5><b class="fa fa-github-square w3-hover-opacity text-burgundy"></b>   Chess</h5></a>
+                </div>
+                </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    {% include 'socials.html' %}
+
+</body>
