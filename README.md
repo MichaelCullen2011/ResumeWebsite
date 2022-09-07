@@ -1,6 +1,6 @@
 # Resume Website
 
-## Website can be accessed at: [michaelcullenpersonal.nw.r.appspot.com](michaelcullenpersonal.nw.r.appspot.com)
+## Website can be accessed at: michaelcullenpersonal.nw.r.appspot.com
 
 ## Description
 
