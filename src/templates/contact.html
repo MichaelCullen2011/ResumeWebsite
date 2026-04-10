@@ -46,16 +46,25 @@
             <form method="POST" action="/contact" role="form" name="EmailForm">
             {{ form.hidden_tag() }}
             <div class="w3-section text-burgundy w3-center">
-                <label><b>Name</b></label>
-                <input class="w3-input w3-border-thin w3-center" type="text" required name="name">
+                {{ form.name.label }}
+                {{ form.name(class="w3-input w3-border-thin w3-center") }}
+                {% for error in form.name.errors %}
+                    <span class="w3-text-red">{{ error }}</span>
+                {% endfor %}
             </div>
             <div class="w3-section text-burgundy">
-                <label><b>Email</b></label>
-                <input class="w3-input w3-border-thin w3-center" type="text" required name="email">
+                {{ form.email.label }}
+                {{ form.email(class="w3-input w3-border-thin w3-center") }}
+                {% for error in form.email.errors %}
+                    <span class="w3-text-red">{{ error }}</span>
+                {% endfor %}
             </div>
             <div class="w3-section text-burgundy">
-                <label><b>Message</b></label>
-                <input class="w3-input w3-border-thin w3-center" type="text" required name="message">
+                {{ form.message.label }}
+                {{ form.message(class="w3-input w3-border-thin w3-center") }}
+                {% for error in form.message.errors %}
+                    <span class="w3-text-red">{{ error }}</span>
+                {% endfor %}
             </div>
             <input type="submit" value="Submit" class="w3-button w3-block burgundy"/>
             </form><br>
