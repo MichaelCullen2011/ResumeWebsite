@@ -54,8 +54,8 @@
 **Plans:** 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Fix CSRF field names, add mail error handling, add gunicorn to requirements
-- [ ] 02-02-PLAN.md — Fix Dockerfile CMD and requirements path, remove Redis, recreate .env.example, update CLAUDE.md
+- [x] 02-01-PLAN.md — Fix CSRF field names, add mail error handling, add gunicorn to requirements
+- [x] 02-02-PLAN.md — Fix Dockerfile CMD and requirements path, remove Redis, recreate .env.example, update CLAUDE.md
 
 ---
 
