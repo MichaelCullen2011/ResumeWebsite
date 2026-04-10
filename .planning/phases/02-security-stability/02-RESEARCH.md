@@ -416,7 +416,7 @@ No automated test infrastructure needs to be created — REQUIREMENTS.md explici
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Does the contact form action attribute need updating?**
    - Current: `action="contact"` (relative) with `target="./pages/views"` (invalid target)
