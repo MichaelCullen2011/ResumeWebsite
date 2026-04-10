@@ -51,6 +51,12 @@
 **Canonical refs:**
 - `REQUIREMENTS.md` — "Move secrets to environment variables", "Enable CSRF protection", "Add basic error handling", "Fix deployment issues", "Clarify or remove Redis"
 
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Fix CSRF field names, add mail error handling, add gunicorn to requirements
+- [ ] 02-02-PLAN.md — Fix Dockerfile CMD and requirements path, remove Redis, recreate .env.example, update CLAUDE.md
+
 ---
 
 ## Phase 3: Code Quality & Maintainability
