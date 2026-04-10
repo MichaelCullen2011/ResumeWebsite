@@ -1,0 +1,8 @@
+.env
+.env.*
+.git/
+.gitignore
+.planning/
+*.md
+__pycache__/
+.venv/
