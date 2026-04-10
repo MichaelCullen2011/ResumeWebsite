@@ -48,15 +48,37 @@ Single-file Flask app: `src/main.py` defines all routes and the `EmailForm` WTFo
 - CSS (`style.css`, `fa.css`) and JS (`navlinkscript.js`) are included inline via `{% include %}` rather than served as static files
 - Static assets (images, PDF) are in `src/static/`
 
-**Contact form** uses Flask-Mail over Gmail SMTP (TLS, port 587). Credentials are read from environment variables: `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, and `MAIL_PASSWORD`. Set these before running the app locally or deploying.
+**Contact form** uses Flask-Mail over Gmail SMTP (TLS, port 587). All four credentials (`SECRET_KEY`, `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, `MAIL_PASSWORD`) are read from environment variables. See **Environment Variables** section below.
 
 **Dependencies:** `src/requirements.txt` (not the root `requirements.txt`). Install with:
 ```bash
 pip install -r src/requirements.txt
 ```
 
+## Environment Variables
+
+The app requires these four environment variables to start. Missing any will cause a `KeyError` on startup (fail-fast by design).
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `SECRET_KEY` | Flask session signing key (CSRF protection depends on this) | Any long random string |
+| `MAIL_USERNAME` | Gmail address used for sending | `you@gmail.com` |
+| `MAIL_DEFAULT_SENDER` | From address for outgoing mail (usually same as username) | `you@gmail.com` |
+| `MAIL_PASSWORD` | Gmail App Password (not your login password — generate at Google Account → Security → App Passwords) | `xxxx xxxx xxxx xxxx` |
+
+**Local development:** Copy `.env.example` to `.env` and fill in real values. `load_dotenv()` loads `.env` automatically.
+
+```bash
+cp .env.example .env
+# edit .env with real credentials
+```
+
+**Docker Compose:** Set `env_file: .env` in docker-compose.yml (already configured).
+
+**Google App Engine:** Set environment variables in `src/app.yaml` under `env_variables:` or use Secret Manager. Never commit real credentials to the repo.
+
 ## Deployment Notes
 
 - `src/app.yaml` configures Google App Engine (Python 3.12 runtime); static files at `/static` are served directly by GAE
-- The Dockerfile uses `gunicorn app:app` — if the entry point changes, update both `CMD` in `Dockerfile` and `ENV FLASK_APP`
+- The Dockerfile uses `gunicorn src.main:app` — if the entry point changes, update `CMD` in `Dockerfile`
 - `src/.gcloudignore` controls what gets excluded from App Engine deploys
