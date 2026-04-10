@@ -11,6 +11,8 @@ RUN pip install -r requirements.txt
 COPY . .
 ENV FLASK_APP=src/main.py
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_DEBUG=True
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8080"]
+EXPOSE 8080
+
+CMD ["gunicorn", "app:app", "-b", ":8080", "--timeout", "300"]
+# CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8080"]

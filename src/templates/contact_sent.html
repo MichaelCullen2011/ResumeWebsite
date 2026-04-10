@@ -25,7 +25,7 @@
                         <div class="w3-center w3-half">
                             <h2 class="w3-text-black w3-bold"><i class="fa fa-home fa-fw w3-xxlarge text-burgundy"></i><b>Address </b></h2>
                             <div class="w3-container contact-display" style="width:40%">
-                                <h5 class="w3-opacity w3-padding-medium"><b>Deloitte - 9 Haymarket Square</b></h5>
+                                <h5 class="w3-opacity w3-padding-medium"><b>9 Haymarket Square</b></h5>
                                 <h5 class="w3-opacity w3-padding-medium"><b>Edinburgh</b></h5>
                                 <h5 class="w3-opacity w3-padding-medium"><b>United Kingdom</b></h5>
                                 <h5 class="w3-opacity w3-padding-medium"><b>EH3 8RY</b></h5>
@@ -55,6 +55,7 @@
             <h7 class="text-burgundy w3-center" style="space:nowrap">EMAIL SENT</h7>
             <h5 class="w3-hide-large text-burgundy w3-center" style="space:nowrap">CONTACT</h5>
             <form method="POST" action="contact" role="form" name="EmailForm" target="./pages/views">
+            {{ form.hidden_tag() }}
             <div class="w3-section text-burgundy w3-center">
                 <label><b>Name</b></label>
                 <input class="w3-input w3-border-thin w3-center" type="text" required name="Name">

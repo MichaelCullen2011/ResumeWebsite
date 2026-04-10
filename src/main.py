@@ -1,18 +1,21 @@
 from flask import Flask, render_template, request, send_from_directory
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import DataRequired, Email, Length
 from flask_mail import Mail, Message
+from dotenv import load_dotenv
 import os
 
+load_dotenv()
 
 app = Flask(__name__, static_url_path="/static")
-app.config['SECRET_KEY'] = os.urandom(32)
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'swiftyblaze@gmail.com'  # enter your email here
-app.config['MAIL_DEFAULT_SENDER'] = 'swiftyblaze@gmail.com' # enter your email here
-app.config['MAIL_PASSWORD'] = 'xultxpjkxxppydyb' # enter your password here
+app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
+app.config['MAIL_DEFAULT_SENDER'] = os.environ['MAIL_DEFAULT_SENDER']
+app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
 
 mail = Mail(app)
 
@@ -21,28 +24,30 @@ def home():
 	return render_template("homepage.html")
 
 
-@app.route('/contact', methods=["GET","POST"])
+@app.route('/contact', methods=["GET", "POST"])
 def get_contact():
 	form = EmailForm()
-	if request.method == 'POST':
-		name =  request.form["Name"]
-		email = request.form["Email"]
-		message = request.form["Message"]
-		subject = str(name + " sent an email from " + email)
-		print(subject)
-		msg = Message(subject, sender=email, recipients=['michaelcullen2011@hotmail.co.uk'])
+	if form.validate_on_submit():
+		name = form.name.data
+		email = form.email.data
+		message = form.message.data
+		subject = f"{name} sent a message via the contact form"
+		msg = Message(
+			subject,
+			sender=app.config['MAIL_DEFAULT_SENDER'],
+			recipients=['michaelcullen2011@hotmail.co.uk'],
+			reply_to=email
+		)
 		msg.body = message
 		mail.send(msg)
 		return render_template('contact_sent.html', form=form)
-	else:
-		return render_template('contact.html', form=form)
+	return render_template('contact.html', form=form)
 
 
 class EmailForm(FlaskForm):
-    name = StringField("Name")
-    email = StringField("Email")
-    subject = StringField("Subject")
-    message = TextAreaField("Message")
+    name = StringField("Name", validators=[DataRequired(), Length(max=100)])
+    email = StringField("Email", validators=[DataRequired(), Email(), Length(max=200)])
+    message = TextAreaField("Message", validators=[DataRequired(), Length(max=5000)])
     submit = SubmitField("Send")
 
 @app.route('/cv')
@@ -65,4 +70,4 @@ def paper_view():
 		return "Not Found"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080)
