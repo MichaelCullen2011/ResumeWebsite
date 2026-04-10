@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, abort, render_template, request, send_from_directory
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
@@ -39,7 +39,11 @@ def get_contact():
 			reply_to=email
 		)
 		msg.body = message
-		mail.send(msg)
+		try:
+			mail.send(msg)
+		except Exception:
+			app.logger.exception("Failed to send contact email")
+			abort(500)
 		return render_template('contact_sent.html', form=form)
 	return render_template('contact.html', form=form)
 
