@@ -71,7 +71,7 @@ def paper_view():
 	try:
 		return send_from_directory("static/", "QC_Paper.pdf")
 	except FileNotFoundError:
-		return "Not Found"
+		abort(404)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
