@@ -48,7 +48,7 @@ Single-file Flask app: `src/main.py` defines all routes and the `EmailForm` WTFo
 - CSS (`style.css`, `fa.css`) and JS (`navlinkscript.js`) are included inline via `{% include %}` rather than served as static files
 - Static assets (images, PDF) are in `src/static/`
 
-**Contact form** uses Flask-Mail over Gmail SMTP (TLS, port 587). Credentials are hardcoded in `src/main.py` — update `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, and `MAIL_PASSWORD` there.
+**Contact form** uses Flask-Mail over Gmail SMTP (TLS, port 587). Credentials are read from environment variables: `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, and `MAIL_PASSWORD`. Set these before running the app locally or deploying.
 
 **Dependencies:** `src/requirements.txt` (not the root `requirements.txt`). Install with:
 ```bash
@@ -57,6 +57,6 @@ pip install -r src/requirements.txt
 
 ## Deployment Notes
 
-- `src/app.yaml` configures Google App Engine (Python 3.9 runtime); static files at `/static` are served directly by GAE
+- `src/app.yaml` configures Google App Engine (Python 3.12 runtime); static files at `/static` are served directly by GAE
 - The Dockerfile uses `gunicorn app:app` — if the entry point changes, update both `CMD` in `Dockerfile` and `ENV FLASK_APP`
 - `src/.gcloudignore` controls what gets excluded from App Engine deploys
