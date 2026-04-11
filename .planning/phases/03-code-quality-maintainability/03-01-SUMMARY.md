@@ -1,100 +1,95 @@
 ---
 phase: 03-code-quality-maintainability
-plan: 01
-subsystem: api
-tags: [flask, python, wtforms, pep8]
-
-# Dependency graph
-requires:
-  - phase: 02-security-stability
-    provides: WTForms validation, app.logger.exception, env-based secrets already in place
-provides:
-  - Consistently 4-space indented src/main.py with zero tab characters
-  - EmailForm class positioned before all route handlers
-  - Four section dividers making file structure immediately scannable
-  - Two targeted inline comments in get_contact() explaining non-obvious choices
-affects: []
-
-# Tech tracking
-tech-stack:
+plan: "01"
+subsystem: src/main.py
+tags: [refactor, code-quality, indentation, structure]
+dependency_graph:
+  requires: []
+  provides: [clean-src-main-py]
+  affects: []
+tech_stack:
   added: []
-  patterns: [conventional Python module order — imports, config, forms, routes, entry point]
-
-key-files:
+  patterns: [section-dividers, pep8-indentation, conventional-module-order]
+key_files:
   created: []
   modified:
     - src/main.py
-
-key-decisions:
-  - "Move EmailForm before routes (conventional order: imports → config → forms → routes → entry point)"
-  - "Section dividers use # --- Name --- format for visual scanning"
-  - "Only two inline comments added — reply_to and abort(500) — per minimalist D-04 decision"
-  - "No docstrings, no type annotations — out of scope for this phase"
-
-patterns-established:
-  - "Section dividers: # --- Configuration ---, # --- Forms ---, # --- Routes ---, # --- Entry Point ---"
-  - "Inline comments only where logic is non-obvious, not on every line"
-
-requirements-completed:
-  - clean-up-form-handling
-  - improve-code-maintainability
-  - add-basic-error-handling
-
-# Metrics
-duration: 15min
-completed: 2026-04-11
+decisions:
+  - "D-01: Move EmailForm before route handlers for conventional Python module order"
+  - "D-02: Add four section dividers (Configuration, Forms, Routes, Entry Point)"
+  - "D-03: Standardize all indentation to 4-spaces (zero tabs)"
+  - "D-04: Add two targeted inline comments only — reply_to and abort(500) in get_contact()"
+metrics:
+  duration: "< 5 minutes"
+  completed: 2026-04-11T07:54:28Z
+  tasks_completed: 1
+  tasks_total: 2
+  files_modified: 1
 ---
 
-# Phase 3: Code Quality & Maintainability — Plan 01 Summary
+# Phase 3 Plan 1: Refactor src/main.py Structure and Indentation Summary
 
-**src/main.py restructured with consistent 4-space indentation, EmailForm before routes, four section dividers, and two targeted inline comments**
+**One-liner:** Mechanical refactor of src/main.py — EmailForm moved before routes, tabs replaced with 4-spaces throughout, four section dividers added, two inline comments added in get_contact().
 
-## Performance
+## What Was Built
 
-- **Duration:** ~15 min
-- **Completed:** 2026-04-11
-- **Tasks:** 2 (Task 1 automated, Task 2 manual — approved by user)
-- **Files modified:** 1
+src/main.py was refactored in a single pass implementing all four locked decisions from 03-CONTEXT.md:
 
-## Accomplishments
+- **D-01 (Module order):** `EmailForm` class moved from line 51 to line 25 — now appears before the first `@app.route` decorator, following conventional Python module order (imports → config → forms → routes → entry point).
+- **D-02 (Section dividers):** Four `# --- Name ---` dividers inserted: `Configuration` above `app = Flask(...)`, `Forms` above `class EmailForm`, `Routes` above `@app.route('/')`, `Entry Point` above `if __name__ == "__main__":`.
+- **D-03 (Indentation):** All tab characters replaced with 4-spaces. Affected: `home()` body (1 line), `get_contact()` body (lines 29-48, including double-tab nesting), `paper_view()` body (4 lines). Zero tab characters remain.
+- **D-04 (Inline comments):** Two comments added in `get_contact()`: `reply_to=email  # lets the site owner reply directly to the sender` and `abort(500)  # prevents returning a blank page on mail failure`.
 
-- Eliminated all tab characters — file is now fully PEP 8 compliant (4-space indent throughout)
-- Moved `EmailForm` class above all `@app.route` decorators (was defined after the routes that use it)
-- Added four section dividers (`# --- Configuration ---`, `# --- Forms ---`, `# --- Routes ---`, `# --- Entry Point ---`)
-- Added two inline comments in `get_contact()`: one on `reply_to=email`, one on `abort(500)`
-- All 8 routes manually tested and confirmed working by user (homepage, CV, contact form GET/POST, dashboards, PDF)
+No logic, routes, template names, config keys, or imports were changed. No docstrings or type annotations were added.
+
+## Automated Verification Results
+
+| Check | Result |
+|-------|--------|
+| `python3 -m py_compile src/main.py` | OK |
+| AST parse | OK |
+| Tab characters in file | 0 |
+| `# --- Configuration ---` count | 1 |
+| `# --- Forms ---` count | 1 |
+| `# --- Routes ---` count | 1 |
+| `# --- Entry Point ---` count | 1 |
+| EmailForm line < first @app.route line | 25 < 33 — OK |
+| `reply_to=email` has inline comment | Yes |
+| `abort(500)` has inline comment | Yes |
+| Route function count | 6 (all intact) |
 
 ## Task Commits
 
-1. **Task 1: Refactor src/main.py** - `39a49af` (refactor)
-2. **Task 2: Manual test all routes** - approved by user (no code commit)
+| Task | Description | Commit |
+|------|-------------|--------|
+| 1 | Refactor src/main.py — reorder, fix indentation, add dividers and comments | 87830d1 |
 
-## Files Created/Modified
+## Pending
 
-- `src/main.py` — Restructured: EmailForm moved before routes, tabs converted to 4-space indent, section dividers added, two inline comments added
-
-## Decisions Made
-
-None — followed plan as specified. All four decisions (D-01 through D-04) executed exactly as documented in CONTEXT.md.
+| Task | Status |
+|------|--------|
+| Task 2: Manual test all routes | Awaiting human-verify checkpoint |
 
 ## Deviations from Plan
 
-None — plan executed exactly as written.
+None — plan executed exactly as written. All four decisions implemented in a single-pass rewrite.
 
-## Issues Encountered
+## Known Stubs
 
-None.
+None — no placeholder data, hardcoded empty values, or stub patterns introduced.
 
-## User Setup Required
+## Threat Flags
 
-None — no external service configuration required.
+None — purely structural refactor with no new network endpoints, auth paths, file access patterns, or schema changes.
 
-## Next Phase Readiness
+## Self-Check: PASSED
 
-- Phase 3 is the final phase in milestone 1.0
-- All three phases complete: dependency updates, security hardening, code quality
-- Ready for `/gsd-verify-work` and then `/gsd-complete-milestone`
+- src/main.py: exists and compiles clean
+- Commit 87830d1: exists (git rev-parse confirms)
+- Zero tabs: confirmed via grep
+- All 4 section dividers: confirmed count=1 each
+- EmailForm before routes: line 25 < line 33
 
----
-*Phase: 03-code-quality-maintainability*
-*Completed: 2026-04-11*
+## Human Verification
+
+Task 2 (manual route testing) approved by user on 2026-04-11. All routes confirmed working: homepage, CV, contact form (GET + validation), Tableau dashboards, PDF download.
