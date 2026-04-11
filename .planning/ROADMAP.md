@@ -84,7 +84,7 @@ Plans:
 **Plans:** 1 plan
 
 Plans:
-- [ ] 03-01-PLAN.md — Refactor src/main.py: fix indentation, reorder EmailForm, add section dividers and inline comments; manual test all routes
+- [x] 03-01-PLAN.md — Refactor src/main.py: fix indentation, reorder EmailForm, add section dividers and inline comments; manual test all routes
 
 ---
 
