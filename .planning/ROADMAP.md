@@ -81,6 +81,11 @@ Plans:
 **Canonical refs:**
 - `REQUIREMENTS.md` — "Clean up form handling", "Add basic error handling", "Improve code maintainability"
 
+**Plans:** 1 plan
+
+Plans:
+- [ ] 03-01-PLAN.md — Refactor src/main.py: fix indentation, reorder EmailForm, add section dividers and inline comments; manual test all routes
+
 ---
 
 ## Deferred (Out of Scope)
