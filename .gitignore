@@ -1,2 +1,6 @@
-"sendgrid.env" 
-/venv/
+.venv/
+.idea/
+*__pycache__*
+.env
+.env.*
+!.env.example

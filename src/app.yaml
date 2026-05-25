@@ -1,0 +1,18 @@
+runtime: python312
+
+runtime_config:
+    python_version: 3.12
+
+# IMPORTANT: Fill in real values before deploying. Do not commit real secrets.
+env_variables:
+    SECRET_KEY: "REPLACE_BEFORE_DEPLOY"
+    MAIL_USERNAME: "REPLACE_BEFORE_DEPLOY"
+    MAIL_DEFAULT_SENDER: "REPLACE_BEFORE_DEPLOY"
+    MAIL_PASSWORD: "REPLACE_BEFORE_DEPLOY"
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: auto
