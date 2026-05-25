@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Owner** | Michael Cullen |
-| **Status** | Draft — in discussion (centerpieces not yet committed) |
+| **Status** | Draft — centerpieces confirmed; visual/sim details TBD; build not yet started |
 | **Branch** | `claude/resume-website-redesign-X22Mw` |
 | **Last updated** | 2026-05-25 |
 
@@ -51,7 +51,7 @@ The current site (`src/main.py` + Jinja templates) works but has drifted out of 
 - Modern, distinctive-but-restrained visual design with a subtle physics/quantum
   motif as a personality signature.
 - Curate the project showcase to depth-over-volume (~6 featured + a "more on GitHub" strip).
-- Introduce **1–2 interactive centerpiece demos** (see §8 — *placeholders, to be confirmed*).
+- Introduce **two interactive centerpiece demos** (see §8 — confirmed).
 - Showcase **anonymised Deloitte transformation work** alongside personal projects.
 - Keep operational overhead low (stay on Flask + GAE; no new always-on costs by default).
 
@@ -121,36 +121,39 @@ These align directly with the brief: distinctive personality, contained interact
 
 ---
 
-## 8. Interactive centerpieces — ⚠️ PLACEHOLDERS (REVISIT BEFORE COMMITTING)
+## 8. Interactive centerpieces — ✅ CONFIRMED
 
-> **These two are working assumptions only.** They are recorded here so the plan is
-> concrete, but they **must be discussed and confirmed** before any build work begins.
-> Alternatives are listed; the final pair (and whether it's one or two) is an open decision.
+Both centerpieces are confirmed. Visual design and simulation details to be defined
+before build begins (Phase 3/4), but the scope and technology direction are locked.
 
-**Placeholder centerpiece A — Architecture explorer**
-- Concept: an interactive system/architecture diagram (toggle legacy → modernised,
-  hover nodes for detail, animated data flows), built from the `ArchitectureDiagrams` work.
-- Why: most aligned with Michael's current architect/Manager identity; doubles as the
-  home for anonymised Deloitte case studies.
-- Tech sketch: client-side node graph (e.g. Cytoscape.js / D3 / custom SVG) from a JSON model.
+**Centerpiece A — Architecture Transformation Simulator** *(credible)*
+- Concept: interactive node-graph showing a real architecture transformation — toggle
+  between legacy and target-state topologies, with animated morphing between them.
+  Click any node to open a decision card (trade-off, constraint, outcome). ArchiMate-style
+  layer toggle (Business / Application / Technology). Animated data-flow particles on edges.
+  Content is 2–3 anonymised Deloitte case studies (sector · challenge · what was
+  architected · outcome) — **⚠️ requires input from Michael before build can start.**
+- Why: directly reflects Michael's current role; ArchiMate certification makes it
+  authentic; doubles as the home for anonymised Deloitte work.
+- Source repos: `ArchitectureDiagrams` + anonymised Deloitte material.
+- Tech: client-side node graph (Cytoscape.js or React Flow island), JSON model driving
+  topology, CSS/canvas for data-flow particles. Fully client-side.
 
-**Placeholder centerpiece B — Finance / AI dashboard**
-- Concept: enter a ticker → candlesticks + technical indicators + an LSTM prediction
-  overlay, drawn from `FinancialDashboard` + `StockAnalyserAndPredictor`.
-- Why: showcases the freshest AI/ML + data-viz work.
-- Tech sketch: charting lib (e.g. Plotly/Lightweight-Charts); **open question:** pre-baked
-  datasets (no API key, free) vs. live data feed (needs key/cost).
-
-**Alternatives on the table (not yet chosen):**
-- **Quantum playground** — Bloch sphere / quantum gates / hydrogen orbitals / neutrino
-  oscillation viewer (`QuantumAndNeutrinos`, `QuantumPOC`).
-- **AI "ask my portfolio" chatbot** — trained on Michael's context; signals AI fluency,
-  but needs an LLM API key + backend + ongoing cost/maintenance.
-- **Playable chess** (`Chess`) and **solar-system GR sim** (`InterstellarMotion`) —
-  currently slotted as *lighter, non-centerpiece touches* but could be promoted.
-
-**Decision needed:** confirm the two centerpieces (or swap), confirm one-vs-two, and
-resolve the finance data-source question.
+**Centerpiece B — Physics Playground** *(fun)*
+- Concept: a single page with two switchable modes, sharing a canvas/particle visual
+  language that rhymes with the hero motif.
+  - **Mode 1 — Neutrino Oscillation Viewer:** sliders for energy, baseline distance, and
+    mixing angles → live probability curves animate. Grounded in the M.Phys thesis
+    *"Quantum Computing using Neutrino Oscillations."*
+  - **Mode 2 — GR / Interstellar Simulator:** RK4 numerical integration of a small
+    n-body system rendered on canvas/WebGL; configurable initial conditions.
+  - **Visual/simulation details TBD** — what exactly is simulated, what the controls are,
+    and how results are labelled will be defined collaboratively before build.
+- Why: maximally distinctive ("this person did physics"); pure client-side math/canvas;
+  visually reinforces the quantum/particle hero motif; ties directly to Michael's thesis
+  and `InterstellarMotion` repo.
+- Source repos: `QuantumAndNeutrinos`, `QuantumPOC`, `InterstellarMotion`.
+- Tech: vanilla JS + canvas/WebGL (no heavy dependency). Fully client-side.
 
 ---
 
@@ -160,12 +163,12 @@ Curated for depth over volume; grouped by Michael's strength areas.
 
 | # | Feature | Source repos | Role on site |
 |---|---------|--------------|--------------|
-| 1 | Architecture explorer | `ArchitectureDiagrams` | Interactive centerpiece *(placeholder)* + anonymised Deloitte work |
-| 2 | Finance / AI dashboard | `FinancialDashboard`, `StockAnalyserAndPredictor` | Interactive centerpiece *(placeholder)* |
-| 3 | Neural Style Transfer | `NSTBackend`, `NSTApp` | Full-stack ML showcase (TF + Flask + Flutter) |
-| 4 | Quantum & Neutrinos | `QuantumAndNeutrinos`, `QuantumPOC` | Physics/quantum identity; lighter interactive touch |
-| 5 | Interstellar Motion | `InterstellarMotion` | GR solar-system simulation; personality |
-| 6 | Current GenAI piece | `stable-diffusion` *or* `BERT`/`DirtyTalk` | Demonstrates hands-on modern AI/NLP |
+| 1 | Architecture Transformation Simulator | `ArchitectureDiagrams` + Deloitte (anonymised) | **Interactive centerpiece A** — credible; own page at `/architecture` |
+| 2 | Physics Playground (Neutrino + GR) | `QuantumAndNeutrinos`, `QuantumPOC`, `InterstellarMotion` | **Interactive centerpiece B** — fun; own page at `/physics` |
+| 3 | Neural Style Transfer | `NSTBackend`, `NSTApp` | Full-stack ML showcase (TF + Flask + Flutter) — featured project card |
+| 4 | Interstellar Motion | `InterstellarMotion` | GR solar-system simulation — also powers centerpiece B |
+| 5 | Current GenAI piece | `stable-diffusion` *or* `BERT`/`DirtyTalk` | Demonstrates hands-on modern AI/NLP — featured project card |
+| 6 | Quantum & Neutrinos | `QuantumAndNeutrinos`, `QuantumPOC` | Physics/quantum identity — also powers centerpiece B; links to thesis |
 
 **"More on GitHub" strip (breadth, low emphasis):** HodlApp/HodlServer (crypto tracker,
 Flutter + Flask), PythonBlockchain / MusicDapp (blockchain), qkdbTutorials / cookbook
@@ -180,9 +183,9 @@ Flutter + Flask), PythonBlockchain / MusicDapp (blockchain), qkdbTutorials / coo
 
 | Route | Purpose |
 |-------|---------|
-| `/` | Hero (motif) → current About → experience timeline → curated project grid → contact CTA |
-| `/architecture` | Interactive centerpiece A *(placeholder)* |
-| `/finance` | Interactive centerpiece B *(placeholder)* |
+| `/` | Hero (motif) → About → experience timeline → curated project grid → contact CTA |
+| `/architecture` | Centerpiece A — Architecture Transformation Simulator |
+| `/physics` | Centerpiece B — Physics Playground (Neutrino Oscillation + GR Simulator) |
 | `/cv` | Modernised CV page + downloadable PDF |
 | `/contact` | Existing Flask-Mail form, restyled (recipient → `michaelcullen2024@gmail.com`) |
 
@@ -195,8 +198,9 @@ The experience timeline **replaces** the current generic skill "% bars."
 - **Keep:** Flask/Jinja, Flask-Mail contact form, Docker, Google App Engine deployment.
 - **Fix:** move CSS/JS out of `{% include %}` inlining into properly served static assets;
   drop W3.CSS; replace Font Awesome 4.
-- **Add:** focused JS libraries for the two demos (charting + node-graph), and a lightweight
-  custom canvas animation for the hero motif (no heavy dependency).
+- **Add:** focused JS libraries for the two demos — node-graph lib (Cytoscape.js or
+  React Flow island) for the architecture simulator; vanilla JS + canvas/WebGL for the
+  physics playground — plus a lightweight custom canvas animation for the hero motif.
 - **Constraints:** no always-on paid services by default; keep the app a simple monolith;
   manual verification (run locally / in browser) before push.
 
@@ -208,23 +212,29 @@ The experience timeline **replaces** the current generic skill "% bars."
    restructure, base template, animated hero motif.
 2. **Core content** — home (current About, experience timeline, curated project grid),
    modernised CV page + PDF, restyled contact form.
-3. **Interactive centerpiece A** — *(pending confirmation)*.
-4. **Interactive centerpiece B** — *(pending confirmation)*.
+3. **Architecture Transformation Simulator** — node-graph topology, legacy→target morph,
+   decision cards, layer toggle, data-flow particles. Gated on anonymised Deloitte
+   case-study blurbs from Michael.
+4. **Physics Playground** — neutrino oscillation viewer + GR/interstellar simulator,
+   two-mode single page. Gated on visual/sim detail definition (to be done collaboratively
+   before build).
 5. **Polish & ship** — responsive, accessibility, performance, SEO/OG tags, favicon;
    verify locally; commit, push, open a **draft PR**.
 
-Phases 1–2 are direction-locked and can start independently of the centerpiece decisions.
-Phases 3–4 are gated on §8 being confirmed.
+Phases 1–2 are direction-locked and can start now. Phase 3 is gated on Deloitte content.
+Phase 4 is gated on visual/sim detail definition.
 
 ---
 
 ## 13. Open decisions / inputs needed
 
-1. **Centerpieces (§8)** — confirm the two (or swap / choose one), and one-vs-two.
-2. **Deloitte content (§9)** — Michael to provide 2–3 anonymised case-study blurbs.
-3. **Finance data source (§8B)** — pre-baked datasets vs. live API feed.
-4. **Forward-facing title/wording** — exact phrasing for the Deloitte Manager role.
-5. **Canonical location** — Edinburgh (CV) vs. London (GitHub profile).
+1. **Deloitte content (§8A / §9)** — Michael to provide 2–3 anonymised case-study blurbs
+   *(sector · challenge · what was architected · outcome)*. Gates Phase 3.
+2. **Physics playground details (§8B)** — exact simulation scope, controls, and visual
+   treatment to be defined collaboratively before build. Gates Phase 4.
+3. **Forward-facing title/wording** — exact phrasing for the Deloitte Manager role on
+   the homepage hero and CV.
+4. **Canonical location** — Edinburgh (CV) vs. London (GitHub profile).
 
 ---
 
