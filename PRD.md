@@ -230,8 +230,10 @@ Phase 4 is gated on visual/sim detail definition.
 
 1. **Deloitte content (§8A / §9)** — Michael to provide 2–3 anonymised case-study blurbs
    *(sector · challenge · what was architected · outcome)*. Gates Phase 3.
-2. **Physics playground details (§8B)** — exact simulation scope, controls, and visual
-   treatment to be defined collaboratively before build. Gates Phase 4.
+2. ~~**Physics playground details (§8B)**~~ ✅ **Resolved** — spec written to
+   `docs/superpowers/specs/physics-playground.md`. Flavour triangle, four presets
+   (No Mixing / Solar / Atmospheric / Maximum Mixing), L/E scrubber, vanilla JS + canvas.
+   Phase 4 is unblocked.
 3. **Forward-facing title/wording** — exact phrasing for the Deloitte Manager role on
    the homepage hero and CV.
 4. **Canonical location** — Edinburgh (CV) vs. London (GitHub profile).
