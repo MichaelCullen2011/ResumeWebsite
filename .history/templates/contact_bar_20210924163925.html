@@ -1,0 +1,23 @@
+<div class="w3-container w3-content w3-center w3-margin-top" id='contact' style="max-width:2000px">
+  {% load static %}
+  <div class="w3-container contact-display w3-wide w3-center" style="width:30%">
+      <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge text-burgundy w3-display-top w3-center">CONTACT</h1>
+    <h5 class="w3-hide-large text-burgundy w3-center" style="space:nowrap">CONTACT</h5>
+    <form method="POST" action="success" role="form" name="EmailForm" target=".\pages\views">
+      {% csrf_token %}
+      <div class="w3-section text-burgundy w3-center">
+        <label><b>Name</b></label>
+        <input class="w3-input w3-border-thin w3-center" type="text" required name="Name">
+      </div>
+      <div class="w3-section text-burgundy">
+        <label><b>Email</b></label>
+        <input class="w3-input w3-border-thin w3-center" type="text" required name="Email">
+      </div>
+      <div class="w3-section text-burgundy">
+        <label><b>Message</b></label>
+        <input class="w3-input w3-border-thin w3-center" required name="Message">
+      </div>
+      <input type="submit" value="Submit" class="w3-button w3-block burgundy"/>
+    </form><br>
+  </div>
+</div>
