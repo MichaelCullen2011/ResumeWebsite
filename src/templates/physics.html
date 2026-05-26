@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Physics Playground — Michael Cullen{% endblock %}
+{% block meta_description %}Neutrino oscillation visualiser — real PMNS mixing parameters, interactive L/E scrubber. Based on an MPhys thesis.{% endblock %}
+
+{% block content %}
+
+<div class="physics-hero">
+  <h1>Neutrino Oscillation</h1>
+  <p><em>"A neutrino has no definite flavour in transit. It is all three at once."</em></p>
+</div>
+
+<div class="physics-body">
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <button class="mode-tab active">Neutrino Oscillation</button>
+    <button class="mode-tab" disabled title="Coming soon">GR Simulator &nbsp;(coming soon)</button>
+  </div>
+
+  <!-- Intro text -->
+  <div class="physics-intro">
+    <p>The flavour triangle shows where a neutrino's identity lives at any moment.
+       The path it traces is determined by three mixing angles — real numbers measured
+       by experiment, first confirmed in 2015.
+       This is the mathematics at the centre of my M.Phys thesis.</p>
+  </div>
+
+  <!-- Preset pills -->
+  <div class="preset-pills">
+    <button class="preset-pill active" data-preset="no-mixing">No Mixing</button>
+    <button class="preset-pill" data-preset="solar">Solar Neutrinos</button>
+    <button class="preset-pill" data-preset="atmospheric">Atmospheric Neutrinos</button>
+    <button class="preset-pill" data-preset="maximum">Maximum Mixing</button>
+  </div>
+
+  <!-- Canvas -->
+  <canvas id="physics-canvas" width="480" height="480"></canvas>
+
+  <!-- L/E scrubber -->
+  <div class="scrubber-wrap">
+    <label for="le-slider">Baseline / Energy (L/E)</label>
+    <p class="scrubber-val" id="le-value">0.5 km/GeV</p>
+    <input type="range" id="le-slider" min="0" max="2000" step="0.5" value="0.5">
+    <p class="scrubber-sub">Drag to travel further from the source — or increase the neutrino's energy.</p>
+  </div>
+
+  <!-- Probability bars -->
+  <div class="prob-bars">
+    <div class="prob-bar-wrap">
+      <span class="prob-bar-label">P(νe)</span>
+      <div class="prob-bar-track">
+        <div class="prob-bar-fill" id="bar-e" style="height:100%;background:#7d4c67"></div>
+      </div>
+    </div>
+    <div class="prob-bar-wrap">
+      <span class="prob-bar-label">P(νμ)</span>
+      <div class="prob-bar-track">
+        <div class="prob-bar-fill" id="bar-m" style="height:0%;background:#C8963E"></div>
+      </div>
+    </div>
+    <div class="prob-bar-wrap">
+      <span class="prob-bar-label">P(ντ)</span>
+      <div class="prob-bar-track">
+        <div class="prob-bar-fill" id="bar-t" style="height:0%;background:#4A7C9C"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PMNS inset -->
+  <div class="pmns-inset">
+    <pre id="pmns-values">θ₁₂  0.0°
+θ₁₃  0.0°
+θ₂₃  0.0°</pre>
+  </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/physics.js') }}"></script>
+{% endblock %}
