@@ -8,7 +8,6 @@ import os
 
 load_dotenv()
 
-# --- Configuration ---
 app = Flask(__name__, static_url_path="/static")
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
@@ -21,7 +20,6 @@ app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
 mail = Mail(app)
 
 
-# --- Forms ---
 class EmailForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired(), Length(max=100)])
     email = StringField("Email", validators=[DataRequired(), Email(), Length(max=200)])
@@ -29,10 +27,9 @@ class EmailForm(FlaskForm):
     submit = SubmitField("Send")
 
 
-# --- Routes ---
 @app.route('/')
 def home():
-    return render_template("homepage.html")
+    return render_template("index.html")
 
 
 @app.route('/contact', methods=["GET", "POST"])
@@ -46,15 +43,15 @@ def get_contact():
         msg = Message(
             subject,
             sender=app.config['MAIL_DEFAULT_SENDER'],
-            recipients=['michaelcullen2011@hotmail.co.uk'],
-            reply_to=email  # lets the site owner reply directly to the sender
+            recipients=['michaelcullen2024@gmail.com'],
+            reply_to=email
         )
         msg.body = message
         try:
             mail.send(msg)
         except Exception:
             app.logger.exception("Failed to send contact email")
-            abort(500)  # prevents returning a blank page on mail failure
+            abort(500)
         return render_template('contact_sent.html', form=form)
     return render_template('contact.html', form=form)
 
@@ -63,13 +60,16 @@ def get_contact():
 def cv_view():
     return render_template("cv.html")
 
-@app.route('/tableau1')
-def tableau1_view():
-    return render_template("tableau1.html")
 
-@app.route('/tableau2')
-def tableau2_view():
-    return render_template("tableau2.html")
+@app.route('/architecture')
+def architecture_view():
+    return render_template("architecture.html")
+
+
+@app.route('/physics')
+def physics_view():
+    return render_template("physics.html")
+
 
 @app.route('/qc_neutrino_paper')
 def paper_view():
@@ -79,6 +79,5 @@ def paper_view():
         abort(404)
 
 
-# --- Entry Point ---
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)

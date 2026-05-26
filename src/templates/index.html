@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+
+{% block title %}Michael Cullen — Technology Manager{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <h1>Michael Cullen</h1>
+    <p class="hero-role">Manager &middot; Deloitte &middot; Technology Transformation</p>
+    <p class="hero-tagline">Enterprise architecture, data &amp; AI, and a decade of physics —
+      brought together to deliver meaningful transformation.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="/cv" class="btn btn-outline">Download CV</a>
+    </div>
+  </div>
+  <p class="hero-scroll-hint">Scroll</p>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <h2 class="section-title">About</h2>
+  <p class="section-subtitle">Edinburgh, UK &middot; michaelcullen2024@gmail.com</p>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>I'm a Technology Manager at Deloitte, where I lead architecture and
+        transformation engagements across retail, manufacturing, and MedTech clients.
+        My work spans enterprise and solution architecture, large-scale system
+        integrations, and advising senior leadership on technology strategy — from
+        M&amp;A IT transformations to cloud modernisation programmes.</p>
+      <p>Before Deloitte I completed a q/kdb+ engineering programme at mthree, and
+        before that a First Class MPhys at Loughborough University, where my thesis
+        explored quantum computing using neutrino oscillations. That thread — rigorous
+        maths, novel engineering, practical outcomes — runs through everything I do.</p>
+      <p>Outside work: science-fiction reading, climbing, taekwondo, chess, and
+        staying close to what's happening in AI and quantum computing.</p>
+    </div>
+    <div class="about-sidebar">
+      <h3>Certifications</h3>
+      <ul class="cert-list">
+        <li>Google Cloud Associate Cloud Engineer</li>
+        <li>Tableau Desktop Certified Professional</li>
+        <li>ArchiMate&reg;</li>
+        <li>LeanIX Certified Associate</li>
+      </ul>
+      <h3 style="margin-top:2rem">Core skills</h3>
+      <ul>
+        <li>Enterprise &amp; solution architecture</li>
+        <li>Data analysis · AI/ML · visualisation</li>
+        <li>Quantum computing &amp; information</li>
+        <li>Python · Flutter · kdb+/q</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE TIMELINE -->
+<div id="experience" class="section-dark">
+  <div class="section-inner section">
+    <h2 class="section-title">Experience</h2>
+    <p class="section-subtitle">Career timeline</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <p class="timeline-date">Sep 2021 — Present</p>
+        <h3 class="timeline-role">Manager, Technology Transformation</h3>
+        <p class="timeline-org">Deloitte &middot; Edinburgh, UK</p>
+        <div class="timeline-body">
+          <ul>
+            <li>Lead architecture and transformation programmes for global clients across
+                retail, manufacturing, and MedTech sectors.</li>
+            <li>Develop enterprise architecture roadmaps and drive complex system
+                integrations including SAP implementations.</li>
+            <li>Advise senior leadership on technology investment and M&amp;A IT strategy;
+                manage cross-functional delivery teams.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">Jun 2021 — Jul 2021</p>
+        <h3 class="timeline-role">q/kdb+ Engineer</h3>
+        <p class="timeline-org">mthree &middot; Engineer Programme</p>
+        <div class="timeline-body">
+          <p>Intensive training in q/kdb+ for financial data engineering.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">2016 — 2020</p>
+        <h3 class="timeline-role">MPhys Physics, First Class Honours</h3>
+        <p class="timeline-org">Loughborough University</p>
+        <div class="timeline-body">
+          <p>Thesis: <em>"Quantum Computing using Neutrino Oscillations"</em> —
+            derived integrated cross-sections from W/Z boson couplings to predict
+            probabilistic gate outcomes for neutrino-lepton quantum gates.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <h2 class="section-title">Projects</h2>
+  <p class="section-subtitle">Selected work — depth over volume</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <span class="project-tag">Interactive Demo</span>
+      <h3>Architecture Transformation Simulator</h3>
+      <p>Interactive node-graph showing real architecture transformations — toggle between
+        legacy and target-state topologies, click nodes for decision cards, animate
+        data-flow particles. Grounded in anonymised Deloitte case studies.</p>
+      <div class="project-links">
+        <a href="/architecture" class="project-link">
+          <i class="fa-solid fa-arrow-right"></i> Open Demo
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card featured">
+      <span class="project-tag">Interactive Demo</span>
+      <h3>Physics Playground — Neutrino Oscillation</h3>
+      <p>A flavour triangle visualising neutrino oscillation in real time. Choose a preset
+        (Solar, Atmospheric, Maximum Mixing), drag the L/E scrubber, watch the probability
+        field shift. Grounded in the MPhys thesis.</p>
+      <div class="project-links">
+        <a href="/physics" class="project-link">
+          <i class="fa-solid fa-arrow-right"></i> Open Demo
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">AI / ML</span>
+      <h3>Neural Style Transfer</h3>
+      <p>Full-stack ML project: Flutter front-end, Flask backend, TensorFlow/Keras model.
+        Styles any photo as a famous painting in real time.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/NSTApp" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> App
+        </a>
+        <a href="https://github.com/MichaelCullen2011/NSTBackend" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Server
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Physics / Simulation</span>
+      <h3>Interstellar Motion</h3>
+      <p>RK4 numerical integration of the solar system under general relativity.
+        Python — calculates next positions of all bodies accounting for GR corrections.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/InterstellarMotion" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Repo
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">AI / NLP</span>
+      <h3>Quantum &amp; Neutrinos</h3>
+      <p>Quantum circuit simulations and neutrino oscillation models underpinning the
+        MPhys thesis — links directly to the Physics Playground demo.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/QuantumAndNeutrinos" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Repo
+        </a>
+        <a href="/qc_neutrino_paper" target="_blank" class="project-link">
+          <i class="fa-solid fa-file-pdf"></i> Thesis
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Finance / ML</span>
+      <h3>Portfolio Analysis &amp; Prediction</h3>
+      <p>Automated portfolio generation from trade history; LSTM model predicts future
+        returns. Alpha Vantage API integration, Pandas, risk/correlation analysis.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/StockAnalyserAndPredictor" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Repo
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="github-strip">
+    <h3>More on GitHub</h3>
+    <div class="github-pills">
+      <a href="https://github.com/MichaelCullen2011/HodlApp" target="_blank" rel="noopener" class="github-pill">HodlApp</a>
+      <a href="https://github.com/MichaelCullen2011/PythonBlockchain" target="_blank" rel="noopener" class="github-pill">PythonBlockchain</a>
+      <a href="https://github.com/MichaelCullen2011/qkdbTutorials" target="_blank" rel="noopener" class="github-pill">qkdbTutorials</a>
+      <a href="https://github.com/MichaelCullen2011/Chess" target="_blank" rel="noopener" class="github-pill">Chess</a>
+      <a href="https://github.com/MichaelCullen2011/YNABClone" target="_blank" rel="noopener" class="github-pill">YNABClone</a>
+      <a href="https://github.com/MichaelCullen2011/stable-diffusion" target="_blank" rel="noopener" class="github-pill">Stable Diffusion</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<div id="contact-cta">
+  <h2>Get in touch</h2>
+  <p>Open to interesting conversations — architecture, AI, quantum, or just a good problem to solve.</p>
+  <a href="/contact" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff">Send a message</a>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/hero.js') }}"></script>
+{% endblock %}
