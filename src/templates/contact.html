@@ -1,78 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<title>Michael Cullen's Homepage</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-<link rel="stylesheet" href="templates/app.js">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-<body class="custom-background-cream">
-    <style>
-    {% include 'style.css' %}
-    </style>
+{% extends 'base.html' %}
 
-    <!-- Header and Navbar -->
-    {% include 'header.html' %}
+{% block title %}Contact — Michael Cullen{% endblock %}
 
-    <!-- ABOUT SECTION -->
-    <div class="w3-content w3-margin-top" style="max-width:1200px;">
-        <div class="w3-row-padding w3-padding-32">
-            <div class="w3-row-third custom-background-cream" style="max-width:1400px;">
-                <div class="w3-row-third custom-background-cream" style="max-width:1400px;">
-                    <div class="w3-container w3-card w3-light-grey w3-margin-bottom w3-left-align">
-                        <div class="w3-center">
-                            <h2 class="w3-text-black w3-bold"><i class="fa fa-phone fa-fw w3-xxlarge text-burgundy"></i><b>Online </b></h2>
-                            <div class="w3-container contact-display">
-                                <h5 class="w3-opacity w3-padding-medium"><b>michaelcullen2024@gmail.com</b></h5>
-                                <a href="https://github.com/MichaelCullen2011" target="_blank" class="button">
-                                    <h5><b class="w3-opacity w3-padding-medium no-underline"><i>  Github </i></b></h5>
-                                </a>
-                                <a href="https://www.linkedin.com/in/michael-cullen-08/" target="_blank" class="button">
-                                    <h5><b class="w3-opacity w3-padding-medium no-underline"><i>  Linkedin </i></b></h5>
-                                </a>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{% block content %}
 
-    <div class="w3-container w3-content w3-center w3-margin-top" id='contact' style="max-width:2000px">
-        <div class="w3-container contact-display w3-wide w3-center" style="width:55%">
-            <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge text-burgundy w3-display-top w3-center">CONTACT</h1>
-            <h5 class="w3-hide-large text-burgundy w3-center" style="space:nowrap">CONTACT</h5>
-            <form method="POST" action="/contact" role="form" name="EmailForm">
-            {{ form.hidden_tag() }}
-            <div class="w3-section text-burgundy w3-center">
-                {{ form.name.label }}
-                {{ form.name(class="w3-input w3-border-thin w3-center") }}
-                {% for error in form.name.errors %}
-                    <span class="w3-text-red">{{ error }}</span>
-                {% endfor %}
-            </div>
-            <div class="w3-section text-burgundy">
-                {{ form.email.label }}
-                {{ form.email(class="w3-input w3-border-thin w3-center") }}
-                {% for error in form.email.errors %}
-                    <span class="w3-text-red">{{ error }}</span>
-                {% endfor %}
-            </div>
-            <div class="w3-section text-burgundy">
-                {{ form.message.label }}
-                {{ form.message(class="w3-input w3-border-thin w3-center") }}
-                {% for error in form.message.errors %}
-                    <span class="w3-text-red">{{ error }}</span>
-                {% endfor %}
-            </div>
-            <input type="submit" value="Submit" class="w3-button w3-block burgundy"/>
-            </form><br>
-        </div>
-    </div>
+<div class="contact-hero">
+  <h1>Get in touch</h1>
+  <p class="hero-role" style="margin-top:0.5rem;font-size:1rem">
+    Open to conversations — architecture, AI, quantum, or a good problem to solve.
+  </p>
 </div>
 
-<!-- Socials Container -->
-{% include 'socials.html' %}
-</body>
-</html>
+<div class="contact-form-wrap">
+  <form method="POST" action="/contact" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      {{ form.name.label }}
+      {{ form.name(placeholder="Your name") }}
+      {% if form.name.errors %}
+        <div class="form-errors">{{ form.name.errors[0] }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ form.email.label }}
+      {{ form.email(placeholder="your@email.com") }}
+      {% if form.email.errors %}
+        <div class="form-errors">{{ form.email.errors[0] }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      {{ form.message.label }}
+      {{ form.message(placeholder="Your message…") }}
+      {% if form.message.errors %}
+        <div class="form-errors">{{ form.message.errors[0] }}</div>
+      {% endif %}
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+</div>
+
+{% endblock %}
