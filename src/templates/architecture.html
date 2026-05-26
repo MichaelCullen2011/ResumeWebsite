@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Architecture Simulator — Michael Cullen{% endblock %}
+{% block meta_description %}Interactive architecture transformation simulator — legacy to target-state, grounded in real Deloitte engagements.{% endblock %}
+
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.27.0/cytoscape.min.js"
+        integrity="sha512-d5mXkqPaZN1kH4dZKv3hOjHetW1rBvqeGUSh9p0GqZ9nCL8HlkC1x3zBIAJENO+mBm0oVWNmRRCaopqxDxpbg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="arch-hero">
+  <h1>Architecture Transformation Simulator</h1>
+  <p>Toggle between legacy and target-state topologies. Click any node to see the
+     architectural decision behind it.</p>
+</div>
+
+<div class="arch-body">
+  <div style="max-width:1100px;margin:0 auto">
+
+    <div class="arch-controls">
+      <span class="arch-controls-label">Topology:</span>
+      <button class="arch-btn active" data-topo="legacy">Legacy State</button>
+      <button class="arch-btn" data-topo="target">Target State</button>
+      <span class="arch-controls-label" style="margin-left:1.5rem">Layer:</span>
+      <button class="arch-btn active" data-layer="all">All</button>
+      <button class="arch-btn" data-layer="app">Application</button>
+      <button class="arch-btn" data-layer="tech">Technology</button>
+    </div>
+
+    <div id="cy"></div>
+
+    <p style="color:rgba(255,255,255,0.25);font-size:0.75rem;margin-top:0.75rem;text-align:right">
+      Content based on anonymised Deloitte transformation engagements.
+      Real client data never displayed.
+    </p>
+
+  </div>
+</div>
+
+<!-- Decision card overlay -->
+<div class="decision-card" id="decision-card">
+  <button class="decision-close" id="close-card" aria-label="Close">&times;</button>
+  <h3 id="card-title"></h3>
+  <p id="card-body"></p>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/architecture.js') }}"></script>
+{% endblock %}
