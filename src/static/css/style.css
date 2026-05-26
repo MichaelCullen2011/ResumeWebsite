@@ -466,6 +466,15 @@ footer {
   gap: 4rem;
   align-items: start;
 }
+.cv-photo {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+}
 .cv-sidebar section { margin-bottom: 2.5rem; }
 .cv-sidebar h2 {
   font-size: 0.75rem;
