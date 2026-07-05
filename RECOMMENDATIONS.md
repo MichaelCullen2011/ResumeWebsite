@@ -100,6 +100,7 @@ Rule of thumb from your own PRD constraints (no always-on paid services): **only
 |---|---|---|
 | Physics playground | ✅ done | Pure canvas/JS — this was the right call |
 | Architecture simulator | ✅ in progress | Client-side Cytoscape — right call, needs real content (A1) |
+| Agentic toolkit (private) | ⚠️ embed a *recorded trace*, not a live agent | See C1 — live agent needs paid backend + keys; a client-side replay of a recorded run is cheap and distinctive |
 | Neural Style Transfer | ⚠️ embed the *outputs*, not the model | Running TF server-side violates the no-paid-backend constraint. But a **static before/after gallery** of style-transferred images (even a slider comparison widget) is an hour's work, zero runtime cost, and visually the most impressive thing on the page. Recommended. |
 | Interstellar Motion | ⚠️ optional future | The RK4 maths ports naturally to JS — this is the already-planned GR mode of the playground (A9). Don't do it separately. |
 | Stock predictor | ❌ | Needs backend + live data; also, publishing ML price predictions invites the wrong conversation. Link + good README is the right treatment. |
@@ -108,13 +109,22 @@ Rule of thumb from your own PRD constraints (no always-on paid services): **only
 
 **Bottom line:** you are *not* wasting effort — the two projects you chose to embed are exactly the two that are embeddable and on-brand. Resist adding a third interactive demo; the PRD's own research (§6: 1–2 interactive moments, restraint signals competence) is correct. The marginal hour goes further in A1 content, the NST gallery, and READMEs.
 
-### The one genuine gap: current AI
+### The one genuine gap: current AI → filled by the agentic toolkit (C1)
 
-For someone whose bio claims staying close to AI, there is **no visible post-2021 AI work** — the PRD's "Current GenAI piece" slot points at `stable-diffusion`/`BERT`/`DirtyTalk`, all private or nonexistent (and reconsider ever surfacing a repo named `DirtyTalk` on a professional site). Options, in order of preference:
+For someone whose bio claims staying close to AI, there is **no visible post-2021 AI work** — the PRD's "Current GenAI piece" slot points at `stable-diffusion`/`BERT`/`DirtyTalk`, all private or nonexistent (and reconsider ever surfacing a repo named `DirtyTalk` on a professional site).
 
-1. **Cheapest:** make one existing private AI repo public after a cleanup + README pass, and point the card at it.
-2. **Better:** a small, finished, client-side GenAI artefact — e.g. an in-browser transformer demo (transformers.js), or a write-up of something real you built with LLM tooling. Small and *finished* beats ambitious and half-done.
-3. **Skip it** and soften the AI claims in the bio to match the evidence.
+**Resolution: the private agentic-toolkit repo** — a personal rebuild of patterns and lessons from client and internal Deloitte agentic-AI work. Strategically this is the AI-side twin of the architecture simulator: both take invisible professional work and turn it into public, personally-owned evidence. Worth framing the two together on the site as "professional practice, rebuilt in public."
+
+### C1. Ship the agentic toolkit publicly — **M–L, same tier as A1**
+
+**Tier 1 — public repo + README (the unlock, do first):**
+- Sanitise before flipping public: no client names or domain-identifying details, no internal Deloitte tool/project names, no secrets anywhere in *history* — safest is to squash to a fresh initial commit rather than audit old ones. Add `.env.example`, a licence, and a README with one architecture diagram.
+- It then takes the homepage featured-card slot the dead `stable-diffusion` pill was holding (fixes half of B1 by itself), tagged "AI / Agents".
+- ⚠️ Same discipline as A1's anonymisation: confirm your employment IP/confidentiality position; build on personal time/equipment; frame it as *patterns I've learned*, never *what we built for client X*. Generic patterns are yours; client implementations aren't.
+
+**Tier 2 — lessons write-up:** a short "patterns for enterprise agentic systems" piece (orchestration, tool use, evals, guardrails, failure modes) in the README or as a site page. For the recruiter/hiring-manager audience this outperforms the code — it shows judgement, not just implementation. Also lets the bio's AI claims stand fully evidenced (supersedes the old "soften the claims" fallback).
+
+**Tier 3 (optional) — client-side trace replay, not a live demo:** a live agent embed needs an always-on backend + API keys — violates the PRD constraint; don't. Instead, render a **recorded agent run** (JSON trace: plan → tool calls → observations → result) as an interactive replay, pure client-side, zero runtime cost. Distinctive — few people show their agent's reasoning trace well — and it rhymes with the Cytoscape node-graph language already on `/architecture`. Keep it card/page-section level, not a third nav-level centerpiece; the two-interactive-moments restraint still holds.
 
 ### Repo curation checklist (for the six repos the site links)
 
@@ -128,5 +138,5 @@ For each of `NSTApp`, `NSTBackend`, `InterstellarMotion`, `QuantumAndNeutrinos`,
 |---|---|---|
 | Now (pre-launch blockers) | B1, B2, B4, A2, A3, A5 | Dead links, broken control, wrong facts — cheap and visitor-facing |
 | Next | B3, A4, B5, B6, A6 | Repo hygiene + share-ability + docs |
-| Then | A1 (+ its content writing), A7, A8, C-repo-curation | The credibility builders |
-| Later / optional | A9 (GR mode), NST gallery, GenAI piece, B7 | Nice-to-haves once the above ship |
+| Then | A1 (+ its content writing), C1 tiers 1–2 (agentic toolkit public + write-up), A7, A8, C-repo-curation | The credibility builders — A1 and C1 are the twin pillars (architecture story + AI story) |
+| Later / optional | A9 (GR mode), NST gallery, C1 tier 3 (trace replay), B7 | Nice-to-haves once the above ship |
