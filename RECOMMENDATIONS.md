@@ -100,7 +100,7 @@ Rule of thumb from your own PRD constraints (no always-on paid services): **only
 |---|---|---|
 | Physics playground | ✅ done | Pure canvas/JS — this was the right call |
 | Architecture simulator | ✅ in progress | Client-side Cytoscape — right call, needs real content (A1) |
-| Agentic toolkit (private) | ⚠️ embed a *recorded trace*, not a live agent | See C1 — live agent needs paid backend + keys; a client-side replay of a recorded run is cheap and distinctive |
+| Agentic toolkit (private, stays private) | ✅ embed a *recorded trace replay* — the centrepiece of its case-study page | See C1 — repo stays closed, so extracted artefacts carry the proof; live agent still off the table (paid backend + keys) |
 | Neural Style Transfer | ⚠️ embed the *outputs*, not the model | Running TF server-side violates the no-paid-backend constraint. But a **static before/after gallery** of style-transferred images (even a slider comparison widget) is an hour's work, zero runtime cost, and visually the most impressive thing on the page. Recommended. |
 | Interstellar Motion | ⚠️ optional future | The RK4 maths ports naturally to JS — this is the already-planned GR mode of the playground (A9). Don't do it separately. |
 | Stock predictor | ❌ | Needs backend + live data; also, publishing ML price predictions invites the wrong conversation. Link + good README is the right treatment. |
@@ -113,18 +113,27 @@ Rule of thumb from your own PRD constraints (no always-on paid services): **only
 
 For someone whose bio claims staying close to AI, there is **no visible post-2021 AI work** — the PRD's "Current GenAI piece" slot points at `stable-diffusion`/`BERT`/`DirtyTalk`, all private or nonexistent (and reconsider ever surfacing a repo named `DirtyTalk` on a professional site).
 
-**Resolution: the private agentic-toolkit repo** — a personal rebuild of patterns and lessons from client and internal Deloitte agentic-AI work. Strategically this is the AI-side twin of the architecture simulator: both take invisible professional work and turn it into public, personally-owned evidence. Worth framing the two together on the site as "professional practice, rebuilt in public."
+**Resolution: the private agentic-toolkit repo** — a personal rebuild of patterns and lessons from client and internal Deloitte agentic-AI work. Strategically this is the AI-side twin of the architecture simulator: both take invisible professional work and turn it into public, personally-owned evidence.
 
-### C1. Ship the agentic toolkit publicly — **M–L, same tier as A1**
+**Decision: the repo stays private** (the code *is* the expertise; publishing it gives that away). So the showcase is built from **extracted artefacts, not a repo link** — a curated exhibit, the same way real client work is presented. Framing on the site: "selected artefacts from a private agentic toolkit". This shifts the evidential load onto the artefacts themselves, which means they must be concrete and self-evidencing (traces, decision records, evals) rather than claims.
 
-**Tier 1 — public repo + README (the unlock, do first):**
-- Sanitise before flipping public: no client names or domain-identifying details, no internal Deloitte tool/project names, no secrets anywhere in *history* — safest is to squash to a fresh initial commit rather than audit old ones. Add `.env.example`, a licence, and a README with one architecture diagram.
-- It then takes the homepage featured-card slot the dead `stable-diffusion` pill was holding (fixes half of B1 by itself), tagged "AI / Agents".
-- ⚠️ Same discipline as A1's anonymisation: confirm your employment IP/confidentiality position; build on personal time/equipment; frame it as *patterns I've learned*, never *what we built for client X*. Generic patterns are yours; client implementations aren't.
+### C1. Showcase the agentic toolkit via extracted artefacts — **M–L, same tier as A1**
 
-**Tier 2 — lessons write-up:** a short "patterns for enterprise agentic systems" piece (orchestration, tool use, evals, guardrails, failure modes) in the README or as a site page. For the recruiter/hiring-manager audience this outperforms the code — it shows judgement, not just implementation. Also lets the bio's AI claims stand fully evidenced (supersedes the old "soften the claims" fallback).
+**Step 1 — extraction pass (agent-run over the private repo).** The repo already holds design documents, decision records, and skill/agent details; run an extraction agent with this artefact brief:
 
-**Tier 3 (optional) — client-side trace replay, not a live demo:** a live agent embed needs an always-on backend + API keys — violates the PRD constraint; don't. Instead, render a **recorded agent run** (JSON trace: plan → tool calls → observations → result) as an interactive replay, pure client-side, zero runtime cost. Distinctive — few people show their agent's reasoning trace well — and it rhymes with the Cytoscape node-graph language already on `/architecture`. Keep it card/page-section level, not a third nav-level centerpiece; the two-interactive-moments restraint still holds.
+| Artefact | Form | Feeds |
+|---|---|---|
+| 1–2 recorded agent runs | Sanitised JSON trace: plan → tool calls → observations → result | The replay widget (step 3) |
+| System architecture | One diagram (SVG/Mermaid): agents, skills, orchestration, evals, guardrails | Case-study page hero |
+| 3–5 decision records | Sanitised ADR excerpts: context · options · decision · consequence | Decision cards (reuse the `/architecture` card pattern) |
+| Skill/agent catalogue | Table: name · one-line capability · pattern it demonstrates | Case-study page |
+| Eval/guardrail results | Summary metrics or before/after examples | Credibility close on the page |
+
+Sanitisation happens **at extraction time**, and traces are the main risk surface — prompts, tool names, and observation payloads can leak client/internal detail even when code doesn't. Same gate as A1: generic patterns are yours; client specifics aren't; check the employment IP/confidentiality position once for both.
+
+**Step 2 — case-study page.** Assemble the artefacts into an `/ai` page (or a projects-section detail): narrative ("patterns for enterprise agentic systems — orchestration, tool use, evals, guardrails, failure modes") wrapping the diagram, ADR cards, catalogue, and evals. For the recruiter/hiring-manager audience this write-up outperforms code anyway — it shows judgement, not just implementation. The homepage featured card (slot vacated by the dead `stable-diffusion` pill, fixing half of B1) links here — CTA "View case study", tagged "AI / Agents", with a "code private — selected artefacts shown" note, which reads as professional rather than evasive.
+
+**Step 3 — client-side trace replay (now the centrepiece, promoted from optional).** With no public repo to vouch for the work, the replay carries the proof: an interactive, replayable rendering of a recorded run, pure client-side from the static trace JSON, zero runtime cost. It shows the system's *behaviour* while withholding its *implementation* — exactly the split you want — and it rhymes with the Cytoscape node-graph language already on `/architecture`. A live agent embed remains off the table (always-on backend + keys, violates the PRD constraint). Keep it embedded within the case-study page, not a third nav-level centerpiece; the two-interactive-moments restraint still holds.
 
 ### Repo curation checklist (for the six repos the site links)
 
@@ -138,5 +147,5 @@ For each of `NSTApp`, `NSTBackend`, `InterstellarMotion`, `QuantumAndNeutrinos`,
 |---|---|---|
 | Now (pre-launch blockers) | B1, B2, B4, A2, A3, A5 | Dead links, broken control, wrong facts — cheap and visitor-facing |
 | Next | B3, A4, B5, B6, A6 | Repo hygiene + share-ability + docs |
-| Then | A1 (+ its content writing), C1 tiers 1–2 (agentic toolkit public + write-up), A7, A8, C-repo-curation | The credibility builders — A1 and C1 are the twin pillars (architecture story + AI story) |
-| Later / optional | A9 (GR mode), NST gallery, C1 tier 3 (trace replay), B7 | Nice-to-haves once the above ship |
+| Then | A1 (+ its content writing), C1 steps 1–2 (artefact extraction + case-study page), A7, A8, C-repo-curation | The credibility builders — A1 and C1 are the twin pillars (architecture story + AI story) |
+| Later / optional | C1 step 3 (trace replay — the case-study centrepiece, worth pulling forward if the extracted traces are good), A9 (GR mode), NST gallery, B7 | Ship once the above land |
