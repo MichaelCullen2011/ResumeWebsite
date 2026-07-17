@@ -9,8 +9,11 @@
   <meta property="og:title"       content="{% block og_title %}Michael Cullen{% endblock %}">
   <meta property="og:description" content="{% block og_desc %}Technology Manager at Deloitte — architecture, data/AI, quantum computing.{% endblock %}">
   <meta property="og:type"        content="website">
-  <!-- Favicon (add a real .ico to src/static/ to activate) -->
-  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta property="og:url"         content="https://michaelcullenpersonal.nw.r.appspot.com{{ request.path }}">
+  <meta property="og:image"       content="https://michaelcullenpersonal.nw.r.appspot.com{{ url_for('static', filename='og-image.png') }}">
+  <meta name="twitter:card"       content="summary_large_image">
+  <link rel="canonical" href="https://michaelcullenpersonal.nw.r.appspot.com{{ request.path }}">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -27,7 +30,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="/#about">About</a></li>
       <li><a href="/#projects">Projects</a></li>
-      <li><a href="/architecture">Architecture</a></li>
+      <li><a href="/architecture">AI Architecture</a></li>
       <li><a href="/physics">Physics</a></li>
       <li><a href="/cv">CV</a></li>
       <li><a href="/contact">Contact</a></li>

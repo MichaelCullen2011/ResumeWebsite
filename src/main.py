@@ -1,4 +1,4 @@
-from flask import Flask, abort, render_template, request, send_from_directory
+from flask import Flask, abort, flash, render_template, request, send_from_directory
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Email, Length
@@ -51,7 +51,8 @@ def get_contact():
             mail.send(msg)
         except Exception:
             app.logger.exception("Failed to send contact email")
-            abort(500)
+            flash("Your message could not be sent. Please email michaelcullen2024@gmail.com directly.", "error")
+            return render_template('contact.html', form=form), 503
         return render_template('contact_sent.html', form=form)
     return render_template('contact.html', form=form)
 
@@ -77,6 +78,16 @@ def paper_view():
         return send_from_directory("static/", "QC_Paper.pdf")
     except FileNotFoundError:
         abort(404)
+
+
+@app.errorhandler(404)
+def not_found(_error):
+    return render_template("404.html"), 404
+
+
+@app.errorhandler(500)
+def server_error(_error):
+    return render_template("500.html"), 500
 
 
 if __name__ == "__main__":

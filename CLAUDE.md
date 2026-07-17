@@ -35,18 +35,18 @@ gcloud app deploy --project [GCP_PROJECT_NAME]
 Single-file Flask app: `src/main.py` defines all routes and the `EmailForm` WTForms class. No blueprints or separate modules.
 
 **Routes:**
-- `/` — homepage (about + projects)
+- `/` — homepage (about, experience, and selected projects)
 - `/contact` — GET renders form, POST sends email via Flask-Mail and renders confirmation
 - `/cv` — CV/resume page
-- `/tableau1`, `/tableau2` — embedded Tableau dashboards
+- `/architecture` — public-safe AI architecture case study
+- `/physics` — neutrino oscillation visualiser
 - `/qc_neutrino_paper` — serves `src/static/QC_Paper.pdf`
 
-**Templates** live in `src/templates/` and use Jinja2 `{% extends %}` / `{% include %}`:
-- `homepage_base.html` — full homepage layout (inline `style.css`, includes `header.html`, `socials.html`)
-- `cv_base.html` — CV layout base
-- `homepage.html` / `cv.html` extend their respective base templates
-- CSS (`style.css`, `fa.css`) and JS (`navlinkscript.js`) are included inline via `{% include %}` rather than served as static files
-- Static assets (images, PDF) are in `src/static/`
+**Templates** live in `src/templates/` and extend `base.html`. Shared CSS and JavaScript are served from `src/static/`:
+- `index.html`, `cv.html`, `contact.html`, `architecture.html`, and `physics.html` are the public pages.
+- `src/static/css/style.css` is the design system.
+- `src/static/js/hero.js`, `nav.js`, and `physics.js` are page interactions.
+- Static assets include images, the thesis PDF, sitemap, and robots rules.
 
 **Contact form** uses Flask-Mail over Gmail SMTP (TLS, port 587). All four credentials (`SECRET_KEY`, `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, `MAIL_PASSWORD`) are read from environment variables. See **Environment Variables** section below.
 

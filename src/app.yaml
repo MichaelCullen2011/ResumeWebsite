@@ -3,7 +3,8 @@ runtime: python312
 runtime_config:
     python_version: 3.12
 
-# IMPORTANT: Fill in real values before deploying. Do not commit real secrets.
+# Never deploy this tracked file directly: create an ignored app.release.yaml with
+# the production values before deploying. Do not commit real secrets.
 env_variables:
     SECRET_KEY: "REPLACE_BEFORE_DEPLOY"
     MAIL_USERNAME: "REPLACE_BEFORE_DEPLOY"

@@ -1,55 +1,52 @@
-# Resume Website
+# Michael Cullen — Portfolio
 
-## Website can be accessed at: michaelcullenpersonal.nw.r.appspot.com
+Personal portfolio site for Michael Cullen, a Technology Manager at Deloitte. The Flask app presents architecture and AI work, data/ML projects, a physics playground, CV, and a contact form.
 
-## Description
+Live site: <https://michaelcullenpersonal.nw.r.appspot.com>
 
-This is a website built using Flask. It is a simple resume website, that descripes some example projects (with links to github) and a resume and contact page.
+## Local development
 
-![alt text](https://github.com/MichaelCullen2011/ResumeWebsite/blob/main/screenshot.png?raw=true)
+Create a `.env` from `.env.example`, fill in the four required values, then run:
 
-## Getting Started
-
-### Installing
-
-To look at the code just fork this repo and install requirements.txt using
-```
-pip install -r 'src/requirements.txt'
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r src/requirements.txt
+.venv/bin/python src/main.py
 ```
 
-### Executing program
+The site runs at <http://localhost:8080>.
 
-To run the Flask server, from the project .venv simply run
-```
-cd src
-python3 flask run main.py --port=8080
-```
+## Routes
 
-### Executing program
+- `/` — portfolio homepage
+- `/architecture` — public-safe AI architecture case study
+- `/physics` — neutrino oscillation visualiser
+- `/cv` — online CV
+- `/contact` — contact form
+- `/qc_neutrino_paper` — MPhys thesis PDF
 
-To push to google app engine
-```
-cd src
-gcloud app deploy --project [GCP_PROJECT_NAME] 
-```
+## Docker
 
-### Executing program
-
-To build the Docker container
-```
+```bash
 docker build -t resumewebsite .
+docker run --env-file .env -p 8080:8080 resumewebsite
 ```
 
-Or to run docker-compose to dynamically update the container with website changes
+## Deploy to Google App Engine
+
+Do not place real credentials in `src/app.yaml`. Before deployment, create an ignored release-only configuration and replace its four placeholder values with the production `SECRET_KEY`, `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, and `MAIL_PASSWORD`:
+
+```bash
+cd src
+cp app.yaml app.release.yaml
+# Edit app.release.yaml locally; never commit it.
 ```
-docker-compose build
-docker-compose up -d
+
+Deploy a testable version without routing live traffic to it:
+
+```bash
+cd src
+gcloud app deploy app.release.yaml --project <project-id> --version <release-id> --no-promote
 ```
 
-Server can be accessed at localhost:8080 or 127.0.0.1:8080
-
-## Authors
-
-Contributors names and contact info
-
-ex. Michael Cullen
+Smoke-test the deployed version, including the contact form, then promote it using the Google Cloud console or `gcloud app services set-traffic`.
