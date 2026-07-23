@@ -50,6 +50,9 @@
     };
   }
 
+  // Pure calculation seam shared by the browser and deterministic release checks.
+  globalThis.ResumePhysics = Object.freeze({ PRESETS, calcProbs });
+
   // ── Canvas / Triangle geometry ────────────────────────────
   const COLOURS = {
     e: '#7d4c67',  // burgundy — νe top
