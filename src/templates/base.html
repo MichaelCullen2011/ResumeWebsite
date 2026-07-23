@@ -23,7 +23,9 @@
 </head>
 <body>
 
-  <nav id="navbar">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav id="navbar" aria-label="Primary navigation">
     <div class="nav-brand">
       <a href="/">Michael Cullen</a>
     </div>
@@ -35,14 +37,23 @@
       <li><a href="/cv">CV</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
-    <div class="burger" id="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <button
+      class="burger"
+      id="burger"
+      type="button"
+      aria-controls="nav-links"
+      aria-expanded="false"
+      aria-label="Open navigation"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
   </nav>
 
-  {% block content %}{% endblock %}
+  <main id="main-content" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
 
   <footer>
     <div class="footer-inner">

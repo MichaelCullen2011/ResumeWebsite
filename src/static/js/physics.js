@@ -66,7 +66,6 @@
   let LE              = 0.5;    // km/GeV, 0–2000 range on slider
   let dotPos          = { x: 0, y: 0 };
   let tail            = [];     // recent positions for fading tail
-  let animFrame;
 
   function resize() {
     const size = Math.min(canvas.parentElement.clientWidth, 500);
@@ -203,18 +202,17 @@
     });
   }
 
-  function loop() {
-    render();
-    animFrame = requestAnimationFrame(loop);
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     canvas = document.getElementById('physics-canvas');
     if (!canvas) return;
     ctx = canvas.getContext('2d');
 
     resize();
-    window.addEventListener('resize', () => { resize(); updateDot(); });
+    window.addEventListener('resize', () => {
+      resize();
+      updateDot();
+      render();
+    });
 
     const slider = document.getElementById('le-slider');
     const leVal  = document.getElementById('le-value');
@@ -223,6 +221,7 @@
       LE = parseFloat(slider.value);
       leVal.textContent = LE.toFixed(1) + ' km/GeV';
       updateDot();
+      render();
     });
 
     document.querySelectorAll('.preset-pill').forEach(btn => {
@@ -230,7 +229,6 @@
     });
 
     setPreset('no-mixing');
-    loop();
   });
 
 })();

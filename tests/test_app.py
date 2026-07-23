@@ -69,6 +69,33 @@ class ApplicationReleaseChecks(unittest.TestCase):
         self.assertTrue(response.content_type.startswith("text/html"))
         self.assertIn(b"That page is not here.", response.data)
 
+    def test_shared_accessibility_contract_is_present(self):
+        routes = ("/", "/architecture", "/physics", "/cv", "/contact", "/does-not-exist")
+
+        for route in routes:
+            with self.subTest(route=route):
+                response = self.client.get(route)
+                try:
+                    body = response.get_data(as_text=True)
+
+                    self.assertIn('class="skip-link"', body)
+                    self.assertIn('href="#main-content"', body)
+                    self.assertIn('<main id="main-content" tabindex="-1">', body)
+                    self.assertIn('aria-label="Primary navigation"', body)
+                    self.assertIn('aria-controls="nav-links"', body)
+                    self.assertIn('aria-expanded="false"', body)
+                    self.assertEqual(body.count("<main"), 1)
+                finally:
+                    response.close()
+
+        stylesheet_response = self.client.get("/static/css/style.css")
+        try:
+            stylesheet = stylesheet_response.get_data(as_text=True)
+        finally:
+            stylesheet_response.close()
+        self.assertIn(":focus-visible", stylesheet)
+        self.assertIn("prefers-reduced-motion: reduce", stylesheet)
+
     def test_valid_contact_submission_renders_success(self):
         form_data = {
             "name": "Release Check Visitor",

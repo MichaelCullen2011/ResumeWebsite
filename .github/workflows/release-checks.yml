@@ -44,8 +44,8 @@ jobs:
       - name: Run Python tests
         run: python -m unittest discover -s tests -p "test_*.py"
 
-      - name: Run physics tests
-        run: node --test tests/test_physics.cjs
+      - name: Run browser JavaScript tests
+        run: node --test tests/*.cjs
 
       - name: Check diff whitespace
         env:

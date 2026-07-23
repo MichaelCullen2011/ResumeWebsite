@@ -2,6 +2,7 @@
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const PARTICLE_COUNT = 70;
   const CONNECTION_DIST = 130;
@@ -26,14 +27,16 @@
   function draw(t) {
     ctx.clearRect(0, 0, W, H);
 
-    particles.forEach(p => {
-      p.x += p.vx + Math.sin(t * 0.0006 + p.phase) * 0.15;
-      p.y += p.vy + Math.cos(t * 0.0005 + p.phase) * 0.12;
-      if (p.x < 0) p.x = W;
-      if (p.x > W) p.x = 0;
-      if (p.y < 0) p.y = H;
-      if (p.y > H) p.y = 0;
-    });
+    if (!reduceMotion) {
+      particles.forEach(p => {
+        p.x += p.vx + Math.sin(t * 0.0006 + p.phase) * 0.15;
+        p.y += p.vy + Math.cos(t * 0.0005 + p.phase) * 0.12;
+        if (p.x < 0) p.x = W;
+        if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;
+        if (p.y > H) p.y = 0;
+      });
+    }
 
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -58,11 +61,15 @@
       ctx.fill();
     });
 
-    requestAnimationFrame(draw);
+    if (!reduceMotion) requestAnimationFrame(draw);
   }
 
   resize();
   initParticles();
-  window.addEventListener('resize', () => { resize(); initParticles(); });
+  window.addEventListener('resize', () => {
+    resize();
+    initParticles();
+    if (reduceMotion) draw(0);
+  });
   requestAnimationFrame(draw);
 })();
