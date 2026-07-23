@@ -16,7 +16,7 @@ Accessible at `http://localhost:8080`
 docker-compose build
 docker-compose up -d
 ```
-Accessible at `http://localhost:80` (maps to container port 8080)
+Accessible at `http://localhost:80` (maps to container port 8080). Only `src/` is mounted (`./src:/app/src`) — changes outside `src/` require a rebuild.
 
 **Docker standalone:**
 ```bash
@@ -48,7 +48,7 @@ Single-file Flask app: `src/main.py` defines all routes and the `EmailForm` WTFo
 - `src/static/js/hero.js`, `nav.js`, and `physics.js` are page interactions.
 - Static assets include images, the thesis PDF, sitemap, and robots rules.
 
-**Contact form** uses Flask-Mail over Gmail SMTP (TLS, port 587). All four credentials (`SECRET_KEY`, `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, `MAIL_PASSWORD`) are read from environment variables. See **Environment Variables** section below.
+**Contact form** uses Flask-Mail over Gmail SMTP (TLS, port 587). All four credentials (`SECRET_KEY`, `MAIL_USERNAME`, `MAIL_DEFAULT_SENDER`, `MAIL_PASSWORD`) are read from environment variables. See **Environment Variables** section below. Fields are rendered with WTForms and validation errors are displayed per field.
 
 **Dependencies:** `src/requirements.txt` (not the root `requirements.txt`). Install with:
 ```bash
@@ -82,3 +82,18 @@ cp .env.example .env
 - `src/app.yaml` configures Google App Engine (Python 3.12 runtime); static files at `/static` are served directly by GAE
 - The Dockerfile uses `gunicorn src.main:app` — if the entry point changes, update `CMD` in `Dockerfile`
 - `src/.gcloudignore` controls what gets excluded from App Engine deploys
+- `.dockerignore` excludes local credentials, Git metadata, planning files, Markdown documentation, and Python caches from image layers
+
+## Agent skills
+
+### Issue tracker
+
+Issues and PRDs are tracked in GitHub Issues. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Use the default five-role triage vocabulary. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+This is a single-context repository using root `CONTEXT.md` and `docs/adr/`. See `docs/agents/domain.md`.

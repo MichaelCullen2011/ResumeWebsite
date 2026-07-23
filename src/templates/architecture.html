@@ -40,6 +40,8 @@
       <div class="agent-flow-row two"><div><b>Portable skills</b><span>Ingest, elicit, map, review, diagram, decide, and govern</span></div><div><b>Workspace and memory</b><span>Versioned artifacts and lightweight references</span></div></div>
       <i class="fa-solid fa-arrow-down agent-flow-arrow" aria-hidden="true"></i>
       <div class="agent-flow-row two guardrail"><div><b>Validators, evaluations, and CI</b><span>Grounding, schemas, render round-trips, readiness, and manifest lint</span></div><div><b>Human approval</b><span>Required before final verdicts or outbound connector actions</span></div></div>
+      <i class="fa-solid fa-arrow-down agent-flow-arrow" aria-hidden="true"></i>
+      <div class="agent-flow-row"><div><b>Draft-first connectors</b><span>Fetch, publish, and notify with capability checks and update-or-skip behaviour</span></div><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><div><b>External systems and audit</b><span>Only approved actions cross the side-effect boundary; decisions remain tamper-evident</span></div></div>
     </div>
     <div class="principle-grid"><article><i class="fa-regular fa-file-lines"></i><h3>Files as the handoff bus</h3><p>Artifacts are inspectable, diffable, resumable, and referenced without copying raw source content between agents.</p></article><article><i class="fa-regular fa-square-check"></i><h3>Validation is reusable</h3><p>The same deterministic checks run during generation and in CI, reducing drift between workflow and merge-time policy.</p></article><article><i class="fa-regular fa-user"></i><h3>People own the boundary</h3><p>Automation prepares and previews consequential actions; an accountable human approves the final governance decision.</p></article></div>
   </section>
@@ -67,6 +69,14 @@
     <p class="case-study-eyebrow">Evaluation and guardrails</p>
     <h2 id="evaluation-heading">Control is part of the architecture</h2>
     <div class="table-wrap"><table><thead><tr><th>Check</th><th>Result</th><th>Meaning</th></tr></thead><tbody><tr><td>Skill manifest lint</td><td><strong>14/14 passed</strong></td><td>Every packaged skill satisfied the metadata contract.</td></tr><tr><td>Blocking artifact cases</td><td><strong>16/16 at pass⁵</strong></td><td>All cases passed five consecutive deterministic runs: 80/80 executions.</td></tr><tr><td>Root evaluation and judge tests</td><td><strong>16/16 passed</strong></td><td>Prompt construction, calibration, runner behaviour, and manifest lint passed.</td></tr><tr><td>Hosted-agent logic tests</td><td><strong>11/11 passed</strong></td><td>Handoffs, contracts, containment, offline failure, audit, and readiness invariants passed.</td></tr><tr><td>Model-judge cases</td><td>Not rerun</td><td>Optional model calls were deliberately excluded from this public extraction.</td></tr></tbody></table></div>
+    <div class="principle-grid guardrail-grid">
+      <article><i class="fa-solid fa-quote-left" aria-hidden="true"></i><h3>Evidence-labelled claims</h3><p>Claims without direct evidence are cited or marked as inferred and awaiting confirmation.</p></article>
+      <article><i class="fa-solid fa-lock" aria-hidden="true"></i><h3>Fail-closed governance</h3><p>Incomplete governance packs cannot report readiness or pass a decision gate.</p></article>
+      <article><i class="fa-solid fa-code-branch" aria-hidden="true"></i><h3>Diagram round-trips</h3><p>Rendered diagrams must preserve the nodes and edges in their source model.</p></article>
+      <article><i class="fa-solid fa-ban" aria-hidden="true"></i><h3>Contained writes</h3><p>Path validation rejects writes outside the active session workspace.</p></article>
+      <article><i class="fa-solid fa-user-check" aria-hidden="true"></i><h3>Human approval</h3><p>Publication and final verdicts stop for approval without causing a side effect.</p></article>
+      <article><i class="fa-solid fa-link" aria-hidden="true"></i><h3>Tamper-evident audit</h3><p>Hash-chain verification exposes changes to later links in the decision log.</p></article>
+    </div>
   </section>
 
   <p class="case-study-footnote">Evidence is based on repository code, tests, evaluation fixtures, and architecture records. The results are a point-in-time assessment of the private toolkit; detailed fixtures remain private. No live cloud deployment, external connector, or model-judge run was performed for this extraction.</p>

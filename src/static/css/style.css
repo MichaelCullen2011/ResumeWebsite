@@ -66,6 +66,8 @@ body {
 .agent-flow-panel { padding: 1rem; background: #f7f0ea; }
 .agent-flow-panel > small { display: block; color: var(--text-muted); font-size: .72rem; font-weight: 600; letter-spacing: .1em; margin-bottom: .75rem; text-transform: uppercase; }
 .principle-grid { grid-template-columns: repeat(3, 1fr); margin-top: 1rem; }
+.guardrail-grid { margin-top: 1.5rem; }
+.guardrail-grid article { border-top: 3px solid var(--amber); }
 .principle-grid i { color: var(--burgundy); font-size: 1.25rem; margin-bottom: .75rem; }
 .principle-grid h3, .trace-grid h3, .decision-grid h3 { color: var(--text-dark); font-size: 1.05rem; margin-bottom: .5rem; }
 .principle-grid p, .trace-grid p, .decision-grid p { color: #655f5b; font-size: .85rem; }
