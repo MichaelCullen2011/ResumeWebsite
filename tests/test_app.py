@@ -96,6 +96,16 @@ class ApplicationReleaseChecks(unittest.TestCase):
         self.assertIn(":focus-visible", stylesheet)
         self.assertIn("prefers-reduced-motion: reduce", stylesheet)
 
+    def test_architecture_page_omits_public_safe_extraction_notice(self):
+        response = self.client.get("/architecture")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertNotIn("Public-safe extraction", body)
+            self.assertNotIn("representative reconstructions", body)
+        finally:
+            response.close()
+
     def test_valid_contact_submission_renders_success(self):
         form_data = {
             "name": "Release Check Visitor",
