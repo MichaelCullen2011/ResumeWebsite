@@ -106,6 +106,16 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
+    def test_homepage_distinguishes_case_study_from_interactive_demo(self):
+        response = self.client.get("/")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn('<span class="project-tag">Case Study</span>', body)
+            self.assertEqual(body.count('<span class="project-tag">Interactive Demo</span>'), 1)
+        finally:
+            response.close()
+
     def test_valid_contact_submission_renders_success(self):
         form_data = {
             "name": "Release Check Visitor",
