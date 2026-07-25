@@ -106,6 +106,46 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
+    def test_architecture_page_names_tables_and_hides_decorative_icons(self):
+        response = self.client.get("/architecture")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn(
+                '<table aria-labelledby="catalogue-heading">',
+                body,
+            )
+            self.assertIn(
+                '<table aria-labelledby="evaluation-heading">',
+                body,
+            )
+            self.assertIn(
+                '<i class="fa-regular fa-file-lines" aria-hidden="true">',
+                body,
+            )
+            self.assertIn(
+                '<i class="fa-regular fa-square-check" aria-hidden="true">',
+                body,
+            )
+            self.assertIn(
+                '<i class="fa-regular fa-user" aria-hidden="true">',
+                body,
+            )
+        finally:
+            response.close()
+
+    def test_architecture_page_labels_examples_and_repeated_runs_clearly(self):
+        response = self.client.get("/architecture")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn("Illustrative workflow traces", body)
+            self.assertIn("16/16 passed across five runs", body)
+            self.assertNotIn("Representative execution traces", body)
+            self.assertNotIn("pass⁵", body)
+        finally:
+            response.close()
+
     def test_homepage_distinguishes_case_study_from_interactive_demo(self):
         response = self.client.get("/")
         try:
