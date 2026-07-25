@@ -106,17 +106,13 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
-    def test_architecture_page_names_tables_and_hides_decorative_icons(self):
+    def test_architecture_page_names_capability_table_and_hides_decorative_icons(self):
         response = self.client.get("/architecture")
         try:
             body = response.get_data(as_text=True)
 
             self.assertIn(
                 '<table aria-labelledby="catalogue-heading">',
-                body,
-            )
-            self.assertIn(
-                '<table aria-labelledby="evaluation-heading">',
                 body,
             )
             self.assertIn(
@@ -134,15 +130,29 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
-    def test_architecture_page_labels_examples_and_repeated_runs_clearly(self):
+    def test_architecture_page_labels_illustrative_examples_clearly(self):
         response = self.client.get("/architecture")
         try:
             body = response.get_data(as_text=True)
 
             self.assertIn("Illustrative workflow traces", body)
-            self.assertIn("16/16 passed across five runs", body)
             self.assertNotIn("Representative execution traces", body)
-            self.assertNotIn("pass⁵", body)
+        finally:
+            response.close()
+
+    def test_architecture_page_omits_test_run_metrics_and_results_table(self):
+        response = self.client.get("/architecture")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertNotIn("blocking cases passed", body)
+            self.assertNotIn("deterministic executions", body)
+            self.assertNotIn("16/16", body)
+            self.assertNotIn("80/80", body)
+            self.assertNotIn(
+                '<table aria-labelledby="evaluation-heading">',
+                body,
+            )
         finally:
             response.close()
 

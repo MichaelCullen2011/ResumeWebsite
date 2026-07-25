@@ -18,7 +18,7 @@
     <p class="case-study-eyebrow">At a glance</p>
     <h2 id="outcomes-heading">Built for evidence, control, and reuse</h2>
     <div class="case-study-metrics">
-      <div><strong>14</strong><span>portable skills</span></div><div><strong>3</strong><span>coordinated agents</span></div><div><strong>16/16</strong><span>blocking cases passed</span></div><div><strong>80/80</strong><span>deterministic executions</span></div>
+      <div><strong>14</strong><span>portable skills</span></div><div><strong>3</strong><span>coordinated agents</span></div>
     </div>
     <div class="case-study-copy two-columns"><p>The toolkit separates portable reasoning skills from side-effecting connectors. Agents exchange artifact references through a versioned workspace and explicit handoffs, keeping state inspectable and workflows resumable.</p><p>Deterministic validators run inside agent loops and again in CI. Governance verdicts and outbound actions stop at a human approval boundary, with the exact draft shown before anything irreversible occurs.</p></div>
   </section>
@@ -63,7 +63,6 @@
   <section class="case-study-section" aria-labelledby="evaluation-heading">
     <p class="case-study-eyebrow">Evaluation and guardrails</p>
     <h2 id="evaluation-heading">Control is part of the architecture</h2>
-    <div class="table-wrap"><table aria-labelledby="evaluation-heading"><thead><tr><th>Check</th><th>Result</th><th>Meaning</th></tr></thead><tbody><tr><td>Skill manifest lint</td><td><strong>14/14 passed</strong></td><td>Every packaged skill satisfied the metadata contract.</td></tr><tr><td>Blocking artifact cases</td><td><strong>16/16 passed across five runs</strong></td><td>All cases passed five consecutive deterministic runs: 80/80 executions.</td></tr><tr><td>Root evaluation and judge tests</td><td><strong>16/16 passed</strong></td><td>Prompt construction, calibration, runner behaviour, and manifest lint passed.</td></tr><tr><td>Hosted-agent logic tests</td><td><strong>11/11 passed</strong></td><td>Handoffs, contracts, containment, offline failure, audit, and readiness invariants passed.</td></tr><tr><td>Model-judge cases</td><td>Not rerun</td><td>Optional model calls were deliberately excluded from this public extraction.</td></tr></tbody></table></div>
     <div class="principle-grid guardrail-grid">
       <article><i class="fa-solid fa-quote-left" aria-hidden="true"></i><h3>Evidence-labelled claims</h3><p>Claims without direct evidence are cited or marked as inferred and awaiting confirmation.</p></article>
       <article><i class="fa-solid fa-lock" aria-hidden="true"></i><h3>Fail-closed governance</h3><p>Incomplete governance packs cannot report readiness or pass a decision gate.</p></article>
