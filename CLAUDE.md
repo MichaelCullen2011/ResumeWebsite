@@ -38,7 +38,8 @@ Single-file Flask app: `src/main.py` defines all routes and the `EmailForm` WTFo
 - `/` — homepage (about, experience, and selected projects)
 - `/contact` — GET renders form, POST sends email via Flask-Mail and renders confirmation
 - `/cv` — CV/resume page
-- `/architecture` — public-safe AI architecture case study
+- `/architecture` — selected AI architecture case study
+- `/cv.pdf` — downloadable public CV PDF
 - `/physics` — neutrino oscillation visualiser
 - `/qc_neutrino_paper` — serves `src/static/QC_Paper.pdf`
 

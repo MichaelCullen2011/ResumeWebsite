@@ -2,7 +2,7 @@
 :root {
   --ink:       #1a1a2e;
   --burgundy:  #7d4c67;
-  --cream:     #FDF5E6;
+  --cream:     #FFFDF8;
   --amber:     #C8963E;
   --slate:     #4A7C9C;
   --text-dark: #1f1f1f;
@@ -66,7 +66,7 @@ body {
 .case-study-copy p, .case-study-intro { color: #4a4542; font-size: .96rem; }
 .case-study-metrics, .two-columns, .principle-grid, .trace-grid, .decision-grid { display: grid; gap: 1rem; }
 .case-study-metrics { grid-template-columns: repeat(2, 1fr); margin-bottom: 1.5rem; }
-.case-study-metrics > div, .principle-grid article, .trace-grid article, .decision-grid article { background: #fff; box-shadow: var(--shadow); padding: 1.25rem; }
+.case-study-metrics > div, .principle-grid article, .workflow-trace, .decision-grid article { background: #fff; box-shadow: var(--shadow); padding: 1.25rem; }
 .case-study-metrics strong { color: var(--burgundy); display: block; font: 700 2rem/1 'Playfair Display', serif; }
 .case-study-metrics span { color: var(--text-muted-on-light); font-size: .8rem; }
 .two-columns { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
@@ -88,22 +88,35 @@ body {
 .principle-grid i { color: var(--burgundy); font-size: 1.25rem; margin-bottom: .75rem; }
 .principle-grid h3, .trace-grid h3, .decision-grid h3 { color: var(--text-dark); font-size: 1.05rem; margin-bottom: .5rem; }
 .principle-grid p, .trace-grid p, .decision-grid p { color: #655f5b; font-size: .85rem; }
-.trace-grid { grid-template-columns: repeat(2, 1fr); }
-.trace-grid article > span, .decision-grid article > span { color: var(--burgundy); font-weight: 700; }
-.trace-grid ol { color: #4a4542; font-size: .87rem; margin: 1rem 0 1rem 1.2rem; }
-.trace-grid li { margin-bottom: .35rem; }
-.trace-grid strong, .decision-grid strong, table strong { color: var(--burgundy); }
-.decision-grid { grid-template-columns: repeat(3, 1fr); }
+.trace-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+.trace-heading { display: flex; gap: 1rem; margin-bottom: 1.25rem; }
+.trace-heading > span, .decision-grid article > span { color: var(--burgundy); font-weight: 700; }
+.trace-heading h3 { margin-bottom: .25rem; }
+.trace-path { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: stretch; gap: .65rem; }
+.trace-path > i { align-self: center; color: var(--burgundy); }
+.trace-step { display: flex; flex-direction: column; gap: .3rem; min-height: 135px; padding: 1rem; border-top: 3px solid var(--slate); background: var(--cream); }
+.trace-step small { color: var(--text-muted-on-light); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.trace-step b { color: var(--text-dark); font-size: .84rem; line-height: 1.35; }
+.trace-step span { color: #655f5b; font-size: .75rem; line-height: 1.45; }
+.trace-result { border-color: var(--burgundy); background: #f7f0ea; }
+.trace-approval { border-color: var(--amber); background: #fff8e8; }
+.decision-grid { grid-template-columns: repeat(6, 1fr); }
+.decision-grid article { border-top: 3px solid var(--slate); }
+.decision-grid article { grid-column: span 2; }
+.decision-grid article:nth-child(n+4) { grid-column: span 3; }
+.decision-grid dl { margin-top: 1rem; }
+.decision-grid dt { color: var(--burgundy); font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.decision-grid dd { color: #655f5b; font-size: .82rem; line-height: 1.55; margin: .15rem 0 .75rem; }
 .table-wrap { overflow-x: auto; background: #fff; box-shadow: var(--shadow); }
 .case-study-section table { width: 100%; border-collapse: collapse; min-width: 680px; }
 .case-study-section th, .case-study-section td { padding: .9rem 1rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; font-size: .85rem; }
 .case-study-section th { background: var(--ink); color: #fff; font-weight: 600; }
 .case-study-section td { color: #4a4542; }
 .case-study-section td:first-child { color: var(--text-dark); font-weight: 600; }
-.skill-catalogue { margin-top: 1rem; padding: 1rem 1.25rem; background: #fff; border-left: 3px solid var(--burgundy); }
-.skill-catalogue p { color: #4a4542; font-size: .9rem; }
-.skill-catalogue p + p { margin-top: .75rem; }
-.case-study-footnote { border-top: 1px solid var(--border); color: var(--text-muted-on-light); font-size: .82rem; padding-top: 1.5rem; }
+.case-study-ending { margin-top: -1rem; padding: 2rem; border-left: 4px solid var(--amber); background: var(--ink); color: #fff; }
+.case-study-ending h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); margin: .45rem 0 1rem; }
+.case-study-ending p:last-child { max-width: 850px; color: rgba(255,255,255,.78); }
+.case-study-ending .case-study-eyebrow { color: var(--amber); }
 
 @media (max-width: 720px) {
   .case-study-hero { padding: 6rem 1.25rem 4rem; }
@@ -113,6 +126,11 @@ body {
   .agent-flow { padding: 1rem; }
   .agent-flow-row, .agent-flow-row.two, .agent-flow-row.three { grid-template-columns: 1fr; }
   .agent-flow-row > i { display: none; }
+  .trace-path { grid-template-columns: 1fr; padding-left: 1rem; border-left: 2px solid var(--border); }
+  .trace-path > i { margin: -.15rem auto; transform: rotate(90deg); }
+  .trace-step { min-height: 0; }
+  .decision-grid article, .decision-grid article:nth-child(n+4) { grid-column: auto; }
+  .case-study-ending { padding: 1.5rem; }
 }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
@@ -593,6 +611,12 @@ footer {
   padding: 0.2rem 0;
   color: var(--text-dark);
 }
+.cv-sidebar ul a {
+  color: var(--burgundy);
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+.cv-sidebar ul a i { width: 1.1rem; text-align: center; }
 .cv-main section { margin-bottom: 3rem; }
 .cv-main h2 {
   font-size: 0.75rem;
@@ -623,6 +647,28 @@ footer {
   color: #555;
   margin-bottom: 0.3rem;
 }
+.cv-role-list strong { color: var(--text-dark); }
+.cv-thesis-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: .75rem;
+  padding: .55rem .8rem;
+  border-left: 3px solid var(--amber);
+  background: #fff8e8;
+  color: var(--burgundy);
+  font-size: .82rem;
+  font-weight: 600;
+}
+.cv-thesis-link:hover { text-decoration: underline; text-underline-offset: .2em; }
+.cv-project h3 a {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: var(--burgundy);
+}
+.cv-project h3 a:hover { text-decoration: underline; text-underline-offset: .2em; }
+.cv-project h3 i { font-size: .82em; }
 .cv-download {
   text-align: center;
   padding: 2rem;
@@ -688,7 +734,7 @@ footer {
 .physics-hero {
   background: var(--ink);
   color: var(--cream);
-  padding: 8rem 2rem 3rem;
+  padding: 8rem 2rem 2.5rem;
   text-align: center;
 }
 .physics-hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
@@ -701,23 +747,27 @@ footer {
 .physics-body {
   background: var(--ink);
   min-height: calc(100vh - 60px);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 1.5rem 2rem 5rem;
 }
-.physics-intro {
-  max-width: 680px;
-  text-align: center;
-  margin-bottom: 2.5rem;
+.physics-shell {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
 }
-.physics-intro p { color: rgba(232,224,213,0.7); line-height: 1.75; font-size: 0.95rem; }
+.physics-eyebrow {
+  color: var(--amber);
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
 .preset-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 .preset-pill {
   padding: 0.45rem 1.2rem;
@@ -739,36 +789,101 @@ footer {
   border-color: var(--burgundy);
   color: #fff;
 }
+.physics-explainer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.035);
+}
+.physics-explainer h2, .probability-panel h2 {
+  color: var(--cream);
+  font-size: 1.35rem;
+  margin: .35rem 0 .75rem;
+}
+.physics-explainer p:not(.physics-eyebrow) {
+  max-width: 720px;
+  color: rgba(232,224,213,.74);
+  font-size: .9rem;
+  line-height: 1.7;
+}
+.physics-explainer p + p { margin-top: .65rem; }
+.physics-thesis-link { white-space: nowrap; }
+.physics-thesis-link i { margin-right: .45rem; }
+.physics-visual {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(250px, .75fr);
+  align-items: center;
+  gap: 2rem;
+}
+.triangle-panel {
+  display: grid;
+  place-items: center;
+  padding: .5rem;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.02);
+}
 #physics-canvas {
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius);
+  width: min(100%, 440px);
+  height: auto;
   max-width: 100%;
+}
+.probability-panel {
+  padding: 1.5rem;
+  border-left: 3px solid var(--burgundy);
+  background: rgba(255,255,255,.04);
 }
 .scrubber-wrap {
   width: 100%;
-  max-width: 500px;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255,255,255,.035);
 }
 .scrubber-wrap label {
   display: block;
-  text-align: center;
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.65);
   margin-bottom: 0.3rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
+.scrubber-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .8rem;
+}
 .scrubber-val {
-  text-align: center;
   font-size: 0.9rem;
   color: var(--cream);
-  margin-bottom: 0.4rem;
+}
+.playback-toggle {
+  min-width: 105px;
+  padding: .55rem .85rem;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--cream);
+  cursor: pointer;
+  font: 600 .78rem 'Inter', sans-serif;
+}
+.playback-toggle:hover { border-color: var(--amber); }
+.playback-toggle i { margin-right: .35rem; }
+.playback-status {
+  color: var(--amber);
+  font-size: .72rem;
+  margin-top: .25rem;
+  text-align: center;
 }
 .scrubber-sub {
   text-align: center;
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.55);
-  margin-top: 0.4rem;
+  color: rgba(255,255,255,0.68);
+  margin-top: 0.65rem;
 }
 input[type=range] {
   -webkit-appearance: none;
@@ -786,24 +901,25 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
 }
 .prob-bars {
-  display: flex;
-  gap: 0.75rem;
+  display: grid;
+  gap: 1.1rem;
   margin-top: 1.5rem;
 }
 .prob-bar-wrap {
+  display: grid;
+  gap: .4rem;
+}
+.prob-bar-heading {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(255,255,255,.7);
+  font-size: .78rem;
 }
-.prob-bar-label {
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.5);
-  font-style: italic;
-}
+.prob-bar-heading output { color: var(--cream); font-variant-numeric: tabular-nums; }
 .prob-bar-track {
-  width: 24px;
-  height: 80px;
+  width: 100%;
+  height: 10px;
   background: rgba(255,255,255,0.08);
   border-radius: 3px;
   position: relative;
@@ -811,19 +927,10 @@ input[type=range]::-webkit-slider-thumb {
 }
 .prob-bar-fill {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  left: 0;
+  height: 100%;
   border-radius: 3px;
-  transition: height 0.1s linear;
-}
-.pmns-inset {
-  position: relative;
-  margin-top: 1.5rem;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.55);
-  text-align: right;
-  font-family: 'Inter', monospace;
-  line-height: 1.8;
+  transition: width 0.1s linear;
 }
 .mode-tabs {
   display: flex;
@@ -849,6 +956,16 @@ input[type=range]::-webkit-slider-thumb {
 .mode-tab:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+@media (max-width: 760px) {
+  .physics-hero { padding: 7rem 1.25rem 2rem; }
+  .physics-body { padding: 1rem 1.25rem 4rem; }
+  .physics-explainer { grid-template-columns: 1fr; gap: 1.25rem; }
+  .physics-thesis-link { justify-self: start; white-space: normal; }
+  .physics-visual { grid-template-columns: 1fr; gap: 1.25rem; }
+  .probability-panel { border-left: 0; border-top: 3px solid var(--burgundy); }
+  .scrubber-wrap { padding: 1rem; }
 }
 
 /* ── Architecture page ───────────────────────────────────── */

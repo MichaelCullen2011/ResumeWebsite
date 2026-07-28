@@ -80,6 +80,14 @@ def paper_view():
         abort(404)
 
 
+@app.route('/cv.pdf')
+def cv_pdf_view():
+    try:
+        return send_from_directory("static/", "Michael_Cullen_CV_202607.pdf")
+    except FileNotFoundError:
+        abort(404)
+
+
 @app.errorhandler(404)
 def not_found(_error):
     return render_template("404.html"), 404

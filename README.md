@@ -19,7 +19,8 @@ The site runs at <http://localhost:8080>.
 ## Routes
 
 - `/` — portfolio homepage
-- `/architecture` — public-safe AI architecture case study
+- `/architecture` — selected AI architecture case study
+- `/cv.pdf` — downloadable public CV PDF
 - `/physics` — neutrino oscillation visualiser
 - `/cv` — online CV
 - `/contact` — contact form

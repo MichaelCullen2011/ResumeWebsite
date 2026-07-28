@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}Architecture Agent Toolkit — Michael Cullen{% endblock %}
-{% block meta_description %}A public-safe AI architecture case study: evidence-grounded agents, explicit approval boundaries, and reusable validation.{% endblock %}
+{% block meta_description %}How I built an AI architecture toolkit around inspectable files, repeatable checks, and human approval.{% endblock %}
 
 {% block content %}
 <section class="case-study-hero">
   <div class="case-study-hero-inner">
     <p class="case-study-eyebrow">Selected AI architecture case study</p>
     <h1>Architecture Agent Toolkit</h1>
-    <p>An evidence-grounded toolkit that turns mixed architecture inputs into reviewable system maps, decisions, diagrams, fitness functions, and governance packs.</p>
+    <p>A toolkit that turns an untidy mix of documents, code and meeting notes into architecture maps, diagrams, decisions, and governance packs automatically.</p>
     <div class="hero-cta"><a href="/cv" class="btn btn-primary">View CV</a><a href="/#projects" class="btn btn-outline">Back to projects</a></div>
   </div>
 </section>
@@ -16,63 +16,89 @@
 <div class="case-study-shell">
   <section class="case-study-section" aria-labelledby="outcomes-heading">
     <p class="case-study-eyebrow">At a glance</p>
-    <h2 id="outcomes-heading">Built for evidence, control, and reuse</h2>
+    <h2 id="outcomes-heading">An autonomous, intelligent assistant architect</h2>
     <div class="case-study-metrics">
-      <div><strong>14</strong><span>portable skills</span></div><div><strong>3</strong><span>coordinated agents</span></div>
+      <div><strong>3</strong><span>coordinated agents</span></div><div><strong>14</strong><span>reusable skills</span></div>
     </div>
-    <div class="case-study-copy two-columns"><p>The toolkit separates portable reasoning skills from side-effecting connectors. Agents exchange artifact references through a versioned workspace and explicit handoffs, keeping state inspectable and workflows resumable.</p><p>Deterministic validators run inside agent loops and again in CI. Governance verdicts and outbound actions stop at a human approval boundary, with the exact draft shown before anything irreversible occurs.</p></div>
   </section>
 
   <section class="case-study-section" aria-labelledby="shape-heading">
-    <p class="case-study-eyebrow">System shape</p>
-    <h2 id="shape-heading">A workflow with explicit seams</h2>
-    <p class="case-study-intro">The architecture makes state, validation, and external side effects visible rather than hiding them in conversational context.</p>
+    <p class="case-study-eyebrow">How it works</p>
+    <h2 id="shape-heading">The boundaries are visible</h2>
+    <p class="case-study-intro">State lives in files, checks sit beside the work they verify, and external systems remain behind an approval boundary.</p>
     <div class="agent-flow" aria-label="Architecture flow from human input to approved external actions">
-      <div class="agent-flow-row"><div><b>Human reviewers</b><span>Architecture and governance professionals</span></div><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><div><b>Workflow orchestrator</b><span>Coordinates the explicit handoff contract</span></div></div>
+      <div class="agent-flow-row"><div><b>Human reviewers</b><span>Provide source material, answer gaps and review the work</span></div><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><div><b>Workflow orchestrator</b><span>Coordinates each handoff and keeps the run resumable</span></div></div>
       <i class="fa-solid fa-arrow-down agent-flow-arrow" aria-hidden="true"></i>
-      <div class="agent-flow-panel"><small>Agent layer</small><div class="agent-flow-row three"><div><b>Intake agent</b><span>Normalises inputs and records provenance</span></div><div><b>Architecture agent</b><span>Maps, reviews, diagrams, and fitness functions</span></div><div><b>Governance agent</b><span>Prepares decisions, packs, and readiness previews</span></div></div></div>
+      <div class="agent-flow-panel"><small>Agent layer</small><div class="agent-flow-row three"><div><b>Intake agent</b><span>Normalises inputs and records where each claim came from</span></div><div><b>Architecture agent</b><span>Builds maps, reviews, diagrams and fitness functions</span></div><div><b>Governance agent</b><span>Drafts decisions, review packs and readiness previews</span></div></div></div>
       <i class="fa-solid fa-arrow-down agent-flow-arrow" aria-hidden="true"></i>
-      <div class="agent-flow-row two"><div><b>Portable skills</b><span>Ingest, elicit, map, review, diagram, decide, and govern</span></div><div><b>Workspace and memory</b><span>Versioned artifacts and lightweight references</span></div></div>
+      <div class="agent-flow-row two"><div><b>Reusable skills</b><span>Ingest, elicit, map, review, diagram, decide and govern</span></div><div><b>Versioned workspace</b><span>Inspectable artifacts and lightweight references between steps</span></div></div>
       <i class="fa-solid fa-arrow-down agent-flow-arrow" aria-hidden="true"></i>
-      <div class="agent-flow-row two guardrail"><div><b>Validators, evaluations, and CI</b><span>Grounding, schemas, render round-trips, readiness, and manifest lint</span></div><div><b>Human approval</b><span>Required before final verdicts or outbound connector actions</span></div></div>
+      <div class="agent-flow-row two guardrail"><div><b>Validators and CI</b><span>Check grounding, schemas, rendered diagrams, readiness and manifests</span></div><div><b>Human approval boundary</b><span>Stops final verdicts and outbound actions until someone approves the draft</span></div></div>
       <i class="fa-solid fa-arrow-down agent-flow-arrow" aria-hidden="true"></i>
-      <div class="agent-flow-row"><div><b>Draft-first connectors</b><span>Fetch, publish, and notify with capability checks and update-or-skip behaviour</span></div><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><div><b>External systems and audit</b><span>Only approved actions cross the side-effect boundary; decisions remain tamper-evident</span></div></div>
+      <div class="agent-flow-row"><div><b>Draft-first connectors</b><span>Fetch, publish or notify only through small, contained integrations</span></div><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><div><b>External systems and audit</b><span>Approved actions leave a tamper-evident decision trail</span></div></div>
     </div>
-    <div class="principle-grid"><article><i class="fa-regular fa-file-lines" aria-hidden="true"></i><h3>Files as the handoff bus</h3><p>Artifacts are inspectable, diffable, resumable, and referenced without copying raw source content between agents.</p></article><article><i class="fa-regular fa-square-check" aria-hidden="true"></i><h3>Validation is reusable</h3><p>The same deterministic checks run during generation and in CI, reducing drift between workflow and merge-time policy.</p></article><article><i class="fa-regular fa-user" aria-hidden="true"></i><h3>People own the boundary</h3><p>Automation prepares and previews consequential actions; an accountable human approves the final governance decision.</p></article></div>
+    <div class="principle-grid">
+      <article><i class="fa-regular fa-file-lines" aria-hidden="true"></i><h3>Files carry the handoff</h3></article>
+      <article><i class="fa-regular fa-square-check" aria-hidden="true"></i><h3>Checks are reused</h3></article>
+      <article><i class="fa-regular fa-user" aria-hidden="true"></i><h3>People make the call</h3></article>
+    </div>
   </section>
 
   <section class="case-study-section" aria-labelledby="traces-heading">
     <p class="case-study-eyebrow">Illustrative workflow traces</p>
-    <h2 id="traces-heading">From uncertain inputs to reviewable outputs</h2>
-    <div class="trace-grid"><article><span>01</span><h3>Intake to architecture</h3><p>Turn a mixed, untrusted architecture corpus into grounded outputs.</p><ol><li>Normalise documents and register provenance.</li><li>Extract confidence-tagged claims, conflicts, and gaps.</li><li>Map evidenced components and relationships.</li><li>Produce reviews, diagrams, and measurable fitness functions.</li><li>Validate every artifact before handoff.</li></ol><strong>Done:</strong> validated artifact references passed to downstream work.</article><article><span>02</span><h3>Governance gate</h3><p>Prepare a governance pack, then stop at the approval boundary.</p><ol><li>Read validated architecture handoff references.</li><li>Draft decisions and the governance submission pack.</li><li>Fail closed when mandatory evidence or a gate is missing.</li><li>Prepare a verdict preview without side effects.</li><li>Request explicit human approval before finalisation or publication.</li></ol><strong>Needs approval:</strong> a preview is ready; no publication or final verdict occurs.</article></div>
+    <h2 id="traces-heading">Two routes through the toolkit</h2>
+    <p class="case-study-intro">These are illustrative paths through the system. Each stage leaves an artifact that the next stage can inspect.</p>
+    <div class="trace-grid">
+      <article class="workflow-trace">
+        <div class="trace-heading"><span>01</span><div><h3>Intake to architecture</h3><p>From mixed source material to checked architecture outputs.</p></div></div>
+        <div class="trace-path" aria-label="Intake to architecture process">
+          <div class="trace-step"><small>Input</small><b>Documents, code and notes</b><span>Mixed, untrusted source material</span></div>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          <div class="trace-step"><small>Intake</small><b>Register the evidence</b><span>Normalise files, provenance, conflicts and gaps</span></div>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          <div class="trace-step"><small>Architecture</small><b>Build the views</b><span>Map components, render diagrams and define fitness functions</span></div>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          <div class="trace-step trace-result"><small>Handoff</small><b>Validated artifacts</b><span>References ready for review or downstream work</span></div>
+        </div>
+      </article>
+      <article class="workflow-trace">
+        <div class="trace-heading"><span>02</span><div><h3>Governance gate</h3><p>From checked architecture to a decision that still belongs to a person.</p></div></div>
+        <div class="trace-path" aria-label="Governance gate process">
+          <div class="trace-step"><small>Input</small><b>Architecture handoff</b><span>Validated maps, decisions and supporting evidence</span></div>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          <div class="trace-step"><small>Governance</small><b>Prepare the pack</b><span>Draft the submission and check mandatory evidence</span></div>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          <div class="trace-step"><small>Preview</small><b>Show the exact action</b><span>Prepare a verdict or publication without sending it</span></div>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          <div class="trace-step trace-approval"><small>Approval boundary</small><b>Wait for a reviewer</b><span>Nothing is finalised or published yet</span></div>
+        </div>
+      </article>
+    </div>
   </section>
 
   <section class="case-study-section" aria-labelledby="decisions-heading">
     <p class="case-study-eyebrow">Selected decision records</p>
-    <h2 id="decisions-heading">Small seams keep the system adaptable</h2>
-    <div class="decision-grid"><article><span>01</span><h3>Tool-independent core skills</h3><p>Core skills operate on repository artifacts and degrade gracefully when optional integrations are absent.</p></article><article><span>02</span><h3>Artifact-based handoffs</h3><p>Skills write defined files and downstream steps consume references, keeping workflows inspectable and resumable.</p></article><article><span>03</span><h3>Isolated connectors</h3><p>Fetch, publish, and notify capabilities stay behind small, integration-agnostic connector seams.</p></article><article><span>04</span><h3>Draft-first outbound actions</h3><p>Consequential actions pause before the irreversible boundary, showing reviewers the exact payload first.</p></article><article><span>05</span><h3>Visible policy configuration</h3><p>Organisation-specific thresholds and destinations live in constrained configuration blocks rather than workflow forks.</p></article></div>
+    <h2 id="decisions-heading">The decisions that shaped it</h2>
+    <p class="case-study-intro">The useful part of a decision record is the trade-off, not its reference number. These five decisions kept the toolkit understandable as it grew.</p>
+    <div class="decision-grid">
+      <article><span>01</span><h3>Use files as the handoff contract</h3><dl><dt>Problem</dt><dd>Passing everything through conversational context made state hard to inspect and awkward to resume.</dd><dt>Decision</dt><dd>Each skill writes a defined artifact and passes its reference to the next step.</dd><dt>Consequence</dt><dd>Workflows are easier to review and restart, at the cost of maintaining clear artifact schemas.</dd></dl></article>
+      <article><span>02</span><h3>Keep core skills tool-independent</h3><dl><dt>Problem</dt><dd>Optional integrations should not decide whether the core work can run.</dd><dt>Decision</dt><dd>Core skills operate on repository artifacts and degrade when an integration is absent.</dd><dt>Consequence</dt><dd>The same workflow can run locally, though connectors must translate to a common contract.</dd></dl></article>
+      <article><span>03</span><h3>Isolate the connectors</h3><dl><dt>Problem</dt><dd>Fetch, publish and notify code changes more often than the architecture work.</dd><dt>Decision</dt><dd>External tools sit behind small connector seams with contained writes.</dd><dt>Consequence</dt><dd>Integrations can change without rewriting the workflow, but each connector needs capability and path checks.</dd></dl></article>
+      <article><span>04</span><h3>Draft before doing</h3><dl><dt>Problem</dt><dd>A plausible-looking agent response is not enough authority to publish or pass a governance gate.</dd><dt>Decision</dt><dd>Show the exact outbound payload or verdict, then stop for approval.</dd><dt>Consequence</dt><dd>A person stays accountable and automation ends at a deliberate pause.</dd></dl></article>
+      <article><span>05</span><h3>Keep policy visible</h3><dl><dt>Problem</dt><dd>Organisation-specific thresholds can easily become hidden branches in the workflow.</dd><dt>Decision</dt><dd>Keep thresholds and destinations in constrained configuration blocks.</dd><dt>Consequence</dt><dd>Policy changes are easier to review, while configuration still needs validation and ownership.</dd></dl></article>
+    </div>
   </section>
 
   <section class="case-study-section" aria-labelledby="catalogue-heading">
     <p class="case-study-eyebrow">Capability catalogue</p>
     <h2 id="catalogue-heading">Three agents, fourteen reusable skills</h2>
-    <div class="table-wrap"><table aria-labelledby="catalogue-heading"><thead><tr><th>Agent</th><th>Capability</th><th>Pattern</th></tr></thead><tbody><tr><td>Intake</td><td>Normalises mixed inputs and extracts confidence-tagged knowledge.</td><td>Untrusted-input boundary and source grounding.</td></tr><tr><td>Architecture</td><td>Produces reviews, C4 views, renders, and fitness functions.</td><td>Uncertainty inheritance and model/render parity.</td></tr><tr><td>Governance</td><td>Drafts decisions, review packs, and readiness previews.</td><td>Fail-closed gate and explicit approval.</td></tr></tbody></table></div>
-    <div class="skill-catalogue"><p><b>Core:</b> ingesting documents, eliciting architecture knowledge, mapping codebases, reviewing architecture, generating diagrams, rendering C4 HTML, managing decision records, defining fitness functions, synthesising meetings, and preparing governance review.</p><p><b>Connectors:</b> fetching transcripts, publishing to GitHub or Confluence, and notifying channels.</p></div>
+    <div class="table-wrap"><table aria-labelledby="catalogue-heading"><thead><tr><th>Agent</th><th>What it does</th><th>How it stays honest</th></tr></thead><tbody><tr><td>Intake</td><td>Normalises mixed inputs and extracts confidence-tagged knowledge.</td><td>Treats inputs as untrusted and records the source behind each claim.</td></tr><tr><td>Architecture</td><td>Produces reviews, C4 views, rendered diagrams and fitness functions.</td><td>Preserves uncertainty and checks that rendered diagrams match their source model.</td></tr><tr><td>Governance</td><td>Drafts decisions, review packs and readiness previews.</td><td>Fails closed when evidence is missing and stops for explicit approval.</td></tr></tbody></table></div>
   </section>
 
-  <section class="case-study-section" aria-labelledby="evaluation-heading">
-    <p class="case-study-eyebrow">Evaluation and guardrails</p>
-    <h2 id="evaluation-heading">Control is part of the architecture</h2>
-    <div class="principle-grid guardrail-grid">
-      <article><i class="fa-solid fa-quote-left" aria-hidden="true"></i><h3>Evidence-labelled claims</h3><p>Claims without direct evidence are cited or marked as inferred and awaiting confirmation.</p></article>
-      <article><i class="fa-solid fa-lock" aria-hidden="true"></i><h3>Fail-closed governance</h3><p>Incomplete governance packs cannot report readiness or pass a decision gate.</p></article>
-      <article><i class="fa-solid fa-code-branch" aria-hidden="true"></i><h3>Diagram round-trips</h3><p>Rendered diagrams must preserve the nodes and edges in their source model.</p></article>
-      <article><i class="fa-solid fa-ban" aria-hidden="true"></i><h3>Contained writes</h3><p>Path validation rejects writes outside the active session workspace.</p></article>
-      <article><i class="fa-solid fa-user-check" aria-hidden="true"></i><h3>Human approval</h3><p>Publication and final verdicts stop for approval without causing a side effect.</p></article>
-      <article><i class="fa-solid fa-link" aria-hidden="true"></i><h3>Tamper-evident audit</h3><p>Hash-chain verification exposes changes to later links in the decision log.</p></article>
-    </div>
+  <section class="case-study-ending" aria-labelledby="ending-heading">
+    <p class="case-study-eyebrow">What I took from it</p>
+    <h2 id="ending-heading">Producing more material and documentation is easy</h2>
+    <p>The challenge is making use of it. Using specialised agents and clear handoffs allows architects to stay in control. That is why intermediary files, validation checkpoints and human approval pauses are baked into the architecture rather than considered at the end.</p>
   </section>
-
-  <p class="case-study-footnote">Evidence is based on repository code, tests, evaluation fixtures, and architecture records. The results are a point-in-time assessment of the private toolkit; detailed fixtures remain private. No live cloud deployment, external connector, or model-judge run was performed for this extraction.</p>
 </div>
 {% endblock %}

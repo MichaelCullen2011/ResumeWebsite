@@ -42,6 +42,15 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
+    def test_public_cv_pdf_is_available(self):
+        response = self.client.get("/cv.pdf")
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.content_type, "application/pdf")
+            self.assertTrue(response.data.startswith(b"%PDF"))
+        finally:
+            response.close()
+
     def test_required_static_assets_are_available(self):
         assets = (
             "css/style.css",
@@ -136,7 +145,28 @@ class ApplicationReleaseChecks(unittest.TestCase):
             body = response.get_data(as_text=True)
 
             self.assertIn("Illustrative workflow traces", body)
+            self.assertIn('class="trace-path"', body)
+            self.assertNotIn("<ol>", body)
             self.assertNotIn("Representative execution traces", body)
+        finally:
+            response.close()
+
+    def test_architecture_page_uses_decision_tradeoffs_and_ends_without_disclaimer(self):
+        response = self.client.get("/architecture")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn("<dt>Problem</dt>", body)
+            self.assertIn("<dt>Decision</dt>", body)
+            self.assertIn("<dt>Consequence</dt>", body)
+            self.assertNotIn("Evaluation and guardrails", body)
+            self.assertNotIn("Control is part of the architecture", body)
+            self.assertNotIn("The toolkit separates portable reasoning skills", body)
+            self.assertNotIn("Deterministic validators run inside agent loops", body)
+            self.assertNotIn("<div class=\"skill-catalogue\">", body)
+            self.assertNotIn("<b>Core:</b>", body)
+            self.assertNotIn("point-in-time assessment", body)
+            self.assertIn("Producing more material and documentation is easy", body)
         finally:
             response.close()
 
@@ -156,6 +186,25 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
+    def test_physics_page_has_approved_layout_and_controls(self):
+        response = self.client.get("/physics")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn("What am I seeing?", body)
+            self.assertIn('href="/qc_neutrino_paper"', body)
+            self.assertIn("Download my MPhys thesis", body)
+            self.assertIn('id="playback-toggle"', body)
+            self.assertIn('id="playback-status"', body)
+            self.assertIn("Detection probabilities", body)
+            self.assertIn(
+                'class="preset-pill active" type="button" data-preset="maximum"',
+                body,
+            )
+            self.assertNotIn('id="pmns-values"', body)
+        finally:
+            response.close()
+
     def test_homepage_distinguishes_case_study_from_interactive_demo(self):
         response = self.client.get("/")
         try:
@@ -163,6 +212,59 @@ class ApplicationReleaseChecks(unittest.TestCase):
 
             self.assertIn('<span class="project-tag">Case Study</span>', body)
             self.assertEqual(body.count('<span class="project-tag">Interactive Demo</span>'), 1)
+        finally:
+            response.close()
+
+    def test_homepage_uses_personal_identity_and_timeline(self):
+        response = self.client.get("/")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn("<title>Michael Cullen</title>", body)
+            self.assertNotIn('class="hero-role"', body)
+            self.assertNotIn("I'm a Technology Manager at Deloitte", body)
+            self.assertNotIn("q/kdb+ Engineer", body)
+            self.assertIn("perfecting the espresso martini", body)
+            self.assertIn("Today, I work across architecture, strategy, and delivery in Edinburgh.", body)
+            self.assertIn("Built before the current wave of LLM applications", body)
+            self.assertNotIn("More on GitHub", body)
+            self.assertNotIn("Lead architecture and transformation programmes", body)
+            self.assertNotIn("Develop enterprise architecture roadmaps", body)
+            self.assertNotIn("Advise senior leadership on technology investment", body)
+
+            timeline_start = body.index('<div class="timeline">')
+            timeline = body[timeline_start:body.index("<!-- PROJECTS -->", timeline_start)]
+            self.assertLess(timeline.index("Sep 2021 — Present"), timeline.index("1998"))
+        finally:
+            response.close()
+
+    def test_cv_page_links_to_public_cv_pdf(self):
+        response = self.client.get("/cv")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn('href="/cv.pdf"', body)
+            self.assertIn("Download CV PDF", body)
+        finally:
+            response.close()
+
+    def test_cv_page_uses_approved_links_and_role_based_copy(self):
+        response = self.client.get("/cv")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn('fa-brands fa-github', body)
+            self.assertIn('fa-brands fa-linkedin', body)
+            self.assertIn("Download my MPhys thesis", body)
+            self.assertIn("<strong>Architect.</strong>", body)
+            self.assertIn("<strong>Engineer.</strong>", body)
+            self.assertIn("<strong>Technology Delivery Lead.</strong>", body)
+            self.assertIn('<h3><a href="/architecture">', body)
+            self.assertIn('<h3><a href="/physics">', body)
+            self.assertIn("fa-brands fa-github", body)
+            self.assertNotIn("Selected case study at /architecture", body)
+            self.assertNotIn("Interactive demo at /physics", body)
+            self.assertNotIn("github.com/MichaelCullen2011/NSTBackend</a></p>", body)
         finally:
             response.close()
 
