@@ -1,7 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-{% extends 'cv_base.html' %}
+{% extends 'base.html' %}
+
+{% block title %}CV — Michael Cullen{% endblock %}
+{% block meta_description %}Michael Cullen's CV — Technology Manager at Deloitte, MPhys Loughborough.{% endblock %}
 
 {% block content %}
+
+<div class="cv-hero">
+  <h1>Michael Cullen</h1>
+  <p class="cv-role">Manager, Technology Transformation &middot; Deloitte &middot; Edinburgh, UK</p>
+</div>
+
+<div class="cv-body">
+
+  <!-- Sidebar -->
+  <aside class="cv-sidebar">
+    <img class="cv-photo" src="{{ url_for('static', filename='Michael_Cullen_Headshot.jpg') }}"
+         alt="Michael Cullen">
+    <section>
+      <h2>Contact</h2>
+      <ul>
+        <li><a href="mailto:michaelcullen2024@gmail.com">michaelcullen2024@gmail.com</a></li>
+        <li>Edinburgh, UK</li>
+        <li><a href="https://github.com/MichaelCullen2011" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/michael-cullen-37a0811b0/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        <li>Enterprise &amp; Solution Architecture</li>
+        <li>Data Analysis · AI/ML · Visualisation</li>
+        <li>Quantum Computing &amp; Information</li>
+        <li>Python · Flutter · kdb+/q</li>
+        <li>SAP Integration</li>
+        <li>Technology Strategy</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <ul>
+        <li>Google Cloud Associate Cloud Engineer</li>
+        <li>Tableau Desktop Certified Professional</li>
+        <li>ArchiMate&reg;</li>
+        <li>LeanIX Certified Associate</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Interests</h2>
+      <ul>
+        <li>AI &amp; quantum computing</li>
+        <li>Science-fiction</li>
+        <li>Climbing</li>
+        <li>Taekwondo</li>
+        <li>Chess</li>
+      </ul>
+    </section>
+  </aside>
+
+  <!-- Primary CV column -->
+  <div class="cv-main">
+    <section>
+      <h2>Work Experience</h2>
+
+      <div class="cv-entry">
+        <h3>Manager, Technology Transformation — Deloitte</h3>
+        <p class="cv-entry-meta">September 2021 — Present &middot; Edinburgh, UK</p>
+        <ul class="cv-role-list">
+          <li><strong>Architect.</strong> Design enterprise and solution architectures and pathways considering production and operational constraints and challenges. Lead and input into decision making on technology provider choices, key design decisions, and architecture trade offs.</li>
+          <li><strong>Technology Delivery Lead.</strong> Lead cross-functional teams and advise senior leaders on technology investment decisions.</li>
+          <li><strong>Engineer.</strong> Work through complex system integrations, connecting the architecture to the implementation detail needed to deliver it.</li>
+        </ul>
+      </div>
+
+      <div class="cv-entry">
+        <h3>q/kdb+ Engineer — mthree</h3>
+        <p class="cv-entry-meta">June 2021 — July 2021</p>
+        <ul>
+          <li>Completed intensive q/kdb+ engineer programme covering financial data
+              engineering and time-series databases.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+
+      <div class="cv-entry">
+        <h3>MPhys Physics, First Class Honours — Loughborough University</h3>
+        <p class="cv-entry-meta">2016 — 2020</p>
+        <ul>
+          <li>Thesis: <em>"Quantum Computing using Neutrino Oscillations"</em> —
+              derived integrated cross-sections from W/Z boson couplings to predict
+              probabilistic gate outcomes for neutrino-lepton quantum gates.</li>
+        </ul>
+        <a href="/qc_neutrino_paper" class="cv-thesis-link" target="_blank" rel="noopener"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download my MPhys thesis</a>
+      </div>
+
+      <div class="cv-entry">
+        <h3>Claremont Academy</h3>
+        <p class="cv-entry-meta">2010 — 2013</p>
+        <ul>
+          <li>A levels: A B C</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected Projects</h2>
+      <div class="cv-entry cv-project">
+        <h3><a href="/architecture">Architecture Agent Toolkit <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></h3>
+        <ul>
+          <li>Turns mixed documents, code, and meeting notes into architecture maps, diagrams, decisions, and governance packs using specialised agents, validation checkpoints, and human approval pauses.</li>
+        </ul>
+      </div>
+      <div class="cv-entry cv-project">
+        <h3><a href="/physics">Physics Playground — Neutrino Oscillation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></h3>
+        <ul>
+          <li>Interactive three-flavour PMNS visualisation using measured mixing parameters and the neutrino oscillation work behind my MPhys thesis.</li>
+        </ul>
+      </div>
+      <div class="cv-entry cv-project">
+        <h3><a href="https://github.com/MichaelCullen2011/NSTBackend" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> Neural Style Transfer</a></h3>
+        <ul>
+          <li>Full-stack machine learning project built before the current wave of LLM applications, with a Flutter front end, Flask API, and TensorFlow/Keras model.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<div class="cv-download">
+  <a href="/cv.pdf" class="btn btn-primary" target="_blank" rel="noopener">
+    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Download CV PDF
+  </a>
+</div>
+
 {% endblock %}
-</html>

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Physics Playground — Michael Cullen{% endblock %}
+{% block meta_description %}An interactive neutrino oscillation visualiser based on the work behind Michael Cullen's MPhys thesis.{% endblock %}
+
+{% block content %}
+<section class="physics-hero">
+  <p class="physics-eyebrow">Physics playground</p>
+  <h1>Neutrino Oscillation</h1>
+  <p>Watch a neutrino change flavour as it travels.</p>
+</section>
+
+<div class="physics-body">
+  <div class="physics-shell">
+    <div class="preset-pills" aria-label="Neutrino scenarios">
+      <button class="preset-pill" type="button" data-preset="no-mixing">No Mixing</button>
+      <button class="preset-pill" type="button" data-preset="solar">Solar Neutrinos</button>
+      <button class="preset-pill" type="button" data-preset="atmospheric">Atmospheric Neutrinos</button>
+      <button class="preset-pill active" type="button" data-preset="maximum">Maximum Mixing</button>
+    </div>
+
+    <section class="physics-explainer" aria-labelledby="physics-explainer-heading">
+      <div>
+        <p class="physics-eyebrow">What am I seeing?</p>
+        <h2 id="physics-explainer-heading">A probability moving through three flavours</h2>
+        <p>A neutrino begins as one flavour, but it does not necessarily stay that way. Its probability of being detected as an electron, muon or tau neutrino changes as it travels. Choose a scenario, then watch the point move around the triangle as the ratio between distance and energy changes.</p>
+        <p>This visualisation is based on the neutrino oscillation work behind my MPhys thesis.</p>
+      </div>
+      <a href="/qc_neutrino_paper" class="btn btn-primary physics-thesis-link" target="_blank" rel="noopener">
+        <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+        Download my MPhys thesis
+      </a>
+    </section>
+
+    <div class="physics-visual">
+      <div class="triangle-panel">
+        <canvas id="physics-canvas" width="440" height="440" role="img" aria-label="Triangle showing the current probabilities of detecting an electron, muon or tau neutrino"></canvas>
+      </div>
+
+      <section class="probability-panel" aria-labelledby="probability-heading">
+        <p class="physics-eyebrow">Current state</p>
+        <h2 id="probability-heading">Detection probabilities</h2>
+        <div class="prob-bars">
+          <div class="prob-bar-wrap">
+            <div class="prob-bar-heading"><span>Electron neutrino <i>νe</i></span><output id="prob-e">0.0%</output></div>
+            <div class="prob-bar-track"><div class="prob-bar-fill" id="bar-e" style="width:0%;background:#7d4c67"></div></div>
+          </div>
+          <div class="prob-bar-wrap">
+            <div class="prob-bar-heading"><span>Muon neutrino <i>νμ</i></span><output id="prob-m">50.0%</output></div>
+            <div class="prob-bar-track"><div class="prob-bar-fill" id="bar-m" style="width:50%;background:#C8963E"></div></div>
+          </div>
+          <div class="prob-bar-wrap">
+            <div class="prob-bar-heading"><span>Tau neutrino <i>ντ</i></span><output id="prob-t">50.0%</output></div>
+            <div class="prob-bar-track"><div class="prob-bar-fill" id="bar-t" style="width:50%;background:#4A7C9C"></div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="scrubber-wrap">
+      <div class="scrubber-heading">
+        <div>
+          <label for="le-slider">Baseline / Energy (L/E)</label>
+          <output class="scrubber-val" id="le-value" for="le-slider">500.0 km/GeV</output>
+        </div>
+        <button class="playback-toggle" id="playback-toggle" type="button" aria-pressed="true">
+          <i class="fa-solid fa-pause" aria-hidden="true"></i>
+          <span>Pause</span>
+        </button>
+      </div>
+      <input type="range" id="le-slider" min="0" max="4000" step="0.5" value="500">
+      <p class="scrubber-sub">Move through the neutrino's journey by changing the ratio between distance travelled and energy.</p>
+      <p class="playback-status" id="playback-status" aria-live="polite">Playing automatically</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/physics.js') }}"></script>
+{% endblock %}

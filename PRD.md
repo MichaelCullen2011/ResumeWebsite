@@ -3,9 +3,9 @@
 | | |
 |---|---|
 | **Owner** | Michael Cullen |
-| **Status** | Draft — centerpieces confirmed; visual/sim details TBD; build not yet started |
-| **Branch** | `claude/resume-website-redesign-X22Mw` |
-| **Last updated** | 2026-05-25 |
+| **Status** | Implemented — pre-launch polish in progress |
+| **Branch** | `release/prelaunch-2026-07` |
+| **Last updated** | 2026-07-17 |
 
 ---
 
@@ -126,18 +126,16 @@ These align directly with the brief: distinctive personality, contained interact
 Both centerpieces are confirmed. Visual design and simulation details to be defined
 before build begins (Phase 3/4), but the scope and technology direction are locked.
 
-**Centerpiece A — Architecture Transformation Simulator** *(credible)*
-- Concept: interactive node-graph showing a real architecture transformation — toggle
-  between legacy and target-state topologies, with animated morphing between them.
-  Click any node to open a decision card (trade-off, constraint, outcome). ArchiMate-style
-  layer toggle (Business / Application / Technology). Animated data-flow particles on edges.
-  Content is 2–3 anonymised Deloitte case studies (sector · challenge · what was
-  architected · outcome) — **⚠️ requires input from Michael before build can start.**
-- Why: directly reflects Michael's current role; ArchiMate certification makes it
-  authentic; doubles as the home for anonymised Deloitte work.
-- Source repos: `ArchitectureDiagrams` + anonymised Deloitte material.
-- Tech: client-side node graph (Cytoscape.js or React Flow island), JSON model driving
-  topology, CSS/canvas for data-flow particles. Fully client-side.
+**Centerpiece A — Architecture Agent Toolkit Case Study** *(credible)*
+- Concept: public-safe case study of an evidence-grounded AI toolkit that turns mixed
+  architecture inputs into reviewable maps, decisions, diagrams, fitness functions, and
+  governance packs. It makes agent roles, reusable skills, deterministic validation, and
+  the human approval boundary explicit without exposing private code or source material.
+- Why: directly reflects Michael's current architecture and AI practice while keeping the
+  implementation private. It is the home for sanitised artefacts, representative traces,
+  and decision records rather than client-specific material.
+- Source: private agent toolkit, with repository evidence sanitised for public display.
+- Tech: Flask/Jinja and CSS; static, client-side presentation with no always-on service.
 
 **Centerpiece B — Physics Playground** *(fun)*
 - Concept: a single page with two switchable modes, sharing a canvas/particle visual
@@ -163,7 +161,7 @@ Curated for depth over volume; grouped by Michael's strength areas.
 
 | # | Feature | Source repos | Role on site |
 |---|---------|--------------|--------------|
-| 1 | Architecture Transformation Simulator | `ArchitectureDiagrams` + Deloitte (anonymised) | **Interactive centerpiece A** — credible; own page at `/architecture` |
+| 1 | Architecture Agent Toolkit | Private agent toolkit (sanitised artefacts) | **Architecture/AI case study** — own page at `/architecture` |
 | 2 | Physics Playground (Neutrino + GR) | `QuantumAndNeutrinos`, `QuantumPOC`, `InterstellarMotion` | **Interactive centerpiece B** — fun; own page at `/physics` |
 | 3 | Neural Style Transfer | `NSTBackend`, `NSTApp` | Full-stack ML showcase (TF + Flask + Flutter) — featured project card |
 | 4 | Interstellar Motion | `InterstellarMotion` | GR solar-system simulation — also powers centerpiece B |
@@ -184,7 +182,7 @@ Flutter + Flask), PythonBlockchain / MusicDapp (blockchain), qkdbTutorials / coo
 | Route | Purpose |
 |-------|---------|
 | `/` | Hero (motif) → About → experience timeline → curated project grid → contact CTA |
-| `/architecture` | Centerpiece A — Architecture Transformation Simulator |
+| `/architecture` | Architecture Agent Toolkit — public-safe AI case study |
 | `/physics` | Centerpiece B — Physics Playground (Neutrino Oscillation + GR Simulator) |
 | `/cv` | Modernised CV page + downloadable PDF |
 | `/contact` | Existing Flask-Mail form, restyled (recipient → `michaelcullen2024@gmail.com`) |
@@ -198,9 +196,9 @@ The experience timeline **replaces** the current generic skill "% bars."
 - **Keep:** Flask/Jinja, Flask-Mail contact form, Docker, Google App Engine deployment.
 - **Fix:** move CSS/JS out of `{% include %}` inlining into properly served static assets;
   drop W3.CSS; replace Font Awesome 4.
-- **Add:** focused JS libraries for the two demos — node-graph lib (Cytoscape.js or
-  React Flow island) for the architecture simulator; vanilla JS + canvas/WebGL for the
-  physics playground — plus a lightweight custom canvas animation for the hero motif.
+- **Add:** vanilla JS + canvas/WebGL for the physics playground, plus a lightweight custom
+  canvas animation for the hero motif. The architecture case study remains static and
+  client-side so it can present sanitised evidence without a backend service.
 - **Constraints:** no always-on paid services by default; keep the app a simple monolith;
   manual verification (run locally / in browser) before push.
 
@@ -212,29 +210,23 @@ The experience timeline **replaces** the current generic skill "% bars."
    restructure, base template, animated hero motif.
 2. **Core content** — home (current About, experience timeline, curated project grid),
    modernised CV page + PDF, restyled contact form.
-3. **Architecture Transformation Simulator** — node-graph topology, legacy→target morph,
-   decision cards, layer toggle, data-flow particles. Gated on anonymised Deloitte
-   case-study blurbs from Michael.
+3. **Architecture Agent Toolkit Case Study** — public-safe architecture/AI narrative,
+   representative traces, decision records, skill catalogue, and evaluation evidence.
 4. **Physics Playground** — neutrino oscillation viewer + GR/interstellar simulator,
    two-mode single page. Gated on visual/sim detail definition (to be done collaboratively
    before build).
 5. **Polish & ship** — responsive, accessibility, performance, SEO/OG tags, favicon;
    verify locally; commit, push, open a **draft PR**.
 
-Phases 1–2 are direction-locked and can start now. Phase 3 is gated on Deloitte content.
-Phase 4 is gated on visual/sim detail definition.
+Phases 1–4 are implemented. The GR simulator remains a future enhancement rather than a launch dependency.
 
 ---
 
 ## 13. Open decisions / inputs needed
 
-1. **Deloitte content (§8A / §9)** — Michael to provide 2–3 anonymised case-study blurbs
-   *(sector · challenge · what was architected · outcome)*. Gates Phase 3.
-2. **Physics playground details (§8B)** — exact simulation scope, controls, and visual
-   treatment to be defined collaboratively before build. Gates Phase 4.
-3. **Forward-facing title/wording** — exact phrasing for the Deloitte Manager role on
+1. **Forward-facing title/wording** — exact phrasing for the Deloitte Manager role on
    the homepage hero and CV.
-4. **Canonical location** — Edinburgh (CV) vs. London (GitHub profile).
+2. **Canonical location** — Edinburgh (CV) vs. London (GitHub profile).
 
 ---
 

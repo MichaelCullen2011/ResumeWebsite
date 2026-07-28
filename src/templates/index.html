@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block title %}Michael Cullen{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <h1>Michael Cullen</h1>
+    <p class="hero-tagline">Architecture, data &amp; AI, and a physics foundation. I like working
+      out how complicated systems behave, then making them easier to change.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="/cv" class="btn btn-outline">Download CV</a>
+    </div>
+  </div>
+  <p class="hero-scroll-hint">Scroll</p>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <h2 class="section-title">About</h2>
+  <div class="about-grid">
+    <div class="about-main">
+      <p class="section-subtitle">Edinburgh, UK &middot; michaelcullen2024@gmail.com</p>
+      <div class="about-bio">
+        <p>Most of my work sits between strategy and implementation: understanding how a
+          complicated system works, deciding what needs to change, and helping people move
+          it in the right direction.</p>
+        <p>I grew up in London, studied Physics at Loughborough, and moved to Edinburgh in
+          2021. My MPhys thesis asked whether neutrinos could be used as qubits. The simple
+          answer is not quite, and the exercise taught me to follow an interesting idea far
+          enough to find its limits.</p>
+        <p>Outside work, I read science fiction, climb, practise taekwondo, play chess, and
+          look for reasons to travel. A trip to Hong Kong in 2013 started the habit; Edinburgh
+          had already won me over by 2015.</p>
+      </div>
+    </div>
+    <div class="about-sidebar">
+      <h3>Certifications</h3>
+      <ul class="cert-list">
+        <li>Google Cloud Associate Cloud Engineer</li>
+        <li>Tableau Desktop Certified Professional</li>
+        <li>ArchiMate&reg;</li>
+        <li>LeanIX Certified Associate</li>
+      </ul>
+      <h3 style="margin-top:2rem">Core skills</h3>
+      <ul>
+        <li>Enterprise &amp; solution architecture</li>
+        <li>Data analysis · AI/ML · visualisation</li>
+        <li>Quantum computing &amp; information</li>
+        <li>Python · Flutter · kdb+/q</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE TIMELINE -->
+<div id="experience" class="section-dark">
+  <div class="section-inner section">
+    <h2 class="section-title">Experience</h2>
+    <p class="section-subtitle">Career timeline</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <p class="timeline-date">Sep 2021 — Present</p>
+        <h3 class="timeline-role">Manager, Technology Transformation</h3>
+        <p class="timeline-org">Deloitte &middot; Edinburgh, UK</p>
+        <div class="timeline-body">
+          <p>Today, I work across architecture, strategy, and delivery in Edinburgh.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">2020 — 2021</p>
+        <h3 class="timeline-role">Behind the bar</h3>
+        <div class="timeline-body">
+          <p>Spent time behind a cocktail bar, perfecting the espresso martini.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">2016 — 2020</p>
+        <h3 class="timeline-role">MPhys Physics, First Class Honours</h3>
+        <p class="timeline-org">Loughborough University</p>
+        <div class="timeline-body">
+          <p>Thesis: <em>"Quantum Computing using Neutrino Oscillations"</em> —
+            derived integrated cross-sections from W/Z boson couplings to predict
+            probabilistic gate outcomes for neutrino-lepton quantum gates.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">2015</p>
+        <h3 class="timeline-role">Found Edinburgh</h3>
+        <div class="timeline-body">
+          <p>Visited Edinburgh for the first time and fell in love with the city.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">2014</p>
+        <h3 class="timeline-role">First gig</h3>
+        <div class="timeline-body">
+          <p>Played my first gig with my school band.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">2013</p>
+        <h3 class="timeline-role">First big trip</h3>
+        <div class="timeline-body">
+          <p>Travelled to Hong Kong and fell in love with international travel and sightseeing.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">1998</p>
+        <h3 class="timeline-role">A starting point</h3>
+        <div class="timeline-body">
+          <p>Born in Preston and raised in London.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <h2 class="section-title">Projects</h2>
+  <p class="section-subtitle">Selected work — depth over volume</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <span class="project-tag">Case Study</span>
+      <h3>Architecture Agent Toolkit</h3>
+      <p>A selected case study of an evidence-grounded AI toolkit that turns mixed architecture
+        inputs into reviewable maps, decisions, diagrams, fitness functions, and governance packs.</p>
+      <div class="project-links">
+        <a href="/architecture" class="project-link">
+          <i class="fa-solid fa-arrow-right"></i> View Case Study
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card featured">
+      <span class="project-tag">Interactive Demo</span>
+      <h3>Physics Playground — Neutrino Oscillation</h3>
+      <p>A flavour triangle visualising neutrino oscillation in real time. Choose a preset
+        (Solar, Atmospheric, Maximum Mixing), drag the L/E scrubber, watch the probability
+        field shift. Grounded in the MPhys thesis.</p>
+      <div class="project-links">
+        <a href="/physics" class="project-link">
+          <i class="fa-solid fa-arrow-right"></i> Open Demo
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">AI / ML</span>
+      <h3>Neural Style Transfer</h3>
+      <p>Built before the current wave of LLM applications, this full-stack project applies
+        painterly styles to photographs using a Flutter front end, Flask API, and
+        TensorFlow/Keras model.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/NSTApp" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> App
+        </a>
+        <a href="https://github.com/MichaelCullen2011/NSTBackend" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Server
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Physics / Simulation</span>
+      <h3>Interstellar Motion</h3>
+      <p>RK4 numerical integration of the solar system under general relativity.
+        Python — calculates next positions of all bodies accounting for GR corrections.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/InterstellarMotion" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Repo
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Physics / Quantum</span>
+      <h3>Quantum &amp; Neutrinos</h3>
+      <p>Quantum circuit simulations and neutrino oscillation models underpinning the
+        MPhys thesis — links directly to the Physics Playground demo.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/QuantumAndNeutrinos" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Repo
+        </a>
+        <a href="/qc_neutrino_paper" target="_blank" class="project-link">
+          <i class="fa-solid fa-file-pdf"></i> Thesis
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <span class="project-tag">Finance / ML</span>
+      <h3>Portfolio Analysis &amp; Prediction</h3>
+      <p>Automated portfolio generation from trade history; LSTM model predicts future
+        returns. Alpha Vantage API integration, Pandas, risk/correlation analysis.</p>
+      <div class="project-links">
+        <a href="https://github.com/MichaelCullen2011/StockAnalyserAndPredictor" target="_blank" rel="noopener" class="project-link">
+          <i class="fa-brands fa-github"></i> Repo
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT CTA -->
+<div id="contact-cta">
+  <h2>Get in touch</h2>
+  <p>Open to interesting conversations — architecture, AI, quantum, or just a good problem to solve.</p>
+  <a href="/contact" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5);color:#fff">Send a message</a>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/hero.js') }}"></script>
+{% endblock %}

@@ -1,6 +1,10 @@
 .venv/
+.history/
+.DS_Store
+.vscode/
 .idea/
 *__pycache__*
 .env
 .env.*
 !.env.example
+src/app.release.yaml
