@@ -226,6 +226,7 @@ class ApplicationReleaseChecks(unittest.TestCase):
             self.assertNotIn("q/kdb+ Engineer", body)
             self.assertIn("perfecting the espresso martini", body)
             self.assertIn("Today, I work across architecture, strategy, and delivery in Edinburgh.", body)
+            self.assertIn("Built before the current wave of LLM applications", body)
             self.assertNotIn("More on GitHub", body)
             self.assertNotIn("Lead architecture and transformation programmes", body)
             self.assertNotIn("Develop enterprise architecture roadmaps", body)
