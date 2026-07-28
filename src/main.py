@@ -88,6 +88,16 @@ def cv_pdf_view():
         abort(404)
 
 
+@app.route('/robots.txt')
+def robots_view():
+    return send_from_directory("static/", "robots.txt")
+
+
+@app.route('/sitemap.xml')
+def sitemap_view():
+    return send_from_directory("static/", "sitemap.xml")
+
+
 @app.errorhandler(404)
 def not_found(_error):
     return render_template("404.html"), 404
