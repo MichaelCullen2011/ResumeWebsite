@@ -247,6 +247,26 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
+    def test_cv_page_uses_approved_links_and_role_based_copy(self):
+        response = self.client.get("/cv")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn('fa-brands fa-github', body)
+            self.assertIn('fa-brands fa-linkedin', body)
+            self.assertIn("Download my MPhys thesis", body)
+            self.assertIn("<strong>Architect.</strong>", body)
+            self.assertIn("<strong>Engineer.</strong>", body)
+            self.assertIn("<strong>Technology Delivery Lead.</strong>", body)
+            self.assertIn('<h3><a href="/architecture">', body)
+            self.assertIn('<h3><a href="/physics">', body)
+            self.assertIn("fa-brands fa-github", body)
+            self.assertNotIn("Selected case study at /architecture", body)
+            self.assertNotIn("Interactive demo at /physics", body)
+            self.assertNotIn("github.com/MichaelCullen2011/NSTBackend</a></p>", body)
+        finally:
+            response.close()
+
     def test_valid_contact_submission_renders_success(self):
         form_data = {
             "name": "Release Check Visitor",

@@ -611,6 +611,12 @@ footer {
   padding: 0.2rem 0;
   color: var(--text-dark);
 }
+.cv-sidebar ul a {
+  color: var(--burgundy);
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+.cv-sidebar ul a i { width: 1.1rem; text-align: center; }
 .cv-main section { margin-bottom: 3rem; }
 .cv-main h2 {
   font-size: 0.75rem;
@@ -641,6 +647,28 @@ footer {
   color: #555;
   margin-bottom: 0.3rem;
 }
+.cv-role-list strong { color: var(--text-dark); }
+.cv-thesis-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  margin-top: .75rem;
+  padding: .55rem .8rem;
+  border-left: 3px solid var(--amber);
+  background: #fff8e8;
+  color: var(--burgundy);
+  font-size: .82rem;
+  font-weight: 600;
+}
+.cv-thesis-link:hover { text-decoration: underline; text-underline-offset: .2em; }
+.cv-project h3 a {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: var(--burgundy);
+}
+.cv-project h3 a:hover { text-decoration: underline; text-underline-offset: .2em; }
+.cv-project h3 i { font-size: .82em; }
 .cv-download {
   text-align: center;
   padding: 2rem;
