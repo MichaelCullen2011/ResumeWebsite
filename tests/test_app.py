@@ -51,6 +51,22 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
+    def test_root_level_discovery_files_are_available(self):
+        expected_files = {
+            "/robots.txt": ("text/plain", b"Sitemap:"),
+            "/sitemap.xml": ("application/xml", b"<urlset"),
+        }
+
+        for route, (content_type, marker) in expected_files.items():
+            with self.subTest(route=route):
+                response = self.client.get(route)
+                try:
+                    self.assertEqual(response.status_code, 200)
+                    self.assertTrue(response.content_type.startswith(content_type))
+                    self.assertIn(marker, response.data)
+                finally:
+                    response.close()
+
     def test_required_static_assets_are_available(self):
         assets = (
             "css/style.css",
