@@ -2,56 +2,151 @@
 
   // ── Physics ───────────────────────────────────────────────
   const DEG = Math.PI / 180;
+  const OSCILLATION_PHASE = 2 * 1.267;
+  const FLAVOURS = Object.freeze({ e: 0, m: 1, t: 2 });
+
+  // NuFIT 5.2 (2022), normal ordering, without SK-atmospheric data.
+  const MEASURED_PARAMETERS = Object.freeze({
+    theta12Degrees: 33.41,
+    theta13Degrees: 8.54,
+    theta23Degrees: 49.1,
+    deltaCPDegrees: 197,
+    dm2_21: 7.41e-5,
+    dm2_31: 2.511e-3,
+  });
 
   const PRESETS = {
     'no-mixing': {
       label: 'No Mixing',
-      theta12: 0, theta13: 0, theta23: 0,
-      dm2_12: 7.53e-5, dm2_23: 2.453e-3,
-      dominant: 'dm2_12',
+      theta12Degrees: 0,
+      theta13Degrees: 0,
+      theta23Degrees: 0,
+      deltaCPDegrees: 0,
+      dm2_21: MEASURED_PARAMETERS.dm2_21,
+      dm2_31: MEASURED_PARAMETERS.dm2_31,
+      leDefault: 500,
+      leMax: 4000,
     },
     'solar': {
       label: 'Solar Neutrinos',
-      theta12: 33.4 * DEG, theta13: 8.6 * DEG, theta23: 49.2 * DEG,
-      dm2_12: 7.53e-5, dm2_23: 2.453e-3,
-      dominant: 'dm2_12',
+      ...MEASURED_PARAMETERS,
+      leDefault: 15000,
+      leMax: 60000,
     },
     'atmospheric': {
       label: 'Atmospheric Neutrinos',
-      theta12: 33.4 * DEG, theta13: 8.6 * DEG, theta23: 49.2 * DEG,
-      dm2_12: 7.53e-5, dm2_23: 2.453e-3,
-      dominant: 'dm2_23',
+      ...MEASURED_PARAMETERS,
+      leDefault: 500,
+      leMax: 4000,
     },
     'maximum': {
       label: 'Maximum Mixing',
-      theta12: 45 * DEG, theta13: 45 * DEG, theta23: 45 * DEG,
-      dm2_12: 7.53e-5, dm2_23: 2.453e-3,
-      dominant: 'dm2_23',
+      theta12Degrees: 45,
+      theta13Degrees: 45,
+      theta23Degrees: 45,
+      deltaCPDegrees: 0,
+      dm2_21: MEASURED_PARAMETERS.dm2_21,
+      dm2_31: MEASURED_PARAMETERS.dm2_31,
+      leDefault: 500,
+      leMax: 4000,
     },
   };
 
-  // Two-flavour approx: P(survive) = 1 - sin²(2θ)·sin²(1.27·Δm²·L/E)
-  function pSurvive(theta, dm2, LE) {
-    return 1 - Math.pow(Math.sin(2 * theta), 2) * Math.pow(Math.sin(1.27 * dm2 * LE), 2);
-  }
-
-  function calcProbs(preset, LE) {
-    const { theta12, theta13, theta23, dm2_12, dm2_23, dominant } = preset;
-    const dm2  = dominant === 'dm2_12' ? dm2_12 : dm2_23;
-    const theta = dominant === 'dm2_12' ? theta12 : theta23;
-    const pEE  = pSurvive(theta13, dm2_12, LE) * pSurvive(theta12, dm2, LE);
-    const pMM  = pSurvive(theta23, dm2, LE);
-    const pTT  = 1 - pEE - pMM;
-    const sum  = pEE + Math.max(0, pMM) + Math.max(0, pTT);
+  function multiply(a, b) {
     return {
-      e: Math.max(0, pEE) / sum,
-      m: Math.max(0, pMM) / sum,
-      t: Math.max(0, pTT) / sum,
+      re: a.re * b.re - a.im * b.im,
+      im: a.re * b.im + a.im * b.re,
     };
   }
 
+  function conjugate(value) {
+    return { re: value.re, im: -value.im };
+  }
+
+  function real(value) {
+    return { re: value, im: 0 };
+  }
+
+  function polar(angle) {
+    return { re: Math.cos(angle), im: Math.sin(angle) };
+  }
+
+  function add(...values) {
+    return values.reduce(
+      (sum, value) => ({ re: sum.re + value.re, im: sum.im + value.im }),
+      { re: 0, im: 0 },
+    );
+  }
+
+  function scale(value, factor) {
+    return { re: value.re * factor, im: value.im * factor };
+  }
+
+  function pmnsMatrix(preset) {
+    const theta12 = preset.theta12Degrees * DEG;
+    const theta13 = preset.theta13Degrees * DEG;
+    const theta23 = preset.theta23Degrees * DEG;
+    const deltaCP = preset.deltaCPDegrees * DEG;
+    const s12 = Math.sin(theta12), c12 = Math.cos(theta12);
+    const s13 = Math.sin(theta13), c13 = Math.cos(theta13);
+    const s23 = Math.sin(theta23), c23 = Math.cos(theta23);
+    const positiveDelta = polar(deltaCP);
+    const negativeDelta = polar(-deltaCP);
+
+    return [
+      [
+        real(c12 * c13),
+        real(s12 * c13),
+        scale(negativeDelta, s13),
+      ],
+      [
+        add(real(-s12 * c23), scale(positiveDelta, -c12 * s23 * s13)),
+        add(real(c12 * c23), scale(positiveDelta, -s12 * s23 * s13)),
+        real(s23 * c13),
+      ],
+      [
+        add(real(s12 * s23), scale(positiveDelta, -c12 * c23 * s13)),
+        add(real(-c12 * s23), scale(positiveDelta, -s12 * c23 * s13)),
+        real(c23 * c13),
+      ],
+    ];
+  }
+
+  function transitionProbability(matrix, masses, initial, final, lOverE) {
+    const amplitude = masses.reduce((sum, massSquared, index) => {
+      const mixing = multiply(matrix[final][index], conjugate(matrix[initial][index]));
+      const propagation = polar(-OSCILLATION_PHASE * massSquared * lOverE);
+      return add(sum, multiply(mixing, propagation));
+    }, { re: 0, im: 0 });
+
+    return amplitude.re * amplitude.re + amplitude.im * amplitude.im;
+  }
+
+  // Vacuum propagation for three active flavours:
+  // A(να→νβ) = Σᵢ Uβᵢ exp[-i Δm²ᵢ1 L/(2E)] U*αᵢ.
+  function calcProbs(preset, lOverE, initialFlavour = 'e') {
+    const initial = FLAVOURS[initialFlavour];
+    if (initial === undefined) throw new RangeError(`Unknown initial flavour: ${initialFlavour}`);
+
+    const matrix = pmnsMatrix(preset);
+    const masses = [0, preset.dm2_21, preset.dm2_31];
+    const values = [0, 1, 2].map(final => (
+      Math.min(1, Math.max(
+        0,
+        transitionProbability(matrix, masses, initial, final, lOverE),
+      ))
+    ));
+
+    return { e: values[0], m: values[1], t: values[2] };
+  }
+
+  const PLAYBACK_CYCLE_MS = 20000;
+  function advanceLE(current, elapsedMs, max) {
+    return (current + (elapsedMs / PLAYBACK_CYCLE_MS) * max) % max;
+  }
+
   // Pure calculation seam shared by the browser and deterministic release checks.
-  globalThis.ResumePhysics = Object.freeze({ PRESETS, calcProbs });
+  globalThis.ResumePhysics = Object.freeze({ PRESETS, calcProbs, advanceLE });
 
   // ── Canvas / Triangle geometry ────────────────────────────
   const COLOURS = {
@@ -62,10 +157,15 @@
 
   let canvas, ctx, W, H;
   let triVerts;       // [{x,y}] top, bl, br
-  let currentPreset   = PRESETS['no-mixing'];
-  let LE              = 0.5;    // km/GeV, 0–2000 range on slider
+  let currentPreset   = PRESETS.maximum;
+  let LE              = currentPreset.leDefault;
   let dotPos          = { x: 0, y: 0 };
   let tail            = [];     // recent positions for fading tail
+  let wantsPlayback   = true;
+  let frameId         = null;
+  let previousTime    = null;
+  let reducedMotion;
+  let slider, leVal, playbackButton, playbackStatus;
 
   function resize() {
     const size = Math.min(canvas.parentElement.clientWidth, 500);
@@ -170,31 +270,75 @@
     tail.push({ ...dotPos });
     if (tail.length > 18) tail.shift();
     updateBars(probs);
-    updatePMNS();
   }
 
   function updateBars(probs) {
     const fill = (id, val, col) => {
       const el = document.getElementById(id);
-      if (el) { el.style.height = (val * 100).toFixed(1) + '%'; el.style.background = col; }
+      const percentage = (val * 100).toFixed(1) + '%';
+      if (el) { el.style.width = percentage; el.style.background = col; }
+      const output = document.getElementById(id.replace('bar-', 'prob-'));
+      if (output) output.textContent = percentage;
     };
     fill('bar-e', probs.e, COLOURS.e);
     fill('bar-m', probs.m, COLOURS.m);
     fill('bar-t', probs.t, COLOURS.t);
   }
 
-  function updatePMNS() {
-    const p = currentPreset;
-    const fmt = rad => (rad / DEG).toFixed(1) + '°';
-    const el = document.getElementById('pmns-values');
-    if (el) {
-      el.textContent = `θ₁₂  ${fmt(p.theta12)}\nθ₁₃  ${fmt(p.theta13)}\nθ₂₃  ${fmt(p.theta23)}`;
+  function updateControls() {
+    slider.value = LE.toFixed(1);
+    leVal.textContent = LE.toFixed(1) + ' km/GeV';
+  }
+
+  function renderPlaybackState() {
+    const playing = wantsPlayback && !document.hidden && document.hasFocus();
+    playbackButton.setAttribute('aria-pressed', String(playing));
+    playbackButton.querySelector('i').className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+    playbackButton.querySelector('span').textContent = playing ? 'Pause' : 'Play';
+    playbackStatus.textContent = playing ? 'Playing automatically' : 'Paused';
+  }
+
+  function stopFrame() {
+    if (frameId !== null) cancelAnimationFrame(frameId);
+    frameId = null;
+    previousTime = null;
+  }
+
+  function animate(timestamp) {
+    if (!wantsPlayback || document.hidden || !document.hasFocus()) {
+      stopFrame();
+      renderPlaybackState();
+      return;
     }
+    if (previousTime !== null) {
+      LE = advanceLE(LE, timestamp - previousTime, parseFloat(slider.max));
+      updateControls();
+      updateDot();
+      render();
+    }
+    previousTime = timestamp;
+    frameId = requestAnimationFrame(animate);
+  }
+
+  function syncPlayback() {
+    stopFrame();
+    renderPlaybackState();
+    if (wantsPlayback && !document.hidden && document.hasFocus()) {
+      frameId = requestAnimationFrame(animate);
+    }
+  }
+
+  function setPlayback(playing) {
+    wantsPlayback = playing;
+    syncPlayback();
   }
 
   function setPreset(key) {
     currentPreset = PRESETS[key];
+    slider.max = String(currentPreset.leMax);
+    LE = currentPreset.leDefault;
     tail = [];
+    updateControls();
     updateDot();
     render();
     document.querySelectorAll('.preset-pill').forEach(btn => {
@@ -214,21 +358,34 @@
       render();
     });
 
-    const slider = document.getElementById('le-slider');
-    const leVal  = document.getElementById('le-value');
+    slider = document.getElementById('le-slider');
+    leVal = document.getElementById('le-value');
+    playbackButton = document.getElementById('playback-toggle');
+    playbackStatus = document.getElementById('playback-status');
+    reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    wantsPlayback = !reducedMotion.matches;
 
     slider.addEventListener('input', () => {
+      setPlayback(false);
       LE = parseFloat(slider.value);
-      leVal.textContent = LE.toFixed(1) + ' km/GeV';
+      updateControls();
       updateDot();
       render();
     });
 
+    playbackButton.addEventListener('click', () => setPlayback(!wantsPlayback));
     document.querySelectorAll('.preset-pill').forEach(btn => {
       btn.addEventListener('click', () => setPreset(btn.dataset.preset));
     });
+    document.addEventListener('visibilitychange', syncPlayback);
+    window.addEventListener('blur', syncPlayback);
+    window.addEventListener('focus', syncPlayback);
+    reducedMotion.addEventListener('change', event => {
+      if (event.matches) setPlayback(false);
+    });
 
-    setPreset('no-mixing');
+    setPreset('maximum');
+    syncPlayback();
   });
 
 })();

@@ -145,7 +145,28 @@ class ApplicationReleaseChecks(unittest.TestCase):
             body = response.get_data(as_text=True)
 
             self.assertIn("Illustrative workflow traces", body)
+            self.assertIn('class="trace-path"', body)
+            self.assertNotIn("<ol>", body)
             self.assertNotIn("Representative execution traces", body)
+        finally:
+            response.close()
+
+    def test_architecture_page_uses_decision_tradeoffs_and_ends_without_disclaimer(self):
+        response = self.client.get("/architecture")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn("<dt>Problem</dt>", body)
+            self.assertIn("<dt>Decision</dt>", body)
+            self.assertIn("<dt>Consequence</dt>", body)
+            self.assertNotIn("Evaluation and guardrails", body)
+            self.assertNotIn("Control is part of the architecture", body)
+            self.assertNotIn("The toolkit separates portable reasoning skills", body)
+            self.assertNotIn("Deterministic validators run inside agent loops", body)
+            self.assertNotIn("<div class=\"skill-catalogue\">", body)
+            self.assertNotIn("<b>Core:</b>", body)
+            self.assertNotIn("point-in-time assessment", body)
+            self.assertIn("Producing more material and documentation is easy", body)
         finally:
             response.close()
 
@@ -162,6 +183,25 @@ class ApplicationReleaseChecks(unittest.TestCase):
                 '<table aria-labelledby="evaluation-heading">',
                 body,
             )
+        finally:
+            response.close()
+
+    def test_physics_page_has_approved_layout_and_controls(self):
+        response = self.client.get("/physics")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn("What am I seeing?", body)
+            self.assertIn('href="/qc_neutrino_paper"', body)
+            self.assertIn("Download my MPhys thesis", body)
+            self.assertIn('id="playback-toggle"', body)
+            self.assertIn('id="playback-status"', body)
+            self.assertIn("Detection probabilities", body)
+            self.assertIn(
+                'class="preset-pill active" type="button" data-preset="maximum"',
+                body,
+            )
+            self.assertNotIn('id="pmns-values"', body)
         finally:
             response.close()
 
