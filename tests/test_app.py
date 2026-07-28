@@ -42,6 +42,15 @@ class ApplicationReleaseChecks(unittest.TestCase):
         finally:
             response.close()
 
+    def test_public_cv_pdf_is_available(self):
+        response = self.client.get("/cv.pdf")
+        try:
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.content_type, "application/pdf")
+            self.assertTrue(response.data.startswith(b"%PDF"))
+        finally:
+            response.close()
+
     def test_required_static_assets_are_available(self):
         assets = (
             "css/style.css",
@@ -163,6 +172,38 @@ class ApplicationReleaseChecks(unittest.TestCase):
 
             self.assertIn('<span class="project-tag">Case Study</span>', body)
             self.assertEqual(body.count('<span class="project-tag">Interactive Demo</span>'), 1)
+        finally:
+            response.close()
+
+    def test_homepage_uses_personal_identity_and_timeline(self):
+        response = self.client.get("/")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn("<title>Michael Cullen</title>", body)
+            self.assertNotIn('class="hero-role"', body)
+            self.assertNotIn("I'm a Technology Manager at Deloitte", body)
+            self.assertNotIn("q/kdb+ Engineer", body)
+            self.assertIn("perfecting the espresso martini", body)
+            self.assertIn("Today, I work across architecture, strategy, and delivery in Edinburgh.", body)
+            self.assertNotIn("More on GitHub", body)
+            self.assertNotIn("Lead architecture and transformation programmes", body)
+            self.assertNotIn("Develop enterprise architecture roadmaps", body)
+            self.assertNotIn("Advise senior leadership on technology investment", body)
+
+            timeline_start = body.index('<div class="timeline">')
+            timeline = body[timeline_start:body.index("<!-- PROJECTS -->", timeline_start)]
+            self.assertLess(timeline.index("Sep 2021 — Present"), timeline.index("1998"))
+        finally:
+            response.close()
+
+    def test_cv_page_links_to_public_cv_pdf(self):
+        response = self.client.get("/cv")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn('href="/cv.pdf"', body)
+            self.assertIn("Download CV PDF", body)
         finally:
             response.close()
 
