@@ -72,6 +72,11 @@ def physics_view():
     return render_template("physics.html")
 
 
+@app.route('/laurels')
+def laurels_view():
+    return render_template("laurels.html")
+
+
 @app.route('/qc_neutrino_paper')
 def paper_view():
     try:
