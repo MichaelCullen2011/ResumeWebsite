@@ -24,7 +24,7 @@ class ApplicationReleaseChecks(unittest.TestCase):
         self.client = app.test_client()
 
     def test_public_html_routes_render_html(self):
-        routes = ("/", "/architecture", "/physics", "/cv", "/contact")
+        routes = ("/", "/architecture", "/physics", "/laurels", "/cv", "/contact")
 
         for route in routes:
             with self.subTest(route=route):
@@ -95,7 +95,15 @@ class ApplicationReleaseChecks(unittest.TestCase):
         self.assertIn(b"That page is not here.", response.data)
 
     def test_shared_accessibility_contract_is_present(self):
-        routes = ("/", "/architecture", "/physics", "/cv", "/contact", "/does-not-exist")
+        routes = (
+            "/",
+            "/architecture",
+            "/physics",
+            "/laurels",
+            "/cv",
+            "/contact",
+            "/does-not-exist",
+        )
 
         for route in routes:
             with self.subTest(route=route):
@@ -218,6 +226,40 @@ class ApplicationReleaseChecks(unittest.TestCase):
                 body,
             )
             self.assertNotIn('id="pmns-values"', body)
+        finally:
+            response.close()
+
+    def test_laurels_page_embeds_a_playable_game(self):
+        response = self.client.get("/laurels")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertIn('src="https://laurels-game.web.app"', body)
+            # The game copies seed-share links with navigator.clipboard, which
+            # a cross-origin frame refuses without this grant.
+            self.assertIn('allow="clipboard-write; fullscreen"', body)
+            # An iframe with no accessible name is announced as "iframe".
+            self.assertIn(
+                'title="Laurels — playable roguelike chess variant"', body
+            )
+            # A frame is not guaranteed usable on a phone, so the escape hatch
+            # out to the game's own origin has to stay.
+            self.assertIn("Open full screen", body)
+            self.assertIn("Capture, and a laurel drops", body)
+            self.assertIn("Survive a turn, and it banks", body)
+            self.assertIn("No check, no checkmate", body)
+        finally:
+            response.close()
+
+    def test_homepage_promotes_the_playable_game(self):
+        response = self.client.get("/")
+        try:
+            body = response.get_data(as_text=True)
+
+            self.assertEqual(
+                body.count('<span class="project-tag">Playable Game</span>'), 1
+            )
+            self.assertIn('href="/laurels"', body)
         finally:
             response.close()
 
