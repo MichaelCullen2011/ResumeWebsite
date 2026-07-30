@@ -968,6 +968,158 @@ input[type=range]::-webkit-slider-thumb {
   .scrubber-wrap { padding: 1rem; }
 }
 
+/* ── Laurels page ────────────────────────────────────────── */
+.laurels-hero {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 8rem 2rem 2.5rem;
+  text-align: center;
+}
+.laurels-hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
+.laurels-hero p {
+  color: rgba(255,255,255,0.6);
+  max-width: 620px;
+  margin: 1rem auto 0;
+  font-size: 1rem;
+}
+.laurels-fullscreen-link { white-space: nowrap; }
+.laurels-fullscreen-link i { margin-right: .45rem; }
+.laurels-rules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.laurels-rules li {
+  padding: 1.35rem;
+  border-top: 3px solid var(--burgundy);
+  background: rgba(255,255,255,.035);
+}
+.laurels-rules li:nth-child(2) { border-top-color: var(--amber); }
+.laurels-rules li:nth-child(3) { border-top-color: var(--slate); }
+.laurels-rule-num {
+  display: block;
+  color: var(--amber);
+  font: 700 1.6rem/1 'Playfair Display', serif;
+  margin-bottom: .5rem;
+}
+.laurels-rules h3 {
+  color: var(--cream);
+  font-size: 1.02rem;
+  margin-bottom: .5rem;
+}
+.laurels-rules p {
+  color: rgba(232,224,213,.74);
+  font-size: .87rem;
+  line-height: 1.65;
+}
+.laurels-play { margin-bottom: 2.5rem; }
+.laurels-play-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.laurels-play-head h2 {
+  color: var(--cream);
+  font-size: 1.35rem;
+  margin: .35rem 0 0;
+}
+.laurels-play-out {
+  color: rgba(232,224,213,.8);
+  font-size: .82rem;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+.laurels-play-out:hover { color: var(--amber); }
+.laurels-play-out i { margin-right: .4rem; }
+.laurels-frame-shell {
+  width: 100%;
+  height: clamp(560px, 80vh, 900px);
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.02);
+  overflow: hidden;
+}
+.laurels-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.laurels-frame-note {
+  color: rgba(255,255,255,.6);
+  font-size: .76rem;
+  margin-top: .7rem;
+  text-align: center;
+}
+.laurels-built h2 {
+  color: var(--cream);
+  font-size: 1.35rem;
+  margin: .35rem 0 .75rem;
+}
+.laurels-built-intro {
+  max-width: 720px;
+  color: rgba(232,224,213,.74);
+  font-size: .9rem;
+  line-height: 1.7;
+}
+.laurels-built code {
+  padding: .1rem .35rem;
+  border-radius: 3px;
+  background: rgba(255,255,255,.08);
+  color: var(--cream);
+  font-size: .85em;
+}
+.laurels-built-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.laurels-built-grid article {
+  padding: 1.35rem;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.035);
+}
+.laurels-built-grid i {
+  color: var(--burgundy);
+  font-size: 1.15rem;
+  margin-bottom: .7rem;
+}
+.laurels-built-grid h3 {
+  color: var(--cream);
+  font-size: 1.02rem;
+  margin-bottom: .5rem;
+}
+.laurels-built-grid p {
+  color: rgba(232,224,213,.74);
+  font-size: .87rem;
+  line-height: 1.65;
+}
+.laurels-credits {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.5);
+  font-size: .76rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .laurels-hero { padding: 7rem 1.25rem 2rem; }
+  .laurels-fullscreen-link { justify-self: start; white-space: normal; }
+  .laurels-rules { grid-template-columns: 1fr; }
+  .laurels-built-grid { grid-template-columns: 1fr; }
+  /* Tall enough that the game's own "how to play" dialog, which is the first
+     thing shown, fits with its Play button reachable. */
+  .laurels-frame-shell { height: clamp(620px, 88vh, 780px); }
+}
+
 /* ── Architecture page ───────────────────────────────────── */
 .arch-hero {
   background: var(--ink);

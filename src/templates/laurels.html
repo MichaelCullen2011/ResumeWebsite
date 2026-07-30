@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Laurels — a roguelike chess variant — Michael Cullen{% endblock %}
+{% block meta_description %}Laurels is a roguelike chess variant on a 6×6 board: every capture drops a laurel, and holding it for a turn banks a reward. Playable here in the browser.{% endblock %}
+{% block og_title %}Laurels — a roguelike chess variant{% endblock %}
+{% block og_desc %}Every capture drops a laurel. Hold it for a turn and it banks a reward. No checkmate — take the king.{% endblock %}
+
+{% block content %}
+<section class="laurels-hero">
+  <p class="physics-eyebrow">Playable game</p>
+  <h1>Laurels</h1>
+  <p>A roguelike chess variant on a 6×6 board. Every capture drops a laurel, and if
+    the capturing piece survives the reply, that laurel banks into a reward.</p>
+</section>
+
+<div class="physics-body">
+  <div class="physics-shell">
+
+    <section class="physics-explainer" aria-labelledby="laurels-explainer-heading">
+      <div>
+        <p class="physics-eyebrow">What am I playing?</p>
+        <h2 id="laurels-explainer-heading">Chess, with a reason to take the fight</h2>
+        <p>I wanted to know what would happen to chess if you gave it the structure of a
+          roguelike — the thing Balatro did to poker. Ordinary chess punishes greed. This
+          rewards it, but only if you can hold what you have taken.</p>
+        <p>Games run a few minutes on a 6×6 board. Every run is generated from a seed, so
+          a game can be handed to someone else exactly as you played it.</p>
+      </div>
+      <a href="https://laurels-game.web.app" class="btn btn-primary laurels-fullscreen-link" target="_blank" rel="noopener">
+        <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
+        Open full screen
+      </a>
+    </section>
+
+    <ol class="laurels-rules">
+      <li>
+        <span class="laurels-rule-num" aria-hidden="true">1</span>
+        <h3>Capture, and a laurel drops</h3>
+        <p>The capturing piece picks it up. What the laurel is worth depends on what you
+          took: a pawn gives a common, a minor piece or rook gives a rare, and a queen
+          gives a jackpot.</p>
+      </li>
+      <li>
+        <span class="laurels-rule-num" aria-hidden="true">2</span>
+        <h3>Survive a turn, and it banks</h3>
+        <p>Hold that piece through the opponent's reply and the laurel resolves into a
+          reward — extra turns, zombie pieces, upgrades. Lose the piece and they take the
+          laurel with it. Jackpots let you pick one of three.</p>
+      </li>
+      <li>
+        <span class="laurels-rule-num" aria-hidden="true">3</span>
+        <h3>No check, no checkmate</h3>
+        <p>There are no pins and nothing is illegal on account of your king. Capture
+          theirs and the game ends there.</p>
+      </li>
+    </ol>
+
+    <section class="laurels-play" aria-labelledby="laurels-play-heading">
+      <div class="laurels-play-head">
+        <div>
+          <p class="physics-eyebrow">Play it</p>
+          <h2 id="laurels-play-heading">Click a piece, then a highlighted square</h2>
+        </div>
+        <a href="https://laurels-game.web.app" class="laurels-play-out" target="_blank" rel="noopener">
+          <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i>
+          Open in a new tab
+        </a>
+      </div>
+      <div class="laurels-frame-shell">
+        <iframe
+          class="laurels-frame"
+          src="https://laurels-game.web.app"
+          title="Laurels — playable roguelike chess variant"
+          loading="lazy"
+          allow="clipboard-write; fullscreen"
+        ></iframe>
+      </div>
+      <p class="laurels-frame-note">Runs with a mouse or by touch. On a small screen it is
+        worth opening it in its own tab.</p>
+    </section>
+
+    <section class="laurels-built" aria-labelledby="laurels-built-heading">
+      <p class="physics-eyebrow">How it is built</p>
+      <h2 id="laurels-built-heading">A pure engine with the game painted on top</h2>
+      <p class="laurels-built-intro">TypeScript, React and Vite, with the board drawn as
+        plain HTML5 canvas on a <code>requestAnimationFrame</code> loop. The interesting
+        part is the split: none of the rules know that a screen exists.</p>
+      <div class="laurels-built-grid">
+        <article>
+          <i class="fa-solid fa-dice" aria-hidden="true"></i>
+          <h3>Deterministic from a seed</h3>
+          <p>The engine is pure and has no DOM access. Randomness comes from a mulberry32
+            generator seeded per run, so the same seed always replays the same game. There
+            are cross-run determinism tests to keep it that way.</p>
+        </article>
+        <article>
+          <i class="fa-solid fa-table-list" aria-hidden="true"></i>
+          <h3>Rewards are data</h3>
+          <p>Each reward is a row in a registry — some metadata and a pure
+            <code>apply</code> function. Adding a new mechanic means adding a row rather
+            than threading logic through the game loop.</p>
+        </article>
+        <article>
+          <i class="fa-solid fa-robot" aria-hidden="true"></i>
+          <h3>A bot that wants the laurels</h3>
+          <p>Alpha-beta minimax that knows regicide ends the game and values laurels
+            rather than counting material. A bot that only weighs pieces plays this
+            variant badly.</p>
+        </article>
+        <article>
+          <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+          <h3>Designed in the open</h3>
+          <p>Research, then a design brief, then a prototype, then playtests folded back
+            into the docs. The decision log covers why the board is 6×6, why laurels are
+            capture-and-hold, and how the snowball problem gets braked.</p>
+        </article>
+      </div>
+      <p class="laurels-credits">Piece sprites are the cburnett set by Colin M.L. Burnett,
+        used under CC BY-SA 3.0. The sound effects are synthesised in the browser with
+        WebAudio.</p>
+    </section>
+
+  </div>
+</div>
+{% endblock %}
