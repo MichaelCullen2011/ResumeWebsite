@@ -1,6 +1,8 @@
 .venv/
 .history/
 .DS_Store
+.playwright-mcp/
+tmp/
 .vscode/
 .idea/
 *__pycache__*
