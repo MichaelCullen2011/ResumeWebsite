@@ -21,8 +21,8 @@
         <p class="physics-eyebrow">What am I playing?</p>
         <h2 id="laurels-explainer-heading">Chess, with a reason to take the fight</h2>
         <p>I wanted to know what would happen to chess if you gave it the structure of a
-          roguelike — the thing Balatro did to poker. Ordinary chess punishes greed. This
-          rewards it, but only if you can hold what you have taken.</p>
+          roguelike. Ordinary chess punishes greed. This rewards it, but only if you can
+          hold what you have taken.</p>
         <p>Games run a few minutes on a 6×6 board. Every run is generated from a seed, so
           a game can be handed to someone else exactly as you played it.</p>
       </div>
@@ -37,8 +37,7 @@
         <span class="laurels-rule-num" aria-hidden="true">1</span>
         <h3>Capture, and a laurel drops</h3>
         <p>The capturing piece picks it up. What the laurel is worth depends on what you
-          took: a pawn gives a common, a minor piece or rook gives a rare, and a queen
-          gives a jackpot.</p>
+          took between common, rare, and jackpot laurels.</p>
       </li>
       <li>
         <span class="laurels-rule-num" aria-hidden="true">2</span>
@@ -83,8 +82,8 @@
       <p class="physics-eyebrow">How it is built</p>
       <h2 id="laurels-built-heading">A pure engine with the game painted on top</h2>
       <p class="laurels-built-intro">TypeScript, React and Vite, with the board drawn as
-        plain HTML5 canvas on a <code>requestAnimationFrame</code> loop. The interesting
-        part is the split: none of the rules know that a screen exists.</p>
+        plain HTML5 canvas on a <code>requestAnimationFrame</code> loop where none of the
+        game rules need to know that a screen exists.</p>
       <div class="laurels-built-grid">
         <article>
           <i class="fa-solid fa-dice" aria-hidden="true"></i>
@@ -107,17 +106,7 @@
             rather than counting material. A bot that only weighs pieces plays this
             variant badly.</p>
         </article>
-        <article>
-          <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-          <h3>Designed in the open</h3>
-          <p>Research, then a design brief, then a prototype, then playtests folded back
-            into the docs. The decision log covers why the board is 6×6, why laurels are
-            capture-and-hold, and how the snowball problem gets braked.</p>
-        </article>
       </div>
-      <p class="laurels-credits">Piece sprites are the cburnett set by Colin M.L. Burnett,
-        used under CC BY-SA 3.0. The sound effects are synthesised in the browser with
-        WebAudio.</p>
     </section>
 
   </div>
